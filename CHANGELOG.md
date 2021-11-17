@@ -1,3 +1,7 @@
+## 0.0.3
+
+- Fixed README markdown formatting for pub.dev
+
 ## 0.0.2
 
 - Fixed dependency warnings for publishing
