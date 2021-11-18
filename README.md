@@ -33,7 +33,7 @@ For example:
 |`'banana, 4, apple'`|`'banana'`, `4`, `'apple'`|
 |`'banana, 4, '`|`'banana'`, `4`, `null`|
 |`'banana, "4", apple'`|`'banana'`, `'4'`, `'apple'`|
-|`'banana, 4, """'`|`'banana'`, `4`, `''`|
+|`'banana, 4, ""'`|`'banana'`, `4`, `''`|
 
 ## Getting started
 

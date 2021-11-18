@@ -88,7 +88,6 @@ void main() {
       // assert
       expect(actual, expected);
     });
-
   });
 
   group('ParameterizedSource.values tests', () {

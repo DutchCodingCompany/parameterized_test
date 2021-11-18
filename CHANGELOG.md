@@ -1,3 +1,7 @@
+## 0.0.4
+
+- Fixed some formatting
+
 ## 0.0.3
 
 - Fixed README markdown formatting for pub.dev
