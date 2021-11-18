@@ -3,6 +3,7 @@
 /// Current options are:
 /// - [ParameterizedSource.csv]
 /// - [ParameterizedSource.value]
+/// - [ParameterizedSource.values]
 class ParameterizedSource {
   final List<List<dynamic>> params;
 
