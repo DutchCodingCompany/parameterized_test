@@ -1,3 +1,7 @@
+## 0.0.5
+
+- Updated some dependencies
+
 ## 0.0.4
 
 - Fixed some formatting
