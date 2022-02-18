@@ -37,7 +37,8 @@ For example:
 
 ## Getting started
 
-Include the package in your project.
+Include `parameterized_test` or when using `flutter_test` include `flutter_parameterized_test`  in
+your projects `pubspec.yaml`.
 
 ## Usage
 
