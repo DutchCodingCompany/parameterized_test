@@ -1,4 +1,4 @@
-name: flutter_parameterized_test
+name: parameterized_source
 description: Simple package that helps with executing parameterized tests. Inspired by JUnit ParameterizedTest CsvValues.
 version: 0.2.0
 homepage: https://www.github.com/DutchCodingCompany/parameterized_test
@@ -8,11 +8,6 @@ environment:
 
 dependencies:
   meta: ^1.8.0
-  flutter:
-    sdk: flutter
-  flutter_test:
-    sdk: flutter
-  parameterized_source: ^0.2.0
 
 dev_dependencies:
   lints: ^2.0.0

@@ -1,6 +1,6 @@
-import 'package:meta/meta.dart';
-import 'package:parameterized_test/src/parameterized_source.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:meta/meta.dart';
+import 'package:parameterized_source/parameterized_source.dart';
 
 /// Create a group of parameterized tests.
 ///
@@ -30,21 +30,22 @@ import 'package:flutter_test/flutter_test.dart';
 ///   );
 /// ```
 @isTestGroup
-void parameterizedTest(Object description,
-    ParameterizedSource parameters,
-    void Function(List<dynamic> values) body, {
-      String? testOn,
-      Timeout? timeout,
-      dynamic skip,
-      dynamic tags,
-      Map<String, dynamic>? onPlatform,
-      int? retry,
-    }) {
+void parameterizedTest(
+  Object description,
+  ParameterizedSource parameters,
+  void Function(List<dynamic> values) body, {
+  String? testOn,
+  Timeout? timeout,
+  dynamic skip,
+  dynamic tags,
+  Map<String, dynamic>? onPlatform,
+  int? retry,
+}) {
   group(description, () {
     for (final parameter in parameters.params) {
       test(
         parameter,
-            () => body(parameter),
+        () => body(parameter),
         testOn: testOn,
         timeout: timeout,
         skip: skip,
