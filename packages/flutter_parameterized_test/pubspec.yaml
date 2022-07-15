@@ -10,9 +10,9 @@ dependencies:
   meta: ^1.8.0
   flutter:
     sdk: flutter
+  flutter_test:
+    sdk: flutter
   parameterized_source: ^0.2.0
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
   lints: ^2.0.0
