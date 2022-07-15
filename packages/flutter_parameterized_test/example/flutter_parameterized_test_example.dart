@@ -1,5 +1,6 @@
 import 'package:flutter_parameterized_test/flutter_parameterized_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:parameterized_source/parameterized_source.dart';
 
 void main() {
   parameterizedTest(

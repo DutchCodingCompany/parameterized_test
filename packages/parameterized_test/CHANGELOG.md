@@ -1,3 +1,7 @@
+## 0.2.0
+
+- Fixed some issues with seperate parameterized_test variances
+
 ## 0.1.0
 
 - Created flutter variance of parameterized_test

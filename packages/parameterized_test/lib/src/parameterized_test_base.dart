@@ -1,5 +1,5 @@
 import 'package:meta/meta.dart';
-import 'package:parameterized_test/src/parameterized_source.dart';
+import 'package:parameterized_source/parameterized_source.dart';
 import 'package:test/test.dart';
 
 /// Create a group of parameterized tests.

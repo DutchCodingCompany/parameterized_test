@@ -1,4 +1,4 @@
-import 'package:parameterized_test/parameterized_test.dart';
+import 'package:parameterized_source/parameterized_source.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -11,12 +11,10 @@ void main() {
       ];
 
       // act
-      final actual = ParameterizedSource
-          .csv([
+      final actual = ParameterizedSource.csv([
         'apple, banana',
         'pineapple, kiwi',
-      ])
-          .params;
+      ]).params;
 
       // assert
       expect(actual, expected);
@@ -30,15 +28,13 @@ void main() {
       ];
 
       // act
-      final actual = ParameterizedSource
-          .csv(
+      final actual = ParameterizedSource.csv(
         [
           'apple; banana',
           'pineapple; kiwi',
         ],
         pattern: ';',
-      )
-          .params;
+      ).params;
 
       // assert
       expect(actual, expected);
@@ -52,12 +48,10 @@ void main() {
       ];
 
       // act
-      final actual = ParameterizedSource
-          .csv([
+      final actual = ParameterizedSource.csv([
         'apple; banana',
         'pineapple; kiwi',
-      ])
-          .params;
+      ]).params;
 
       // assert
       expect(actual, expected);
@@ -71,12 +65,10 @@ void main() {
       ];
 
       // act
-      final actual = ParameterizedSource
-          .csv([
+      final actual = ParameterizedSource.csv([
         'apple, 1.0, 1, true, false, ',
         'banana, 1.0, 1, true, false, kiwi',
-      ])
-          .params;
+      ]).params;
 
       // assert
       expect(actual, expected);
@@ -89,11 +81,9 @@ void main() {
       ];
 
       // act
-      final actual = ParameterizedSource
-          .csv([
+      final actual = ParameterizedSource.csv([
         'apple, "1.0", "1", "true", "false", ""',
-      ])
-          .params;
+      ]).params;
 
       // assert
       expect(actual, expected);
@@ -110,13 +100,11 @@ void main() {
       ];
 
       // act
-      final actual = ParameterizedSource
-          .value([
+      final actual = ParameterizedSource.value([
         'apple',
         'banana',
         'kiwi',
-      ])
-          .params;
+      ]).params;
 
       // assert
       expect(actual, expected);
@@ -131,13 +119,11 @@ void main() {
       ];
 
       // act
-      final actual = ParameterizedSource
-          .value([
+      final actual = ParameterizedSource.value([
         'apple,2',
         'banana,2',
         'kiwi,2',
-      ])
-          .params;
+      ]).params;
 
       // assert
       expect(actual, expected);
