@@ -1,3 +1,7 @@
+## 0.2.1
+
+- Fixed issues with wrong dependencies
+
 ## 0.2.0
 
 - Fixed some issues with seperate parameterized_test variances
