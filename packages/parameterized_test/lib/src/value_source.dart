@@ -1,152 +1,167 @@
-import 'package:test/test.dart';
+import 'package:meta/meta.dart';
+import 'package:parameterized_test/src/test_options/value_with_test_options.dart';
 
-import 'meta_data.dart';
+import 'errors/parameter_count_error.dart';
+import 'errors/parameter_type_error.dart';
+import 'test_options/group_test_options.dart';
+import 'test_options/test_options.dart';
 import 'test_source.dart';
 
 abstract class ValueSource<T> implements TestSource<T> {
-  factory ValueSource(List<T> values, GroupMeta groupMeta) => _ValueSourceImpl(values, groupMeta);
-}
+  factory ValueSource(
+    Iterable values,
+    GroupTestOptions groupTestOptions, [
+    TestOptions defaultTestOptions = const TestOptions(),
+  ]) =>
+      _ValueSourceImpl(wrap(values, defaultTestOptions), groupTestOptions);
 
-class _ValueSourceImpl<T> implements ValueSource<T> {
-  const _ValueSourceImpl(this._values, this._groupMeta);
-
-  final List<T> _values;
-  final GroupMeta _groupMeta;
-
-  @override
-  void parameterizedTest(
-    String description,
-    dynamic Function(T value) body, {
-    String? testOn,
-    Timeout? timeout,
-    skip,
-    tags,
-    Map<String, dynamic>? onPlatform,
-    int? retry,
-  }) {
-    final testMeta = TestMeta(timeout: timeout, skip: skip, tags: tags, onPlatform: onPlatform, retry: retry);
-    _groupMeta.groupTest(description, () {
-      for (final value in _values) {
-        testMeta.test('[${value.toString()}]', () => body(value));
+  @visibleForTesting
+  static Iterable<ValueWithTestOptions<R>> wrap<R>(Iterable values, TestOptions defaultTestOptions) {
+    return values.map((e) {
+      if (e is ValueWithTestOptions<R>) {
+        return e;
+      } else if (e is Iterable<R>) {
+        return ValueWithTestOptions(e, defaultTestOptions);
+      } else {
+        return ValueWithTestOptions([e], defaultTestOptions);
       }
     });
   }
 }
 
-abstract class ValuesSource<T> implements ValueSource<List<T>>, MutliArgs {
-  factory ValuesSource(List<List<T>> values, GroupMeta groupMeta) => _ValuesSourceImpl(values, groupMeta);
-}
+class _ValueSourceImpl<T> implements ValueSource<T> {
+  const _ValueSourceImpl(
+    this._values,
+    this._groupTestOptions,
+  );
 
-class _ValuesSourceImpl<T> extends _ValueSourceImpl<List<T>> implements ValuesSource<T> {
-  const _ValuesSourceImpl(List<List<T>> values, GroupMeta groupMeta) : super(values, groupMeta);
+  final Iterable<ValueWithTestOptions<T>> _values;
+  final GroupTestOptions _groupTestOptions;
 
   @override
-  void parameterizedTest2<A1, A2>(String description, Function(A1 value, A2 value2) body,
-      {String? testOn, Timeout? timeout, skip, tags, Map<String, dynamic>? onPlatform, int? retry}) {
-    final testMeta = TestMeta(timeout: timeout, skip: skip, tags: tags, onPlatform: onPlatform, retry: retry);
+  void executeTests<A1>(
+    dynamic Function(A1 value) body,
+  ) {
+    _groupTestOptions.groupTest(
+      () {
+        mapTest(_values, (value) {
+          final A1 a1 = cast(value);
+          body(a1);
+        });
+      },
+    );
+  }
 
-    _groupMeta.groupTest(description, () {
-      _mapTests(_values, 2, testMeta, (value) {
-        final A1 a1 = value.castHelper(0);
-        final A2 a2 = value.castHelper(1);
+  @override
+  void executeTests2<A1, A2>(
+    Function(A1 value, A2 value2) body,
+  ) {
+    _groupTestOptions.groupTest(() {
+      mapTests(_values, 2, (value) {
+        final A1 a1 = castElementAt(value, 0);
+        final A2 a2 = castElementAt(value, 1);
         body(a1, a2);
       });
     });
   }
 
   @override
-  void parameterizedTest3<A1, A2, A3>(String description, Function(A1 value, A2 value2, A3 value3) body,
-      {String? testOn, Timeout? timeout, skip, tags, Map<String, dynamic>? onPlatform, int? retry}) {
-    final testMeta = TestMeta(timeout: timeout, skip: skip, tags: tags, onPlatform: onPlatform, retry: retry);
-    _groupMeta.groupTest(description, () {
-      _mapTests(_values, 3, testMeta, (value) {
-        final A1 a1 = value.castHelper(0);
-        final A2 a2 = value.castHelper(1);
-        final A3 a3 = value.castHelper(2);
+  void executeTests3<A1, A2, A3>(
+    Function(A1 value, A2 value2, A3 value3) body,
+  ) {
+    _groupTestOptions.groupTest(() {
+      mapTests(_values, 3, (value) {
+        final A1 a1 = castElementAt(value, 0);
+        final A2 a2 = castElementAt(value, 1);
+        final A3 a3 = castElementAt(value, 2);
         body(a1, a2, a3);
       });
     });
   }
 
   @override
-  void parameterizedTest4<A1, A2, A3, A4>(String description, Function(A1 value, A2 value2, A3 value3, A4 value4) body,
-      {String? testOn, Timeout? timeout, skip, tags, Map<String, dynamic>? onPlatform, int? retry}) {
-    final testMeta = TestMeta(timeout: timeout, skip: skip, tags: tags, onPlatform: onPlatform, retry: retry);
-    _groupMeta.groupTest(description, () {
-      _mapTests(_values, 4, testMeta, (value) {
-        final A1 a1 = value.castHelper(0);
-        final A2 a2 = value.castHelper(1);
-        final A3 a3 = value.castHelper(2);
-        final A4 a4 = value.castHelper(3);
+  void executeTests4<A1, A2, A3, A4>(
+    Function(A1 value, A2 value2, A3 value3, A4 value4) body,
+  ) {
+    _groupTestOptions.groupTest(() {
+      mapTests(_values, 4, (value) {
+        final A1 a1 = castElementAt(value, 0);
+        final A2 a2 = castElementAt(value, 1);
+        final A3 a3 = castElementAt(value, 2);
+        final A4 a4 = castElementAt(value, 3);
         body(a1, a2, a3, a4);
       });
     });
   }
 
   @override
-  dynamic parameterizedTest5<A1, A2, A3, A4, A5>(
-      String description, Function(A1 value, A2 value2, A3 value3, A4 value4, A5 value5) body,
-      {String? testOn, Timeout? timeout, skip, tags, Map<String, dynamic>? onPlatform, int? retry}) {
-    final testMeta = TestMeta(timeout: timeout, skip: skip, tags: tags, onPlatform: onPlatform, retry: retry);
-    _groupMeta.groupTest(description, () {
-      _mapTests(_values, 5, testMeta, (value) {
-        final A1 a1 = value.castHelper(0);
-        final A2 a2 = value.castHelper(1);
-        final A3 a3 = value.castHelper(2);
-        final A4 a4 = value.castHelper(3);
-        final A5 a5 = value.castHelper(4);
+  dynamic executeTests5<A1, A2, A3, A4, A5>(
+    Function(A1 value, A2 value2, A3 value3, A4 value4, A5 value5) body,
+  ) {
+    _groupTestOptions.groupTest(() {
+      mapTests(_values, 5, (value) {
+        final A1 a1 = castElementAt(value, 0);
+        final A2 a2 = castElementAt(value, 1);
+        final A3 a3 = castElementAt(value, 2);
+        final A4 a4 = castElementAt(value, 3);
+        final A5 a5 = castElementAt(value, 4);
         body(a1, a2, a3, a4, a5);
       });
     });
   }
 
-  void _mapTests(List<List<T>> values, int length, TestMeta testMeta, dynamic Function(List<T>) body) {
+  @override
+  executeTests6<A1, A2, A3, A4, A5, A6>(
+    Function(A1 value, A2 value2, A3 value3, A4 value4, A5 value5, A6 value6) body,
+  ) {
+    _groupTestOptions.groupTest(() {
+      mapTests(_values, 6, (value) {
+        final A1 a1 = castElementAt(value, 0);
+        final A2 a2 = castElementAt(value, 1);
+        final A3 a3 = castElementAt(value, 2);
+        final A4 a4 = castElementAt(value, 3);
+        final A5 a5 = castElementAt(value, 4);
+        final A6 a6 = castElementAt(value, 5);
+        body(a1, a2, a3, a4, a5, a6);
+      });
+    });
+  }
+
+  @visibleForTesting
+  void mapTest(Iterable<ValueWithTestOptions<T>> values, dynamic Function(T) body) {
     for (final value in values) {
-      testMeta.test('[ ${value.join(',')} ]', () {
-        _validityCheck(value, length);
-        body(value);
+      validityCheck(value, 1);
+      value.testOptions.test('[ ${value.first} ]', () {
+        body(value.value.first);
       });
     }
   }
 
-  void _validityCheck(List<T> values, int length) {
+  @visibleForTesting
+  void mapTests(Iterable<ValueWithTestOptions<T>> values, int length, void Function(Iterable<T>) body) {
+    for (final value in values) {
+      value.testOptions.test('[ $value ]', () {
+        body(value.value);
+      });
+    }
+  }
+
+  @visibleForTesting
+  void validityCheck(Iterable<T> values, int length) {
     if (values.length != length) {
-      throw ParameterCountMismatchError('''
-          Expected: $length parameters
-          Actual: ${values.length} parameters
-          Supplied parameter count does not match selected parameterizedTest$length.''');
+      throw ParameterCountError(length, values.length);
     }
   }
-}
 
-extension on List<dynamic> {
-  T castHelper<T>(int index) {
+  @visibleForTesting
+  R cast<R, S>(S value) {
     try {
-      return this[index] as T;
+      return value as R;
     } on TypeError catch (e, s) {
-      throw SpecifiedTypeMismatchError('''
-        Expected: $T
-        Actual: ${this[index].runtimeType}
-        Supplied test value type does not match parameter method type.
-      ''');
+      throw ParameterTypeError(R, runtimeType);
     }
   }
-}
 
-class ParameterCountMismatchError extends Error {
-  ParameterCountMismatchError(this.message);
-
-  final String message;
-
-  @override
-  String toString() => message;
-}
-
-class SpecifiedTypeMismatchError extends Error {
-  SpecifiedTypeMismatchError(this.message);
-
-  final String message;
-
-  @override
-  String toString() => message;
+  @visibleForTesting
+  R castElementAt<R>(Iterable values, int index) => cast(values.elementAt(index));
 }

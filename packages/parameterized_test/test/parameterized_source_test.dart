@@ -1,132 +1,50 @@
-import 'package:parameterized_source/parameterized_source.dart';
+import 'package:parameterized_test/parameterized_test.dart';
 import 'package:test/test.dart';
 
-void main() {
-  group('ParameterizedSource.csv tests', () {
-    test('csv values are split by , by default', () {
-      // arrange
-      final expected = [
-        ['apple', 'banana'],
-        ['pineapple', 'kiwi'],
-      ];
-
-      // act
-      final actual = ParameterizedSource.csv([
-        'apple, banana',
-        'pineapple, kiwi',
-      ]).params;
-
-      // assert
-      expect(actual, expected);
-    });
-
-    test('csv values are split by ;', () {
-      // arrange
-      final expected = [
-        ['apple', 'banana'],
-        ['pineapple', 'kiwi'],
-      ];
-
-      // act
-      final actual = ParameterizedSource.csv(
-        [
-          'apple; banana',
-          'pineapple; kiwi',
-        ],
-        pattern: ';',
-      ).params;
-
-      // assert
-      expect(actual, expected);
-    });
-
-    test('csv values are not split', () {
-      // arrange
-      final expected = [
-        ['apple; banana'],
-        ['pineapple; kiwi'],
-      ];
-
-      // act
-      final actual = ParameterizedSource.csv([
-        'apple; banana',
-        'pineapple; kiwi',
-      ]).params;
-
-      // assert
-      expect(actual, expected);
-    });
-
-    test('csv values are parsed', () {
-      // arrange
-      final expected = [
-        ['apple', 1.0, 1, true, false, null],
-        ['banana', 1.0, 1, true, false, 'kiwi'],
-      ];
-
-      // act
-      final actual = ParameterizedSource.csv([
-        'apple, 1.0, 1, true, false, ',
-        'banana, 1.0, 1, true, false, kiwi',
-      ]).params;
-
-      // assert
-      expect(actual, expected);
-    });
-
-    test('csv values are not parsed', () {
-      // arrange
-      final expected = [
-        ['apple', '1.0', '1', 'true', 'false', ''],
-      ];
-
-      // act
-      final actual = ParameterizedSource.csv([
-        'apple, "1.0", "1", "true", "false", ""',
-      ]).params;
-
-      // assert
-      expect(actual, expected);
-    });
+main() {
+  parameterizedTest2('list list dynamic wrong type cast', [
+    ['kiwi', 14],
+    ['apple', 15],
+    ['banana', 16],
+  ], (String word, bool length) {
+    expect(word.length, length);
   });
 
-  group('ParameterizedSource.values tests', () {
-    test('values are seperated', () {
-      // arrange
-      final expected = [
-        ['apple'],
-        ['banana'],
-        ['kiwi'],
-      ];
-
-      // act
-      final actual = ParameterizedSource.value([
-        'apple',
-        'banana',
-        'kiwi',
-      ]).params;
-
-      // assert
-      expect(actual, expected);
-    });
-
-    test('values are seperated but not like csv', () {
-      // arrange
-      final expected = [
-        ['apple,2'],
-        ['banana,2'],
-        ['kiwi,2'],
-      ];
-
-      // act
-      final actual = ParameterizedSource.value([
-        'apple,2',
-        'banana,2',
-        'kiwi,2',
-      ]).params;
-
-      // assert
-      expect(actual, expected);
-    });
+  parameterizedTest2('list list dynamic list to long for selected test', [
+    ['kiwi', 4, 1],
+    ['apple', 5, 1],
+    ['banana', 6, 1].withTestOptions(skip: true),
+  ], (String word, int length) {
+    expect(word.length, length);
+  }, setUp: () {
+    print('iets');
   });
+
+  parameterizedTest2('list list dynamic test', [
+    ['kiwi', 4],
+    ['apple', 5],
+    ['banana', 6],
+  ], (String word, int length) {
+    expect(word.length, length);
+  });
+
+  parameterizedTest2('list list dynamic test', [
+    ['kiwi', 14],
+    ['apple', 15],
+    ['banana', 16],
+  ], (String word, int length) {
+    expect(word.length, length);
+  });
+
+  parameterizedTest(
+      'wrap single values',
+      [
+        1,
+        2,
+        3.withTestOptions(skip: true),
+      ],
+          (int value) {
+        final result = value < 3;
+        expect(result, true);
+      });
 }
