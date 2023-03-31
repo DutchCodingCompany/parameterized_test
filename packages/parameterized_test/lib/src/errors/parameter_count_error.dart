@@ -1,3 +1,4 @@
+/// Error thrown when TestParameters parameter count doesn't match amount of test values supplied for the test.
 class ParameterCountError extends Error {
   ParameterCountError(this.expected, this.actual);
 

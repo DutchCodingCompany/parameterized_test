@@ -5,39 +5,37 @@ import 'test_options/group_test_options.dart';
 import 'test_parameters.dart';
 import 'value_source.dart';
 
-/// Create a group of parameterized tests.
+/// Create a new parameterizedTest with given [description], [values] and [body]
 ///
-/// The group will iterate over the supplied [testOptions].
-/// The [testOptions] are supplied through a [ParameterizedSource].
-/// Each test will be executed with the next parameter which will receive the parameter in the [body].
-///
-/// parameterized test also have the same options as group tests have. These options will be passed to the group function.
+/// [parameterizedTest] also have the same options as group tests have. These options will be passed to the group function.
 ///
 /// For example:
 /// ```dart
 /// parameterizedTest(
-///     'Amount of letters',
-///     ParameterizedSource.csv([
-///       'kiwi, 4',
-///       'apple, 5',
-///       'banana, 6',
-///     ]),
-///     (Iterable<dynamic> values) {
-///       final String input = values[0];
-///       final expected = values[1];
-///
-///       final actual = input.length;
-///
-///       expect(actual, expected);
-///     },
-///   );
+///   'Amount of letters',
+///   [
+///     ['kiwi', 4],
+///     ['apple', 5],
+///     ['banana', 6].withTestOptions(skip: true),
+///   ],
+///   p2((String word, int length) {
+///     expect(word.length, length);
+///   }),
+/// );
 /// ```
 @isTestGroup
 //ignore: long-parameter-list
 void parameterizedTest(
+  /// Test description.
   Object description,
+
+  /// List of test values. For each values in the list a test which be executed.
   Iterable<dynamic> values,
+
+  /// The test body which is execute for each test value.
+  /// See [TestParameters] for more info on different bodies.
   TestParameters body, {
+  /// Provide a setup function to the `group` test.
   void Function()? setUp,
   String? testOn,
   Timeout? timeout,

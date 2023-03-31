@@ -1,3 +1,4 @@
+/// Error thrown when TestParameters parameter type doesn't match type of test value supplied for the test.
 class ParameterTypeError extends Error {
   ParameterTypeError(this.expected, this.actual);
 

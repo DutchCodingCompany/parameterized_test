@@ -2,17 +2,37 @@
 
 import 'util/cast_helpers.dart';
 
+/// alias for [TestParameters1].
 typedef p1<A1> = TestParameters1<A1>;
+
+/// alias for [TestParameters2].
 typedef p2<A1, A2> = TestParameters2<A1, A2>;
+
+/// alias for [TestParameters3].
 typedef p3<A1, A2, A3> = TestParameters3<A1, A2, A3>;
+
+/// alias for [TestParameters4].
 typedef p4<A1, A2, A3, A4> = TestParameters4<A1, A2, A3, A4>;
+
+/// alias for [TestParameters5].
 typedef p5<A1, A2, A3, A4, A5> = TestParameters5<A1, A2, A3, A4, A5>;
+
+/// alias for [TestParameters6].
 typedef p6<A1, A2, A3, A4, A5, A6> = TestParameters6<A1, A2, A3, A4, A5, A6>;
+
+/// alias for [TestParameters7].
 typedef p7<A1, A2, A3, A4, A5, A6, A7> = TestParameters7<A1, A2, A3, A4, A5, A6, A7>;
+
+/// alias for [TestParameters8].
 typedef p8<A1, A2, A3, A4, A5, A6, A7, A8> = TestParameters8<A1, A2, A3, A4, A5, A6, A7, A8>;
+
+/// alias for [TestParameters9].
 typedef p9<A1, A2, A3, A4, A5, A6, A7, A8, A9> = TestParameters9<A1, A2, A3, A4, A5, A6, A7, A8, A9>;
+
+/// alias for [TestParameters10].
 typedef p10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> = TestParameters10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>;
 
+/// Provides a interface for implementing test body classes.
 abstract class TestParameters {
   abstract final Function body;
   abstract final int count;
@@ -20,6 +40,13 @@ abstract class TestParameters {
   void mapBody<R>(Iterable<R> values);
 }
 
+/// Test body class that handles 1 test parameter value.
+/// For example:
+/// ```dart
+/// TestParameter1((int number){
+///   // Do some test logic here.
+/// });
+/// ```
 class TestParameters1<A1> implements TestParameters {
   const TestParameters1(this.body);
 
@@ -36,6 +63,13 @@ class TestParameters1<A1> implements TestParameters {
   }
 }
 
+/// Test body class that handles 2 test parameter values.
+/// For example:
+/// ```dart
+/// TestParameter2((int number, String word){
+///   // Do some test logic here.
+/// });
+/// ```
 class TestParameters2<A1, A2> implements TestParameters {
   const TestParameters2(this.body);
 
@@ -53,6 +87,13 @@ class TestParameters2<A1, A2> implements TestParameters {
   }
 }
 
+/// Test body class that handles 3 test parameter values.
+/// For example:
+/// ```dart
+/// TestParameter1((int number, String word, bool isRight){
+///   // Do some test logic here.
+/// });
+/// ```
 class TestParameters3<A1, A2, A3> implements TestParameters {
   const TestParameters3(this.body);
 
@@ -71,6 +112,13 @@ class TestParameters3<A1, A2, A3> implements TestParameters {
   }
 }
 
+/// Test body class that handles 4 test parameter values.
+/// For example:
+/// ```dart
+/// TestParameter1((int number, String word, bool isRight, double decimal){
+///   // Do some test logic here.
+/// });
+/// ```
 class TestParameters4<A1, A2, A3, A4> implements TestParameters {
   const TestParameters4(this.body);
 
@@ -90,6 +138,13 @@ class TestParameters4<A1, A2, A3, A4> implements TestParameters {
   }
 }
 
+/// Test body class that handles 5 test parameter values.
+/// For example:
+/// ```dart
+/// TestParameter1((int number, String word, bool isRight, double decimal, MyClass myClass){
+///   // Do some test logic here.
+/// });
+/// ```
 class TestParameters5<A1, A2, A3, A4, A5> implements TestParameters {
   const TestParameters5(this.body);
 
@@ -110,6 +165,13 @@ class TestParameters5<A1, A2, A3, A4, A5> implements TestParameters {
   }
 }
 
+/// Test body class that handles 6 test parameter values.
+/// For example:
+/// ```dart
+/// TestParameter1((int number, String word, bool isRight, double decimal, MyClass myClass, MyClass myClass2){
+///   // Do some test logic here.
+/// });
+/// ```
 class TestParameters6<A1, A2, A3, A4, A5, A6> implements TestParameters {
   const TestParameters6(this.body);
 
@@ -131,6 +193,13 @@ class TestParameters6<A1, A2, A3, A4, A5, A6> implements TestParameters {
   }
 }
 
+/// Test body class that handles 7 test parameter values.
+/// For example:
+/// ```dart
+/// TestParameter1((int number, String word, bool isRight, double decimal, MyClass myClass, MyClass myClass2, MyClass myClass3){
+///   // Do some test logic here.
+/// });
+/// ```
 class TestParameters7<A1, A2, A3, A4, A5, A6, A7> implements TestParameters {
   const TestParameters7(this.body);
 
@@ -153,6 +222,13 @@ class TestParameters7<A1, A2, A3, A4, A5, A6, A7> implements TestParameters {
   }
 }
 
+/// Test body class that handles 8 test parameter values.
+/// For example:
+/// ```dart
+/// TestParameter1((int number, String word, bool isRight, double decimal, MyClass myClass, MyClass myClass2, MyClass myClass3, MyClass myClass4){
+///   // Do some test logic here.
+/// });
+/// ```
 class TestParameters8<A1, A2, A3, A4, A5, A6, A7, A8> implements TestParameters {
   const TestParameters8(this.body);
 
@@ -176,6 +252,13 @@ class TestParameters8<A1, A2, A3, A4, A5, A6, A7, A8> implements TestParameters 
   }
 }
 
+/// Test body class that handles 9 test parameter values.
+/// For example:
+/// ```dart
+/// TestParameter1((int number, String word, bool isRight, double decimal, MyClass myClass, MyClass myClass2, MyClass myClass3, MyClass myClass4, MyClass myClass5){
+///   // Do some test logic here.
+/// });
+/// ```
 class TestParameters9<A1, A2, A3, A4, A5, A6, A7, A8, A9> implements TestParameters {
   const TestParameters9(this.body);
 
@@ -200,6 +283,13 @@ class TestParameters9<A1, A2, A3, A4, A5, A6, A7, A8, A9> implements TestParamet
   }
 }
 
+/// Test body class that handles 10 test parameter values.
+/// For example:
+/// ```dart
+/// TestParameter1((int number, String word, bool isRight, double decimal, MyClass myClass, MyClass myClass2, MyClass myClass3, MyClass myClass4, MyClass myClass5, MyClass myClass6){
+///   // Do some test logic here.
+/// });
+/// ```
 class TestParameters10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> implements TestParameters {
   const TestParameters10(this.body);
 
