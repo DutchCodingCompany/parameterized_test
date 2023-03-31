@@ -1,3 +1,8 @@
+## 1.0.0
+
+- Reworked parameterized_test
+  TODO: add changelog
+
 ## 0.2.1
 
 - Fixed issues with wrong dependencies

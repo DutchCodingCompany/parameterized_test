@@ -10,8 +10,8 @@ class TestOptions {
   });
 
   final dart_test.Timeout? timeout;
-  final skip;
-  final tags;
+  final dynamic skip;
+  final dynamic tags;
   final Map<String, dynamic>? onPlatform;
   final int? retry;
 
