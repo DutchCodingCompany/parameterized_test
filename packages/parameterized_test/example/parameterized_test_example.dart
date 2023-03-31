@@ -19,7 +19,7 @@ void main() {
     [
       ['kiwi', 4, 1],
       ['apple', 5, 1],
-      ['banana', 6, 1].withTestOptions(skip: true),
+      ['banana', 6, 1].withTestOptions(skip: 'not now'),
     ],
     p2((String word, int length) {
       expect(word.length, length);
@@ -58,7 +58,7 @@ void main() {
     [
       1,
       2,
-      3.withTestOptions(skip: true),
+      3.withTestOptions(skip: 'not now'),
     ],
     p1((int value) {
       final result = value < 3;

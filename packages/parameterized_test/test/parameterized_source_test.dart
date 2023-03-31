@@ -58,7 +58,7 @@ void main() {
     [
       1,
       2,
-      3.withTestOptions(skip: true),
+      3.withTestOptions(skip: 'not now'),
     ],
     p1((int value) {
       final result = value < 3;

@@ -7,13 +7,13 @@ void main() {
     // act
     final result = [
       1,
-      3.withTestOptions(skip: true),
+      3.withTestOptions(skip: 'not now'),
     ];
 
     expect(
       result[1],
       TypeMatcher<ValueWithTestOptions>()
-          .having((value) => value.value, 'value', [3]).having((value) => value.testOptions.skip, 'skip', true),
+          .having((value) => value.value, 'value', [3]).having((value) => value.testOptions.skip, 'skip', 'not now'),
     );
   });
 
@@ -21,13 +21,13 @@ void main() {
     // act
     final result = [
       [1, 2],
-      [3, 4].withTestOptions(skip: true),
+      [3, 4].withTestOptions(skip: 'not now'),
     ];
 
     expect(
       result[1],
       TypeMatcher<ValueWithTestOptions>()
-          .having((value) => value.value, 'value', [3, 4]).having((value) => value.testOptions.skip, 'skip', true),
+          .having((value) => value.value, 'value', [3, 4]).having((value) => value.testOptions.skip, 'skip', 'not now'),
     );
   });
 }

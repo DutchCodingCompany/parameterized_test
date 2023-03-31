@@ -194,7 +194,7 @@ void main() {
     test('wraps non nested list with ValueWithTestOptions and doesnt override existing ValueWithTestOptions', () {
       final testList = [
         1,
-        2.withTestOptions(skip: true),
+        2.withTestOptions(skip: 'meh'),
       ];
 
       final result = wrap(testList, TestOptions());
@@ -213,7 +213,7 @@ void main() {
         result.elementAt(1),
         TypeMatcher<ValueWithTestOptions>()
             .having((value) => value.value, 'value', [2])
-            .having((value) => value.testOptions.skip, 'skip', true)
+            .having((value) => value.testOptions.skip, 'skip', 'meh')
             .having((value) => value.testOptions.timeout, 'timeout', null)
             .having((value) => value.testOptions.retry, 'retry', null)
             .having((value) => value.testOptions.tags, 'tags', null)
@@ -224,7 +224,7 @@ void main() {
     test('wraps nested list with ValueWithTestOptions and doesnt override existing ValueWithTestOptions', () {
       final testList = [
         [1, 2],
-        [3, 4].withTestOptions(skip: true),
+        [3, 4].withTestOptions(skip: 'meh'),
       ];
 
       final result = wrap(testList, TestOptions());
@@ -243,7 +243,7 @@ void main() {
         result.elementAt(1),
         TypeMatcher<ValueWithTestOptions>()
             .having((value) => value.value, 'value', [3,4])
-            .having((value) => value.testOptions.skip, 'skip', true)
+            .having((value) => value.testOptions.skip, 'skip', 'meh')
             .having((value) => value.testOptions.timeout, 'timeout', null)
             .having((value) => value.testOptions.retry, 'retry', null)
             .having((value) => value.testOptions.tags, 'tags', null)
