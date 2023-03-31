@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import 'test_options/group_test_options.dart';
 import 'test_options/test_options.dart';
 import 'test_options/value_with_test_options.dart';
@@ -14,19 +12,6 @@ abstract class ValueSource implements TestSource {
     TestOptions defaultTestOptions = const TestOptions(),
   ]) =>
       _ValueSourceImpl(wrap(values, defaultTestOptions), groupTestOptions);
-
-  @visibleForTesting
-  static Iterable<ValueWithTestOptions> wrap(Iterable<dynamic> values, TestOptions defaultTestOptions) {
-    return values.map((e) {
-      if (e is ValueWithTestOptions) {
-        return e;
-      } else if (e is Iterable<dynamic>) {
-        return ValueWithTestOptions(e, defaultTestOptions);
-      } else {
-        return ValueWithTestOptions([e], defaultTestOptions);
-      }
-    });
-  }
 }
 
 class _ValueSourceImpl implements ValueSource {
