@@ -13,11 +13,11 @@ and the Flutter guide for
 
 # 🧪 Parameterized test
 
-Supercharge your Dart testing with parameterized_test! Built on top of the [dart test package](https://pub.dev/packages/test), this [JUnit ParameterizedTest](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests) inspired package wrap around `group` and `test` to take your testing to the next level!
+Supercharge your Dart testing with **parameterized_test**! Built on top of the [dart test package](https://pub.dev/packages/test), this [JUnit ParameterizedTest](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests) inspired package wrap around `group` and `test` to take your testing to the next level!
 
 ## Table of contents
 * [Features](#features-)
-* [Getting started](#getting-started)
+* [Installation](#installation)
 * [Usage](#usage)
 * [Examples](#examples)
 * [How it works](#how-it-works)
@@ -31,9 +31,12 @@ Supercharge your Dart testing with parameterized_test! Built on top of the [dart
 - ✅ Include test options for parameter_test.
 - ✅ Include test options per parameters.
 
-## Getting started
+## Installation
 
-Include `parameterized_test` in your projects `pubspec.yaml`.
+```yaml
+dev_dependencies:                    
+  parameterized_test: [latest-version] 
+```
 
 ## Usage 
 
