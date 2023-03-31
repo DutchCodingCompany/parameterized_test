@@ -4,6 +4,7 @@ class GroupTestOptions {
   const GroupTestOptions({
     required this.description,
     this.setUp,
+    this.tearDown,
     this.testOn,
     this.timeout,
     this.skip,
@@ -13,7 +14,8 @@ class GroupTestOptions {
   });
 
   final Object description;
-  final void Function()? setUp;
+  final dynamic Function()? setUp;
+  final dynamic Function()? tearDown;
   final String? testOn;
   final dart_test.Timeout? timeout;
   final dynamic skip;
@@ -26,7 +28,10 @@ class GroupTestOptions {
       description,
       () {
         if (setUp != null) {
-          dart_test.setUp(() => setUp!());
+          dart_test.setUp(setUp!);
+        }
+        if (tearDown != null) {
+          dart_test.tearDown(tearDown!);
         }
         body();
       },

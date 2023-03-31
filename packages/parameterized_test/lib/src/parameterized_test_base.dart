@@ -35,8 +35,10 @@ void parameterizedTest(
   /// The test body which is execute for each test value.
   /// See [TestParameters] for more info on different bodies.
   TestParameters body, {
-  /// Provide a setup function to the `group` test.
-  void Function()? setUp,
+  dynamic Function()? setUp,
+
+  /// Provide a tearDown function to the `group` test.
+  dynamic Function()? tearDown,
   String? testOn,
   Timeout? timeout,
   dynamic skip,
@@ -49,6 +51,7 @@ void parameterizedTest(
     GroupTestOptions(
       description: description,
       setUp: setUp,
+      tearDown: tearDown,
       testOn: testOn,
       timeout: timeout,
       skip: skip,
