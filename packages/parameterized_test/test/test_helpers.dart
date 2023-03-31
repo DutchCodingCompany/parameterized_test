@@ -6,7 +6,7 @@ class MockGroupOptions extends GroupTestOptions {
   MockGroupOptions(String description) : super(description: description);
 
   @override
-  void groupTest(Function() body) {
+  void groupTest(dynamic Function() body) {
     body();
   }
 }
@@ -14,16 +14,16 @@ class MockGroupOptions extends GroupTestOptions {
 class MockTestOptions extends TestOptions {
   MockTestOptions({this.descriptionCallback}) : super();
 
-  final Function(Object)? descriptionCallback;
+  final dynamic Function(Object)? descriptionCallback;
 
   @override
-  void test(Object description, Function() body) {
+  void test(Object description, dynamic Function() body) {
     descriptionCallback?.call(description);
     body();
   }
 }
 
 class MockValueWithTestOptions extends ValueWithTestOptions {
-  MockValueWithTestOptions(Iterable values, {MockTestOptions? testOptions})
+  MockValueWithTestOptions(Iterable<dynamic> values, {MockTestOptions? testOptions})
       : super(values, testOptions ?? MockTestOptions());
 }

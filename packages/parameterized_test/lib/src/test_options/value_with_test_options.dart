@@ -1,11 +1,11 @@
 import 'test_options.dart';
 
-class ValueWithTestOptions<T> extends Iterable<T> {
+class ValueWithTestOptions extends Iterable<dynamic> {
   ValueWithTestOptions(this.value, this.testOptions);
 
-  final Iterable<T> value;
+  final Iterable<dynamic> value;
   final TestOptions testOptions;
 
   @override
-  Iterator<T> get iterator => value.iterator;
+  Iterator<dynamic> get iterator => value.iterator;
 }

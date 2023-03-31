@@ -1,5 +1,5 @@
-import 'package:parameterized_test/src/test_parameters.dart';
+import 'test_parameters.dart';
 
-abstract class TestSource<T> {
+abstract class TestSource {
   void executeTests(TestParameters body);
 }

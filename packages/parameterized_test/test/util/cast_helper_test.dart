@@ -52,7 +52,7 @@ void main() {
 
   group('castElementAt value casting successful', () {
     test('dynamic List<int> to int', () {
-      final dynamic value = [1, 2];
+      final Iterable<dynamic> value = [1, 2];
 
       final int result1 = castElementAt(value, 0);
       final int result2 = castElementAt(value, 1);
@@ -84,7 +84,7 @@ void main() {
 
   group('castElementAt value casting unsuccessful throws ParameterTypeError', () {
     test('dynamic List<int> to String', () {
-      final dynamic value = [1, 2];
+      final Iterable<dynamic> value = [1, 2];
 
       String callback1() => castElementAt(value, 0);
       String callback2() => castElementAt(value, 1);

@@ -1,6 +1,6 @@
 name: flutter_parameterized_test
-description: Simple package that helps with executing parameterized tests. Inspired by JUnit ParameterizedTest CsvValues.
-version: 0.2.1
+description: Simple package that helps with executing parameterized tests. Inspired by JUnit ParameterizedTest.
+version: 1.0.0-rc1
 homepage: https://www.github.com/DutchCodingCompany/parameterized_test
 
 environment:

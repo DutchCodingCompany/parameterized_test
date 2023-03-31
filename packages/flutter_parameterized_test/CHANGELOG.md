@@ -1,3 +1,7 @@
+## 1.0.0-rc1
+
+- DISCONTINUED `flutter_parameterized_test` package
+
 ## 0.2.1
 
 - Fixed issues with wrong dependencies

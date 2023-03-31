@@ -8,12 +8,12 @@ void main() {
   group('mapTests tests', () {
     test('mapTests length 1 Iterable lenght equals 1', () {
       final testValues = [
-        MockValueWithTestOptions([1])
+        MockValueWithTestOptions([1]),
       ];
 
       late Iterable<dynamic> result;
 
-      mapTests<dynamic>(testValues, 1, (value) {
+      mapTests(testValues, 1, (value) {
         result = value;
       });
 
@@ -22,24 +22,25 @@ void main() {
 
     test('mapTests length 1 throws [ParameterCountError] Iterable lenght not equals 1', () {
       final testValues = [
-        MockValueWithTestOptions([1, 2])
+        MockValueWithTestOptions([1, 2]),
       ];
 
       Iterable<dynamic>? result;
 
       void callback() {
-        mapTests<dynamic>(testValues, 1, (value) {
+        mapTests(testValues, 1, (value) {
           result = value;
         });
       }
 
       expect(
-          callback,
-          throwsA(
-            isA<ParameterCountError>()
-                .having((error) => error.actual, 'actual', 2)
-                .having((error) => error.expected, 'expected', 1),
-          ));
+        callback,
+        throwsA(
+          isA<ParameterCountError>()
+              .having((error) => error.actual, 'actual', 2)
+              .having((error) => error.expected, 'expected', 1),
+        ),
+      );
       expect(result, null);
     });
 
@@ -56,7 +57,7 @@ void main() {
         })),
       ];
 
-      mapTests<dynamic>(testValues, 1, (value) {
+      mapTests(testValues, 1, (value) {
         executed.add(true);
       });
 

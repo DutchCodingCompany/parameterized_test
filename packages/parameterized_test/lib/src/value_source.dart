@@ -7,20 +7,20 @@ import 'test_parameters.dart';
 import 'test_source.dart';
 import 'util/test_value_helpers.dart';
 
-abstract class ValueSource<T> implements TestSource<T> {
+abstract class ValueSource implements TestSource {
   factory ValueSource(
-    Iterable values,
+    Iterable<dynamic> values,
     GroupTestOptions groupTestOptions, [
     TestOptions defaultTestOptions = const TestOptions(),
   ]) =>
       _ValueSourceImpl(wrap(values, defaultTestOptions), groupTestOptions);
 
   @visibleForTesting
-  static Iterable<ValueWithTestOptions<R>> wrap<R>(Iterable values, TestOptions defaultTestOptions) {
+  static Iterable<ValueWithTestOptions> wrap(Iterable<dynamic> values, TestOptions defaultTestOptions) {
     return values.map((e) {
-      if (e is ValueWithTestOptions<R>) {
+      if (e is ValueWithTestOptions) {
         return e;
-      } else if (e is Iterable<R>) {
+      } else if (e is Iterable<dynamic>) {
         return ValueWithTestOptions(e, defaultTestOptions);
       } else {
         return ValueWithTestOptions([e], defaultTestOptions);
@@ -29,16 +29,19 @@ abstract class ValueSource<T> implements TestSource<T> {
   }
 }
 
-class _ValueSourceImpl<T> implements ValueSource<T> {
+class _ValueSourceImpl implements ValueSource {
   const _ValueSourceImpl(
     this._values,
-    this._groupTestOptions,);
+    this._groupTestOptions,
+  );
 
-  final Iterable<ValueWithTestOptions<T>> _values;
+  final Iterable<ValueWithTestOptions> _values;
   final GroupTestOptions _groupTestOptions;
 
   @override
-  void executeTests(TestParameters body,) {
+  void executeTests(
+    TestParameters body,
+  ) {
     _groupTestOptions.groupTest(() {
       mapTests(_values, body.count, (value) {
         body.mapBody(value);

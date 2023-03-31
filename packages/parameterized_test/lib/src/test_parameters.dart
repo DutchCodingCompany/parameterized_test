@@ -24,7 +24,7 @@ class TestParameters1<A1> implements TestParameters {
   const TestParameters1(this.body);
 
   @override
-  final Function(A1) body;
+  final dynamic Function(A1) body;
 
   @override
   final int count = 1;
@@ -40,7 +40,7 @@ class TestParameters2<A1, A2> implements TestParameters {
   const TestParameters2(this.body);
 
   @override
-  final Function(A1 a1, A2 a2) body;
+  final dynamic Function(A1 a1, A2 a2) body;
 
   @override
   final int count = 2;
@@ -57,7 +57,7 @@ class TestParameters3<A1, A2, A3> implements TestParameters {
   const TestParameters3(this.body);
 
   @override
-  final Function(A1, A2, A3) body;
+  final dynamic Function(A1, A2, A3) body;
 
   @override
   final int count = 3;
@@ -75,7 +75,7 @@ class TestParameters4<A1, A2, A3, A4> implements TestParameters {
   const TestParameters4(this.body);
 
   @override
-  final Function(A1, A2, A3, A4) body;
+  final dynamic Function(A1, A2, A3, A4) body;
 
   @override
   final int count = 4;
@@ -94,7 +94,7 @@ class TestParameters5<A1, A2, A3, A4, A5> implements TestParameters {
   const TestParameters5(this.body);
 
   @override
-  final Function(A1, A2, A3, A4, A5) body;
+  final dynamic Function(A1, A2, A3, A4, A5) body;
 
   @override
   final int count = 5;
@@ -114,7 +114,7 @@ class TestParameters6<A1, A2, A3, A4, A5, A6> implements TestParameters {
   const TestParameters6(this.body);
 
   @override
-  final Function(A1, A2, A3, A4, A5, A6) body;
+  final dynamic Function(A1, A2, A3, A4, A5, A6) body;
 
   @override
   final int count = 6;
@@ -135,7 +135,7 @@ class TestParameters7<A1, A2, A3, A4, A5, A6, A7> implements TestParameters {
   const TestParameters7(this.body);
 
   @override
-  final Function(A1, A2, A3, A4, A5, A6, A7) body;
+  final dynamic Function(A1, A2, A3, A4, A5, A6, A7) body;
 
   @override
   final int count = 7;
@@ -157,7 +157,7 @@ class TestParameters8<A1, A2, A3, A4, A5, A6, A7, A8> implements TestParameters 
   const TestParameters8(this.body);
 
   @override
-  final Function(A1, A2, A3, A4, A5, A6, A7, A8) body;
+  final dynamic Function(A1, A2, A3, A4, A5, A6, A7, A8) body;
 
   @override
   final int count = 8;
@@ -180,7 +180,7 @@ class TestParameters9<A1, A2, A3, A4, A5, A6, A7, A8, A9> implements TestParamet
   const TestParameters9(this.body);
 
   @override
-  final Function(A1, A2, A3, A4, A5, A6, A7, A8, A9) body;
+  final dynamic Function(A1, A2, A3, A4, A5, A6, A7, A8, A9) body;
 
   @override
   final int count = 9;
@@ -204,7 +204,7 @@ class TestParameters10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> implements TestP
   const TestParameters10(this.body);
 
   @override
-  final Function(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10) body;
+  final dynamic Function(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10) body;
 
   @override
   final int count = 10;

@@ -8,4 +8,4 @@ R cast<R, S>(S value) {
   }
 }
 
-R castElementAt<R>(Iterable values, int index) => cast(values.elementAt(index));
+R castElementAt<R>(Iterable<dynamic> values, int index) => cast(values.elementAt(index));

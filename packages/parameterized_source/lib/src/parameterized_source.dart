@@ -4,6 +4,7 @@
 /// - [ParameterizedSource.csv]
 /// - [ParameterizedSource.value]
 /// - [ParameterizedSource.values]
+@Deprecated('Removed in v1.0.0')
 class ParameterizedSource {
   final List<List<dynamic>> params;
 
@@ -24,12 +25,8 @@ class ParameterizedSource {
   ///   'banana, 6'
   ///]);
   ///```
-  factory ParameterizedSource.csv(List<String> csvValues,
-          {String pattern = ','}) =>
-      ParameterizedSource._(csvValues
-          .map(
-              (value) => value.split(pattern).map((e) => _tryParse(e)).toList())
-          .toList());
+  factory ParameterizedSource.csv(List<String> csvValues, {String pattern = ','}) =>
+      ParameterizedSource._(csvValues.map((value) => value.split(pattern).map((e) => _tryParse(e)).toList()).toList());
 
   /// Creates a [ParameterizedSource] from supplied 2 dimensional list of dynamic values.
   ///
@@ -80,13 +77,9 @@ class ParameterizedSource {
 
   static dynamic _tryParse(String input) {
     final source = input.trim();
-    final emptyNullString =
-        source.isEmpty ? null : source.replaceAll('\'', '').replaceAll('"', '');
+    final emptyNullString = source.isEmpty ? null : source.replaceAll('\'', '').replaceAll('"', '');
 
-    return int.tryParse(source) ??
-        double.tryParse(source) ??
-        _tryParseBool(source) ??
-        emptyNullString;
+    return int.tryParse(source) ?? double.tryParse(source) ?? _tryParseBool(source) ?? emptyNullString;
   }
 
   static bool? _tryParseBool(String input) {

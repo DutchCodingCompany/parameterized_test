@@ -33,9 +33,10 @@ import 'value_source.dart';
 ///   );
 /// ```
 @isTestGroup
+//ignore: long-parameter-list
 void parameterizedTest(
   Object description,
-  Iterable values,
+  Iterable<dynamic> values,
   TestParameters body, {
   void Function()? setUp,
   String? testOn,

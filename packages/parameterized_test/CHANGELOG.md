@@ -1,7 +1,13 @@
-## 1.0.0
+## 1.0.0-rc1
 
-- Reworked parameterized_test
-  TODO: add changelog
+- DISCONTINUED `parameterized_source` package
+  - DEPRECATED `ParameterizedSource.csv`
+  - DEPRECATED `ParameterizedSource.value`
+  - DEPRECATED `ParameterizedSource.values`
+- DISCONTINUED `flutter_parameterized_test` package
+- Added new TestParameters class for providing the test body to execute.The package has
+  implementation for TestParameters support up to 10 arguments.
+- Added extensions `withTestOptions` for providing test options to test values.
 
 ## 0.2.1
 
