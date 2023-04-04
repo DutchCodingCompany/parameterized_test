@@ -31,6 +31,8 @@ Supercharge your Dart testing with **parameterized_test**! Built on top of the [
 - ✅ Include test options for parameter_test.
 - ✅ Include test options per parameters.
 
+- ❌ No CSV parsing is supported. Its only possible to use Lists with actual values.
+
 ## Installation
 
 ```yaml
@@ -129,9 +131,50 @@ parameterizedTest(
 ```
 
 The above example roughly translates to:
-All parameterizedTest arguments except `values` & `body` are passed to a dart test `group`.
-For the list of `values` it will loop over each value and execute a new `test` for it. So `['kiwi', 4]` will executed in the first `test` and `['banana', 6]` in the last `test`.
-Each set of test values (`['banana', 6]`) will passed to the `TestParameters` body class which will map and cast the values to the provided `body` function. And finally execute the `body`.
+```dart
+group('Amount of letter', () {
+  final testValues = [
+    ['kiwi', 4],
+    ['apple', 5],
+    ['banana', 6],
+  ],
+
+  for(final testValue in testValues){
+    test(testValue.toString(), () {
+      final String word = testValue[0] as String;
+      final int length = testValue[1] as int;
+      
+      expect(word.length, length);
+    });
+  }
+});
+```
+
+## Extending parameters
+
+Currently the package supports `TestParameters` classes up to 10 arguments. If need to more arguments within a test than this is possible by implementing the `TestParameters` class.
+
+For example:
+```dart
+class MyParameters implements TestParameters{
+  const MyParameters(this.body);
+
+  @override
+  final dynamic Function(A1, A2) body;
+
+  @override
+  final int count = 2;
+
+  @override
+  void mapBody<R>(Iterable<R> values) {
+  final A1 a1 = values.elementAt(0) as A1;
+  final A2 a2 = values.elementAt(1) as A2;
+  body(a1, a2);
+  }
+  }
+  
+}
+```
 
 ## Additional information
 
