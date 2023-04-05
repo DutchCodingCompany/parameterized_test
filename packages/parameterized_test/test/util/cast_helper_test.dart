@@ -78,67 +78,73 @@ void main() {
       final String result2 = castElementAt(value, 1);
 
       expect(result1, TypeMatcher<int>().having((number) => number, 'int', 1));
-      expect(result2, TypeMatcher<String>().having((number) => number, 'int', '2'));
-    });
-  });
-
-  group('castElementAt value casting unsuccessful throws ParameterTypeError', () {
-    test('dynamic List<int> to String', () {
-      final Iterable<dynamic> value = [1, 2];
-
-      String callback1() => castElementAt(value, 0);
-      String callback2() => castElementAt(value, 1);
-
       expect(
-        callback1,
-        throwsA(isA<ParameterTypeError>()
-            .having((error) => error.actual, 'actual', int)
-            .having((error) => error.expected, 'expected', String)),
-      );
-      expect(
-        callback2,
-        throwsA(isA<ParameterTypeError>()
-            .having((error) => error.actual, 'actual', int)
-            .having((error) => error.expected, 'expected', String)),
-      );
-    });
-
-    test('List<int> to String', () {
-      final List<int> value = [1, 2];
-      String callback1() => castElementAt(value, 0);
-      String callback2() => castElementAt(value, 1);
-
-      expect(
-        callback1,
-        throwsA(isA<ParameterTypeError>()
-            .having((error) => error.actual, 'actual', int)
-            .having((error) => error.expected, 'expected', String)),
-      );
-      expect(
-        callback2,
-        throwsA(isA<ParameterTypeError>()
-            .having((error) => error.actual, 'actual', int)
-            .having((error) => error.expected, 'expected', String)),
-      );
-    });
-
-    test('List<dynamic> to String', () {
-      final List<dynamic> value = [1, true];
-      String callback1() => castElementAt(value, 0);
-      String callback2() => castElementAt(value, 1);
-
-      expect(
-        callback1,
-        throwsA(isA<ParameterTypeError>()
-            .having((error) => error.actual, 'actual', int)
-            .having((error) => error.expected, 'expected', String)),
-      );
-      expect(
-        callback2,
-        throwsA(isA<ParameterTypeError>()
-            .having((error) => error.actual, 'actual', bool)
-            .having((error) => error.expected, 'expected', String)),
+        result2,
+        TypeMatcher<String>().having((number) => number, 'int', '2'),
       );
     });
   });
+
+  group(
+    'castElementAt value casting unsuccessful throws ParameterTypeError',
+    () {
+      test('dynamic List<int> to String', () {
+        final Iterable<dynamic> value = [1, 2];
+
+        String callback1() => castElementAt(value, 0);
+        String callback2() => castElementAt(value, 1);
+
+        expect(
+          callback1,
+          throwsA(isA<ParameterTypeError>()
+              .having((error) => error.actual, 'actual', int)
+              .having((error) => error.expected, 'expected', String)),
+        );
+        expect(
+          callback2,
+          throwsA(isA<ParameterTypeError>()
+              .having((error) => error.actual, 'actual', int)
+              .having((error) => error.expected, 'expected', String)),
+        );
+      });
+
+      test('List<int> to String', () {
+        final List<int> value = [1, 2];
+        String callback1() => castElementAt(value, 0);
+        String callback2() => castElementAt(value, 1);
+
+        expect(
+          callback1,
+          throwsA(isA<ParameterTypeError>()
+              .having((error) => error.actual, 'actual', int)
+              .having((error) => error.expected, 'expected', String)),
+        );
+        expect(
+          callback2,
+          throwsA(isA<ParameterTypeError>()
+              .having((error) => error.actual, 'actual', int)
+              .having((error) => error.expected, 'expected', String)),
+        );
+      });
+
+      test('List<dynamic> to String', () {
+        final List<dynamic> value = [1, true];
+        String callback1() => castElementAt(value, 0);
+        String callback2() => castElementAt(value, 1);
+
+        expect(
+          callback1,
+          throwsA(isA<ParameterTypeError>()
+              .having((error) => error.actual, 'actual', int)
+              .having((error) => error.expected, 'expected', String)),
+        );
+        expect(
+          callback2,
+          throwsA(isA<ParameterTypeError>()
+              .having((error) => error.actual, 'actual', bool)
+              .having((error) => error.expected, 'expected', String)),
+        );
+      });
+    },
+  );
 }

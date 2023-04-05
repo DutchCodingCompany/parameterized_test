@@ -24,6 +24,8 @@ class MockTestOptions extends TestOptions {
 }
 
 class MockValueWithTestOptions extends ValueWithTestOptions {
-  MockValueWithTestOptions(Iterable<dynamic> values, {MockTestOptions? testOptions})
-      : super(values, testOptions ?? MockTestOptions());
+  MockValueWithTestOptions(
+    Iterable<dynamic> values, {
+    MockTestOptions? testOptions,
+  }) : super(values, testOptions ?? MockTestOptions());
 }

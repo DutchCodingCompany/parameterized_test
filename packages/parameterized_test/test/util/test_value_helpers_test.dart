@@ -23,7 +23,9 @@ void main() {
       expect(result, [1]);
     });
 
-    test('mapTests length 1 throws [ParameterCountError] Iterable lenght not equals 1', () {
+    test(
+        'mapTests length 1 throws [ParameterCountError] Iterable lenght not equals 1',
+        () {
       final testValues = [
         MockValueWithTestOptions([1, 2]),
       ];
@@ -52,10 +54,12 @@ void main() {
       List<bool> executed = [];
 
       final testValues = [
-        MockValueWithTestOptions([1], testOptions: MockTestOptions(descriptionCallback: (description) {
+        MockValueWithTestOptions([1],
+            testOptions: MockTestOptions(descriptionCallback: (description) {
           result.add(description);
         })),
-        MockValueWithTestOptions([2], testOptions: MockTestOptions(descriptionCallback: (description) {
+        MockValueWithTestOptions([2],
+            testOptions: MockTestOptions(descriptionCallback: (description) {
           result.add(description);
         })),
       ];
@@ -84,7 +88,9 @@ void main() {
       expect(result, [1, 2]);
     });
 
-    test('mapTests length 2 throws [ParameterCountError] Iterable lenght not equals 2', () {
+    test(
+        'mapTests length 2 throws [ParameterCountError] Iterable lenght not equals 2',
+        () {
       final testValues = [
         MockValueWithTestOptions([1, 2, 3]),
       ];
@@ -113,10 +119,12 @@ void main() {
       List<bool> executed = [];
 
       final testValues = [
-        MockValueWithTestOptions([1, 2], testOptions: MockTestOptions(descriptionCallback: (description) {
+        MockValueWithTestOptions([1, 2],
+            testOptions: MockTestOptions(descriptionCallback: (description) {
           result.add(description);
         })),
-        MockValueWithTestOptions([3, 4], testOptions: MockTestOptions(descriptionCallback: (description) {
+        MockValueWithTestOptions([3, 4],
+            testOptions: MockTestOptions(descriptionCallback: (description) {
           result.add(description);
         })),
       ];
@@ -147,7 +155,8 @@ void main() {
             .having((value) => value.testOptions.timeout, 'timeout', null)
             .having((value) => value.testOptions.retry, 'retry', null)
             .having((value) => value.testOptions.tags, 'tags', null)
-            .having((value) => value.testOptions.onPlatform, 'onPlatform', null),
+            .having(
+                (value) => value.testOptions.onPlatform, 'onPlatform', null),
       );
       expect(
         result.elementAt(1),
@@ -157,7 +166,8 @@ void main() {
             .having((value) => value.testOptions.timeout, 'timeout', null)
             .having((value) => value.testOptions.retry, 'retry', null)
             .having((value) => value.testOptions.tags, 'tags', null)
-            .having((value) => value.testOptions.onPlatform, 'onPlatform', null),
+            .having(
+                (value) => value.testOptions.onPlatform, 'onPlatform', null),
       );
     });
 
@@ -177,7 +187,8 @@ void main() {
             .having((value) => value.testOptions.timeout, 'timeout', null)
             .having((value) => value.testOptions.retry, 'retry', null)
             .having((value) => value.testOptions.tags, 'tags', null)
-            .having((value) => value.testOptions.onPlatform, 'onPlatform', null),
+            .having(
+                (value) => value.testOptions.onPlatform, 'onPlatform', null),
       );
       expect(
         result.elementAt(1),
@@ -187,11 +198,14 @@ void main() {
             .having((value) => value.testOptions.timeout, 'timeout', null)
             .having((value) => value.testOptions.retry, 'retry', null)
             .having((value) => value.testOptions.tags, 'tags', null)
-            .having((value) => value.testOptions.onPlatform, 'onPlatform', null),
+            .having(
+                (value) => value.testOptions.onPlatform, 'onPlatform', null),
       );
     });
 
-    test('wraps non nested list with ValueWithTestOptions and doesnt override existing ValueWithTestOptions', () {
+    test(
+        'wraps non nested list with ValueWithTestOptions and doesnt override existing ValueWithTestOptions',
+        () {
       final testList = [
         1,
         2.withTestOptions(skip: 'meh'),
@@ -207,7 +221,8 @@ void main() {
             .having((value) => value.testOptions.timeout, 'timeout', null)
             .having((value) => value.testOptions.retry, 'retry', null)
             .having((value) => value.testOptions.tags, 'tags', null)
-            .having((value) => value.testOptions.onPlatform, 'onPlatform', null),
+            .having(
+                (value) => value.testOptions.onPlatform, 'onPlatform', null),
       );
       expect(
         result.elementAt(1),
@@ -217,11 +232,14 @@ void main() {
             .having((value) => value.testOptions.timeout, 'timeout', null)
             .having((value) => value.testOptions.retry, 'retry', null)
             .having((value) => value.testOptions.tags, 'tags', null)
-            .having((value) => value.testOptions.onPlatform, 'onPlatform', null),
+            .having(
+                (value) => value.testOptions.onPlatform, 'onPlatform', null),
       );
     });
 
-    test('wraps nested list with ValueWithTestOptions and doesnt override existing ValueWithTestOptions', () {
+    test(
+        'wraps nested list with ValueWithTestOptions and doesnt override existing ValueWithTestOptions',
+        () {
       final testList = [
         [1, 2],
         [3, 4].withTestOptions(skip: 'meh'),
@@ -237,17 +255,19 @@ void main() {
             .having((value) => value.testOptions.timeout, 'timeout', null)
             .having((value) => value.testOptions.retry, 'retry', null)
             .having((value) => value.testOptions.tags, 'tags', null)
-            .having((value) => value.testOptions.onPlatform, 'onPlatform', null),
+            .having(
+                (value) => value.testOptions.onPlatform, 'onPlatform', null),
       );
       expect(
         result.elementAt(1),
         TypeMatcher<ValueWithTestOptions>()
-            .having((value) => value.value, 'value', [3,4])
+            .having((value) => value.value, 'value', [3, 4])
             .having((value) => value.testOptions.skip, 'skip', 'meh')
             .having((value) => value.testOptions.timeout, 'timeout', null)
             .having((value) => value.testOptions.retry, 'retry', null)
             .having((value) => value.testOptions.tags, 'tags', null)
-            .having((value) => value.testOptions.onPlatform, 'onPlatform', null),
+            .having(
+                (value) => value.testOptions.onPlatform, 'onPlatform', null),
       );
     });
   });

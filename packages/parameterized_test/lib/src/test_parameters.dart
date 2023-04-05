@@ -21,16 +21,20 @@ typedef p5<A1, A2, A3, A4, A5> = TestParameters5<A1, A2, A3, A4, A5>;
 typedef p6<A1, A2, A3, A4, A5, A6> = TestParameters6<A1, A2, A3, A4, A5, A6>;
 
 /// alias for [TestParameters7].
-typedef p7<A1, A2, A3, A4, A5, A6, A7> = TestParameters7<A1, A2, A3, A4, A5, A6, A7>;
+typedef p7<A1, A2, A3, A4, A5, A6, A7>
+    = TestParameters7<A1, A2, A3, A4, A5, A6, A7>;
 
 /// alias for [TestParameters8].
-typedef p8<A1, A2, A3, A4, A5, A6, A7, A8> = TestParameters8<A1, A2, A3, A4, A5, A6, A7, A8>;
+typedef p8<A1, A2, A3, A4, A5, A6, A7, A8>
+    = TestParameters8<A1, A2, A3, A4, A5, A6, A7, A8>;
 
 /// alias for [TestParameters9].
-typedef p9<A1, A2, A3, A4, A5, A6, A7, A8, A9> = TestParameters9<A1, A2, A3, A4, A5, A6, A7, A8, A9>;
+typedef p9<A1, A2, A3, A4, A5, A6, A7, A8, A9>
+    = TestParameters9<A1, A2, A3, A4, A5, A6, A7, A8, A9>;
 
 /// alias for [TestParameters10].
-typedef p10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> = TestParameters10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>;
+typedef p10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>
+    = TestParameters10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>;
 
 /// Provides a interface for implementing test body classes.
 abstract class TestParameters {
@@ -229,7 +233,8 @@ class TestParameters7<A1, A2, A3, A4, A5, A6, A7> implements TestParameters {
 ///   // Do some test logic here.
 /// });
 /// ```
-class TestParameters8<A1, A2, A3, A4, A5, A6, A7, A8> implements TestParameters {
+class TestParameters8<A1, A2, A3, A4, A5, A6, A7, A8>
+    implements TestParameters {
   const TestParameters8(this.body);
 
   @override
@@ -259,7 +264,8 @@ class TestParameters8<A1, A2, A3, A4, A5, A6, A7, A8> implements TestParameters 
 ///   // Do some test logic here.
 /// });
 /// ```
-class TestParameters9<A1, A2, A3, A4, A5, A6, A7, A8, A9> implements TestParameters {
+class TestParameters9<A1, A2, A3, A4, A5, A6, A7, A8, A9>
+    implements TestParameters {
   const TestParameters9(this.body);
 
   @override
@@ -290,7 +296,8 @@ class TestParameters9<A1, A2, A3, A4, A5, A6, A7, A8, A9> implements TestParamet
 ///   // Do some test logic here.
 /// });
 /// ```
-class TestParameters10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> implements TestParameters {
+class TestParameters10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>
+    implements TestParameters {
   const TestParameters10(this.body);
 
   @override
