@@ -33,4 +33,13 @@ class _ValueSourceImpl implements ValueSource {
       });
     });
   }
+
+  @override
+  void executeGroup(TestParameters body) {
+    _groupTestOptions.groupTest(() {
+      mapGroups(_values, body.count, (value) {
+        body.mapBody(value);
+      });
+    });
+  }
 }

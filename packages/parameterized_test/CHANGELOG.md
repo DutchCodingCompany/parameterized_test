@@ -1,3 +1,7 @@
+## 1.0.0-rc2
+
+- Added `parameterizedGroup`.
+
 ## 1.0.0-rc1
 
 - DISCONTINUED `parameterized_source` package
