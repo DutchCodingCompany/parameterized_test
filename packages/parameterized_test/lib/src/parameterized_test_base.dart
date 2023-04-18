@@ -85,26 +85,26 @@ void parameterizedTest(
 @isTestGroup
 //ignore: long-parameter-list
 void parameterizedGroup(
-    /// Group description.
-    Object description,
+  /// Group description.
+  Object description,
 
-    /// List of group values. For each values in the list a group test will be executed.
-    Iterable<dynamic> values,
+  /// List of group values. For each values in the list a group test will be executed.
+  Iterable<dynamic> values,
 
-    /// The test body which is executed for each group value.
-    /// See [TestParameters] for more info on different bodies.
-    TestParameters body, {
-      dynamic Function()? setUp,
+  /// The test body which is executed for each group value.
+  /// See [TestParameters] for more info on different bodies.
+  TestParameters body, {
+  dynamic Function()? setUp,
 
-      /// Provide a tearDown function to the `group` test.
-      dynamic Function()? tearDown,
-      String? testOn,
-      Timeout? timeout,
-      dynamic skip,
-      dynamic tags,
-      Map<String, dynamic>? onPlatform,
-      int? retry,
-    }) {
+  /// Provide a tearDown function to the `group` test.
+  dynamic Function()? tearDown,
+  String? testOn,
+  Timeout? timeout,
+  dynamic skip,
+  dynamic tags,
+  Map<String, dynamic>? onPlatform,
+  int? retry,
+}) {
   ValueSource(
     values,
     GroupTestOptions(
