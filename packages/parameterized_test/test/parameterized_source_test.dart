@@ -34,7 +34,8 @@ void main() {
       ['kiwi', 4],
       ['apple', 5],
       ['banana', 6],
-      ['Dragon fruit', 11].withTestOptions(skip: 'Its 12 because of space. skip for now.'),
+      ['Dragon fruit', 11]
+          .withTestOptions(skip: 'Its 12 because of space. skip for now.'),
     ],
     // Easy smaller typedef
     p2((String word, int length) {
@@ -72,5 +73,4 @@ void main() {
       expect(result, true);
     }),
   );
-
 }
