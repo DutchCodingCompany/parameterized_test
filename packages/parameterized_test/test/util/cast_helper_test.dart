@@ -20,6 +20,54 @@ void main() {
 
       expect(result, TypeMatcher<int>().having((number) => number, 'int', 1));
     });
+
+    test('dynamic custom object to custom object', () {
+      final dynamic value = CustomTestClass(1);
+
+      final CustomTestClass result = cast(value);
+
+      expect(
+        result,
+        TypeMatcher<CustomTestClass>().having(
+            (customClass) => customClass.value, 'CustomTestClass int', 1),
+      );
+    });
+
+    test('custom object to custom object', () {
+      final value = CustomTestClass(1);
+
+      final CustomTestClass result = cast(value);
+
+      expect(
+        result,
+        TypeMatcher<CustomTestClass>().having(
+            (customClass) => customClass.value, 'CustomTestClass int', 1),
+      );
+    });
+
+    test('dynamic complex object to complex object', () {
+      final dynamic value = DateTime(2023);
+
+      final DateTime result = cast(value);
+
+      expect(
+        result,
+        TypeMatcher<DateTime>()
+            .having((dateTime) => dateTime.year, 'CustomTestClass int', 2023),
+      );
+    });
+
+    test('complex object to complex object', () {
+      final value = DateTime(2023);
+
+      final DateTime result = cast(value);
+
+      expect(
+        result,
+        TypeMatcher<DateTime>()
+            .having((dateTime) => dateTime.year, 'CustomTestClass int', 2023),
+      );
+    });
   });
 
   group('Single value casting unsuccessful throws ParameterTypeError', () {
@@ -45,6 +93,58 @@ void main() {
         callback,
         throwsA(isA<ParameterTypeError>()
             .having((error) => error.actual, 'actual', int)
+            .having((error) => error.expected, 'expected', String)),
+      );
+    });
+
+    test('dynamic custom object to String', () {
+      final dynamic value = CustomTestClass(1);
+
+      String callback() => cast(value);
+
+      expect(
+        callback,
+        throwsA(isA<ParameterTypeError>()
+            .having((error) => error.actual, 'actual', CustomTestClass)
+            .having((error) => error.expected, 'expected', String)),
+      );
+    });
+
+    test('custom object to String', () {
+      final value = CustomTestClass(1);
+
+      String callback() => cast(value);
+
+      expect(
+        callback,
+        throwsA(isA<ParameterTypeError>()
+            .having((error) => error.actual, 'actual', CustomTestClass)
+            .having((error) => error.expected, 'expected', String)),
+      );
+    });
+
+    test('dynamic complex object to String', () {
+      final dynamic value = DateTime(2023);
+
+      String callback() => cast(value);
+
+      expect(
+        callback,
+        throwsA(isA<ParameterTypeError>()
+            .having((error) => error.actual, 'actual', DateTime)
+            .having((error) => error.expected, 'expected', String)),
+      );
+    });
+
+    test('complex object to String', () {
+      final value = DateTime(2023);
+
+      String callback() => cast(value);
+
+      expect(
+        callback,
+        throwsA(isA<ParameterTypeError>()
+            .having((error) => error.actual, 'actual', DateTime)
             .having((error) => error.expected, 'expected', String)),
       );
     });
@@ -147,4 +247,10 @@ void main() {
       });
     },
   );
+}
+
+class CustomTestClass {
+  const CustomTestClass(this.value);
+
+  final int value;
 }

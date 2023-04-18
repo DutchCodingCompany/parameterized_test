@@ -106,7 +106,7 @@ parameterizedTest(
   'Doge enum tests',
   AwesomeEnum.values,
   p1((AwesomeEnum doge) {
-    final result = doge.name.length == 4;
+    final result = doge.name.length >= 4;
     expect(result, true);
   }),
 );
