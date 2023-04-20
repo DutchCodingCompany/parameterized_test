@@ -29,7 +29,7 @@ import 'package:parameterized_source/parameterized_source.dart';
 ///     },
 ///   );
 /// ```
-@Deprecated('Removed in v1.0.0')
+@Deprecated('Removed use parameterized_test v1.0.0')
 @isTestGroup
 void parameterizedTest(
   Object description,
