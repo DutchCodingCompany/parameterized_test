@@ -4,6 +4,7 @@
 /// - [ParameterizedSource.csv]
 /// - [ParameterizedSource.value]
 /// - [ParameterizedSource.values]
+@Deprecated('Removed in v1.0.0')
 class ParameterizedSource {
   final List<List<dynamic>> params;
 

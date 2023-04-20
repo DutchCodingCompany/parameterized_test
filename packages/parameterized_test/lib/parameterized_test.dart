@@ -1,4 +1,5 @@
 library parameterized_test;
 
 export '/src/parameterized_test_base.dart';
-export 'package:parameterized_source/parameterized_source.dart';
+export '/src/test_options/test_options_ext.dart';
+export '/src/test_parameters.dart';

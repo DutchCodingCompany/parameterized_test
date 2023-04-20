@@ -1,132 +1,76 @@
-import 'package:parameterized_source/parameterized_source.dart';
+import 'package:parameterized_test/parameterized_test.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('ParameterizedSource.csv tests', () {
-    test('csv values are split by , by default', () {
-      // arrange
-      final expected = [
-        ['apple', 'banana'],
-        ['pineapple', 'kiwi'],
-      ];
+  parameterizedTest(
+    'Example of list dynamic with 2 arguments, test successful',
+    [
+      ['kiwi', 4],
+      ['apple', 5],
+      ['banana', 6],
+    ],
+    // Easy smaller typedef
+    p2((String word, int length) {
+      expect(word.length, length);
+    }),
+  );
 
-      // act
-      final actual = ParameterizedSource.csv([
-        'apple, banana',
-        'pineapple, kiwi',
-      ]).params;
+  parameterizedTest(
+    'Example of list dynamic with 2 arguments, test successful',
+    [
+      ['kiwi', 4],
+      ['apple', 5],
+      ['banana', 6],
+    ],
+    // Full class
+    TestParameters2((String word, int length) {
+      expect(word.length, length);
+    }),
+  );
 
-      // assert
-      expect(actual, expected);
-    });
+  parameterizedTest(
+    'Example of list dynamic with 2 arguments, with extra options provided for 1 use case.',
+    [
+      ['kiwi', 4],
+      ['apple', 5],
+      ['banana', 6],
+      ['Dragon fruit', 11]
+          .withTestOptions(skip: 'Its 12 because of space. skip for now.'),
+    ],
+    // Easy smaller typedef
+    p2((String word, int length) {
+      expect(word.length, length);
+    }),
+  );
 
-    test('csv values are split by ;', () {
-      // arrange
-      final expected = [
-        ['apple', 'banana'],
-        ['pineapple', 'kiwi'],
-      ];
+  parameterizedTest(
+    'Example with setup and teardown included',
+    [
+      ['kiwi', 4],
+      ['apple', 5],
+      ['banana', 6],
+    ],
+    p2((String word, int length) {
+      expect(word.length, length);
+    }),
+    setUp: () {
+      print('Setup everything I need for testing');
+    },
+    tearDown: () {
+      print('tear it down again');
+    },
+  );
 
-      // act
-      final actual = ParameterizedSource.csv(
-        [
-          'apple; banana',
-          'pineapple; kiwi',
-        ],
-        pattern: ';',
-      ).params;
-
-      // assert
-      expect(actual, expected);
-    });
-
-    test('csv values are not split', () {
-      // arrange
-      final expected = [
-        ['apple; banana'],
-        ['pineapple; kiwi'],
-      ];
-
-      // act
-      final actual = ParameterizedSource.csv([
-        'apple; banana',
-        'pineapple; kiwi',
-      ]).params;
-
-      // assert
-      expect(actual, expected);
-    });
-
-    test('csv values are parsed', () {
-      // arrange
-      final expected = [
-        ['apple', 1.0, 1, true, false, null],
-        ['banana', 1.0, 1, true, false, 'kiwi'],
-      ];
-
-      // act
-      final actual = ParameterizedSource.csv([
-        'apple, 1.0, 1, true, false, ',
-        'banana, 1.0, 1, true, false, kiwi',
-      ]).params;
-
-      // assert
-      expect(actual, expected);
-    });
-
-    test('csv values are not parsed', () {
-      // arrange
-      final expected = [
-        ['apple', '1.0', '1', 'true', 'false', ''],
-      ];
-
-      // act
-      final actual = ParameterizedSource.csv([
-        'apple, "1.0", "1", "true", "false", ""',
-      ]).params;
-
-      // assert
-      expect(actual, expected);
-    });
-  });
-
-  group('ParameterizedSource.values tests', () {
-    test('values are seperated', () {
-      // arrange
-      final expected = [
-        ['apple'],
-        ['banana'],
-        ['kiwi'],
-      ];
-
-      // act
-      final actual = ParameterizedSource.value([
-        'apple',
-        'banana',
-        'kiwi',
-      ]).params;
-
-      // assert
-      expect(actual, expected);
-    });
-
-    test('values are seperated but not like csv', () {
-      // arrange
-      final expected = [
-        ['apple,2'],
-        ['banana,2'],
-        ['kiwi,2'],
-      ];
-
-      // act
-      final actual = ParameterizedSource.value([
-        'apple,2',
-        'banana,2',
-        'kiwi,2',
-      ]).params;
-
-      // assert
-      expect(actual, expected);
-    });
-  });
+  parameterizedTest(
+    'Example with list of one type.',
+    [
+      1,
+      2,
+      3,
+    ],
+    p1((int value) {
+      final result = value < 4;
+      expect(result, true);
+    }),
+  );
 }
