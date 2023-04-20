@@ -1,4 +1,4 @@
-## 1.0.0-rc1
+## 0.3.0
 
 - DISCONTINUED `parameterized_source` package
 
