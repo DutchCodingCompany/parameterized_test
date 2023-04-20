@@ -40,7 +40,7 @@ dev_dependencies:
   parameterized_test: [latest-version] 
 ```
 
-## Usage 
+## Usage
 
 Instead of using `groups` or `test` you can now use `parameterizedTest` and supply it list of test parameters to use in the same test.
 To specify the test body use `TestParametersX` that matches the same amount of test parameters for 1 test. For example when the test has 2 parameters `actual` and `expected` use `TestParameters2` for supplying the test body.
@@ -106,7 +106,7 @@ parameterizedTest(
   'Doge enum tests',
   AwesomeEnum.values,
   p1((AwesomeEnum doge) {
-    final result = doge.name.length == 4;
+    final result = doge.name.length >= 4;
     expect(result, true);
   }),
 );
