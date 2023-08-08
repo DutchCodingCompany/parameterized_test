@@ -37,7 +37,7 @@ typedef p10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>
     = TestParameters10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>;
 
 /// Provides a interface for implementing test body classes.
-abstract class TestParameters {
+abstract interface class TestParameters {
   abstract final Function body;
   abstract final int count;
 
