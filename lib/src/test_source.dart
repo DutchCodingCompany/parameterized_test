@@ -1,6 +1,6 @@
 import 'test_parameters.dart';
 
-abstract class TestSource {
+abstract interface class TestSource {
   void executeTests(TestParameters body);
   void executeGroup(TestParameters body);
 }

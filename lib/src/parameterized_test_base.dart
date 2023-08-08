@@ -24,7 +24,6 @@ import 'value_source.dart';
 /// );
 /// ```
 @isTestGroup
-//ignore: long-parameter-list
 void parameterizedTest(
   /// Test description.
   Object description,
@@ -83,7 +82,6 @@ void parameterizedTest(
 /// );
 /// ```
 @isTestGroup
-//ignore: long-parameter-list
 void parameterizedGroup(
   /// Group description.
   Object description,
