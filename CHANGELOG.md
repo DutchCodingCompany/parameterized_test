@@ -1,5 +1,5 @@
 ## 1.1.1
-- Exported parameterzidGroup base and numeric and parameterizedTest from parameterized_test numeric functions.
+- Exported parameterizedGroup base and numeric and parameterizedTest from parameterized_test numeric functions.
 
 ## 1.1.0
  - Added separate numbered functions for `parameterizedTest` and `parameterizedGroup` specifying the number of arguments.
