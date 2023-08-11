@@ -1,3 +1,6 @@
+## 1.1.1
+- Exported parameterzidGroup base and numeric and parameterizedTest from parameterized_test numeric functions.
+
 ## 1.1.0
  - Added separate numbered functions for `parameterizedTest` and `parameterizedGroup` specifying the number of arguments.
  - Fixes bug where async test weren't properly passed to the test framework.
