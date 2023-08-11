@@ -1,3 +1,8 @@
+## 1.1.0
+ - Added separate numbered functions for `parameterizedTest` and `parameterizedGroup` specifying the number of arguments.
+ - Fixes bug where async test weren't properly passed to the test framework.
+ - Update to dart 3.
+
 ## 1.0.0
 
 Major rework on `paramterized_test` which includes:
