@@ -1,17 +1,17 @@
 import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 
+import '../parameterized_test.dart';
 import 'test_options/group_test_options.dart';
-import 'test_parameters.dart';
 import 'value_source.dart';
 
-/// Create a new parameterizedTest with given [description], [values] and [body]
+/// Create a new parameterizedGroup with given [description], [values] and [body]
 ///
-/// [parameterizedTest] also have the same options as group tests have. These options will be passed to the group function.
+/// [parameterizedGroup] also have the same options as group tests have. These options will be passed to the group function.
 ///
 /// For example:
 /// ```dart
-/// parameterizedTest(
+/// parameterizedGroup(
 ///   'Amount of letters',
 ///   [
 ///     ['kiwi', 4],
@@ -19,19 +19,21 @@ import 'value_source.dart';
 ///     ['banana', 6].withTestOptions(skip: 'skip this'),
 ///   ],
 ///   p2((String word, int length) {
-///     expect(word.length, length);
+///     test('test word length',() {
+///       expect(word.length, length);
+///       });
 ///   }),
 /// );
 /// ```
 @isTestGroup
-void parameterizedTest(
-  /// Test description.
+void parameterizedGroup(
+  /// Group description.
   Object description,
 
-  /// List of test values. For each values in the list a test will be executed.
+  /// List of group values. For each values in the list a group test will be executed.
   Iterable<dynamic> values,
 
-  /// The test body which is executed for each test value.
+  /// The test body which is executed for each group value.
   /// See [TestParameters] for more info on different bodies.
   TestParameters body, {
   dynamic Function()? setUp,
@@ -58,5 +60,5 @@ void parameterizedTest(
       onPlatform: onPlatform,
       retry: retry,
     ),
-  ).executeTests(body);
+  ).executeGroup(body);
 }

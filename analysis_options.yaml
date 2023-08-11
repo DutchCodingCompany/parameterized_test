@@ -13,9 +13,6 @@ analyzer:
   plugins:
     - dart_code_metrics
 
-  strong-mode:
-    implicit-casts: false
-
   language:
     strict-casts: true
     strict-inference: true
