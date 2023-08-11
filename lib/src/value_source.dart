@@ -29,7 +29,7 @@ class _ValueSourceImpl implements ValueSource {
   ) {
     _groupTestOptions.groupTest(() {
       mapTests(_values, body.count, (value) {
-        body.mapBody(value);
+        return body.mapBody(value);
       });
     });
   }
@@ -38,7 +38,7 @@ class _ValueSourceImpl implements ValueSource {
   void executeGroup(TestParameters body) {
     _groupTestOptions.groupTest(() {
       mapGroups(_values, body.count, (value) {
-        body.mapBody(value);
+        return body.mapBody(value);
       });
     });
   }

@@ -10,7 +10,7 @@ void mapTests(
   for (final ValueWithTestOptions value in values) {
     value.testOptions.test('$value', () {
       validityCheck(value, length);
-      body(value.value);
+      return body(value.value);
     });
   }
 }
@@ -23,7 +23,7 @@ void mapGroups(
   for (final ValueWithTestOptions value in values) {
     value.toGroupOptions.groupTest(() {
       validityCheck(value, length);
-      body(value.value);
+      return body(value.value);
     });
   }
 }

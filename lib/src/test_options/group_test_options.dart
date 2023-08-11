@@ -24,7 +24,7 @@ class GroupTestOptions {
   final int? retry;
 
   void groupTest(dynamic Function() body) {
-    dart_test.group(
+   dart_test.group(
       description,
       () {
         if (setUp != null) {

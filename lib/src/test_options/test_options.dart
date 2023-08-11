@@ -15,7 +15,7 @@ class TestOptions {
   final Map<String, dynamic>? onPlatform;
   final int? retry;
 
-  void test(Object description, dynamic Function() body) {
+  dynamic test(Object description, dynamic Function() body) async {
     dart_test.test(
       description,
       body,
