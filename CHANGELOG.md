@@ -1,3 +1,7 @@
+## 1.1.2
+ - Updated lints package
+ - Fixed small lint issue
+
 ## 1.1.1
 - Exported parameterizedGroup base and numeric and parameterizedTest from parameterized_test numeric functions.
 
