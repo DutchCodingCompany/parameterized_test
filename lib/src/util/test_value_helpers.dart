@@ -8,7 +8,6 @@ void mapTests(
   dynamic Function(Iterable<dynamic>) body,
 ) {
   for (final ValueWithTestOptions value in values) {
-
     value.testOptions.test(value.description, () {
       validityCheck(value, length);
       return body(value.value);
