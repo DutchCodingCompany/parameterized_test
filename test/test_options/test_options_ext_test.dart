@@ -57,7 +57,7 @@ void main() {
     expect(
       result,
       TypeMatcher<GroupTestOptions>()
-          .having((e) => e.description, 'desciption', '[1, 2, 3]')
+          .having((e) => e.description, 'desciption', '[ 1, 2, 3 ]')
           .having((e) => e.retry, 'retry', 1)
           .having((e) => e.onPlatform, 'onPlatform', {'foo': 'bar'})
           .having((e) => e.tags, 'tags', 'taggy')
