@@ -1,4 +1,5 @@
 ## 1.1.2
+ - Added #13: String values are wrapped with quotes in test output. This makes it easier to see if a string value is empty or contains spaces.
  - Updated lints package
  - Fixed small lint issue
 
