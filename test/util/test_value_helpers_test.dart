@@ -68,7 +68,7 @@ void main() {
         executed.add(true);
       });
 
-      expect(result, ['(1)', '(2)']);
+      expect(result, ['[ 1 ]', '[ 2 ]']);
       expect(executed, [true, true]);
     });
   });
@@ -133,7 +133,7 @@ void main() {
         executed.add(true);
       });
 
-      expect(result, ['(1, 2)', '(3, 4)']);
+      expect(result, ['[ 1, 2 ]', '[ 3, 4 ]']);
       expect(executed, [true, true]);
     });
   });
