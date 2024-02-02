@@ -6,7 +6,9 @@ void main() {
   final TestOptions testOptions = TestOptions();
 
   group('description tests', () {
-    test('ValueWithTestOptions with only String values are wrapped with \'quotes\'', () {
+    test(
+        'ValueWithTestOptions with only String values are wrapped with \'quotes\'',
+        () {
       final result = ValueWithTestOptions(
         ['a', 'b', '', '   '],
         testOptions,
@@ -15,15 +17,17 @@ void main() {
       expect(result, "[ 'a', 'b', '', '   ' ]");
     });
 
-    test('ValueWithTestOptions with mixed types only String values are wrapped with \'quotes\'', () {
+    test(
+        'ValueWithTestOptions with mixed types only String values are wrapped with \'quotes\'',
+        () {
       final result = ValueWithTestOptions(
         ['a', 'b', '', '   ', 1, 1.5, true, _ClassWithToString()],
         testOptions,
       ).description;
 
-      expect(result, "[ 'a', 'b', '', '   ', 1, 1.5, true, class with toString ]");
+      expect(
+          result, "[ 'a', 'b', '', '   ', 1, 1.5, true, class with toString ]");
     });
-
   });
 }
 
