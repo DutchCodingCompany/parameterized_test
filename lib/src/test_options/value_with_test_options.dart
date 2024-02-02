@@ -8,7 +8,7 @@ class ValueWithTestOptions extends Iterable<dynamic> {
   final TestOptions testOptions;
 
   String get description =>
-      '[ ${value.map((e) => e.toString().trim().isEmpty ? '\'$e\'' : e.toString()).join(', ')} ]';
+      '[ ${value.map((e) => e is String ? '\'$e\'' : e.toString()).join(', ')} ]';
 
   @override
   Iterator<dynamic> get iterator => value.iterator;
