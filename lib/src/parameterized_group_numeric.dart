@@ -2,7 +2,6 @@ import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 
 import '../parameterized_test.dart';
-import 'parameterized_group_base.dart';
 
 /// Parameterized group with 1 input arguments. See [parameterizedGroup] for more info.
 @isTestGroup

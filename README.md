@@ -81,6 +81,22 @@ parameterizedTest(
 );
 ```
 
+or
+
+```dart
+parameterizedTest2(
+  'Amount of letters tests',
+  [
+    ['kiwi', 4],
+    ['apple', 5],
+    ['banana', 6],
+  ],
+  (String word, int length) {
+    expect(word.length, length);
+  },
+);
+```
+
 Example parameterizedTest with extra test options for a value:
 
 ```dart

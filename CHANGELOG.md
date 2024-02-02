@@ -1,3 +1,8 @@
+## 1.1.2
+ - Added #13: String values are wrapped with quotes in test output. This makes it easier to see if a string value is empty or contains spaces.
+ - Updated lints package
+ - Fixed small lint issue
+
 ## 1.1.1
 - Exported parameterizedGroup base and numeric and parameterizedTest from parameterized_test numeric functions.
 
