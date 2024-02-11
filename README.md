@@ -1,14 +1,14 @@
-<!-- 
+<!--
 This README describes the package. If you publish this package to pub.dev,
 this README's contents appear on the landing page for your package.
 
 For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
 
 For general information about developing packages, see the Dart guide for
 [creating packages](https://dart.dev/guides/libraries/create-library-packages)
 and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
+[developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
 # 🧪 Parameterized test
@@ -36,8 +36,8 @@ Supercharge your Dart testing with **parameterized_test**! Built on top of the [
 ## Installation
 
 ```yaml
-dev_dependencies:                    
-  parameterized_test: [latest-version] 
+dev_dependencies:
+  parameterized_test: [latest-version]
 ```
 
 ## Usage
@@ -153,13 +153,13 @@ group('Amount of letter', () {
     ['kiwi', 4],
     ['apple', 5],
     ['banana', 6],
-  ],
+  ];
 
-  for(final testValue in testValues){
+  for (final testValue in testValues) {
     test(testValue.toString(), () {
       final String word = testValue[0] as String;
       final int length = testValue[1] as int;
-      
+
       expect(word.length, length);
     });
   }
@@ -172,7 +172,7 @@ Currently the package supports `TestParameters` classes up to 10 arguments. If n
 
 For example:
 ```dart
-class MyParameters implements TestParameters{
+class MyParameters<A1, A2> implements TestParameters {
   const MyParameters(this.body);
 
   @override
@@ -182,13 +182,11 @@ class MyParameters implements TestParameters{
   final int count = 2;
 
   @override
-  void mapBody<R>(Iterable<R> values) {
-  final A1 a1 = values.elementAt(0) as A1;
-  final A2 a2 = values.elementAt(1) as A2;
-  body(a1, a2);
+  dynamic mapBody<R>(Iterable<R> values) {
+    final A1 a1 = values.elementAt(0) as A1;
+    final A2 a2 = values.elementAt(1) as A2;
+    return body(a1, a2);
   }
-  }
-  
 }
 ```
 
