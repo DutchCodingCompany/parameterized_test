@@ -16,13 +16,10 @@ void main() {
     test('body gets executed with values of non nested list', () {
       List<int> numbers = [];
 
-      final valueSource = ValueSource(
-        [
-          MockValueWithTestOptions([1]),
-          MockValueWithTestOptions([2]),
-        ],
-        mockOptions,
-      );
+      final valueSource = ValueSource([
+        MockValueWithTestOptions([1]),
+        MockValueWithTestOptions([2]),
+      ], mockOptions, null);
 
       valueSource.executeTests(
         TestParameters1((int number) {
@@ -42,6 +39,7 @@ void main() {
           MockValueWithTestOptions([3, 4]),
         ],
         mockOptions,
+        null,
       );
 
       valueSource.executeTests(

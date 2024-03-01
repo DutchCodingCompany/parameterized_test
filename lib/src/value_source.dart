@@ -8,10 +8,18 @@ import 'util/test_value_helpers.dart';
 abstract class ValueSource implements TestSource {
   factory ValueSource(
     Iterable<dynamic> values,
-    GroupTestOptions groupTestOptions, [
+    GroupTestOptions groupTestOptions,
+    CustomDescriptionBuilder? customDiscriptionBuilder, [
     TestOptions defaultTestOptions = const TestOptions(),
   ]) =>
-      _ValueSourceImpl(wrap(values, defaultTestOptions), groupTestOptions);
+      _ValueSourceImpl(
+          wrap(
+            values,
+            defaultTestOptions,
+            groupTestOptions.description,
+            customDiscriptionBuilder,
+          ),
+          groupTestOptions);
 }
 
 class _ValueSourceImpl implements ValueSource {

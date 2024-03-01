@@ -145,7 +145,7 @@ void main() {
         2,
       ];
 
-      final result = wrap(testList, TestOptions());
+      final result = wrap(testList, TestOptions(), 'groupDescription', null);
 
       expect(
         result.elementAt(0),
@@ -177,7 +177,7 @@ void main() {
         [3, 4],
       ];
 
-      final result = wrap(testList, TestOptions());
+      final result = wrap(testList, TestOptions(), 'groupDescription', null);
 
       expect(
         result.elementAt(0),
@@ -211,7 +211,7 @@ void main() {
         2.withTestOptions(skip: 'meh'),
       ];
 
-      final result = wrap(testList, TestOptions());
+      final result = wrap(testList, TestOptions(), 'groupDescription', null);
 
       expect(
         result.elementAt(0),
@@ -245,7 +245,7 @@ void main() {
         [3, 4].withTestOptions(skip: 'meh'),
       ];
 
-      final result = wrap(testList, TestOptions());
+      final result = wrap(testList, TestOptions(), 'groupDescription', null);
 
       expect(
         result.elementAt(0),

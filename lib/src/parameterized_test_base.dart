@@ -2,6 +2,7 @@ import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 
 import 'test_options/group_test_options.dart';
+import 'test_options/value_with_test_options.dart';
 import 'test_parameters.dart';
 import 'value_source.dart';
 
@@ -34,6 +35,8 @@ void parameterizedTest(
   /// The test body which is executed for each test value.
   /// See [TestParameters] for more info on different bodies.
   TestParameters body, {
+    /// Provide a custom description builder which will build the description for all the test values test executed.
+  CustomDescriptionBuilder? customDescriptionBuilder,
   dynamic Function()? setUp,
 
   /// Provide a tearDown function to the `group` test.
@@ -58,5 +61,6 @@ void parameterizedTest(
       onPlatform: onPlatform,
       retry: retry,
     ),
+    customDescriptionBuilder,
   ).executeTests(body);
 }
