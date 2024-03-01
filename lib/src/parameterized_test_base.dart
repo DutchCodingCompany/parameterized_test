@@ -35,7 +35,7 @@ void parameterizedTest(
   /// The test body which is executed for each test value.
   /// See [TestParameters] for more info on different bodies.
   TestParameters body, {
-    /// Provide a custom description builder which will build the description for all the test values test executed.
+  /// Provide a custom description builder which will build the description for all the test values test executed.
   CustomDescriptionBuilder? customDescriptionBuilder,
   dynamic Function()? setUp,
 

@@ -47,7 +47,8 @@ class ValueWithTestOptions extends Iterable<dynamic> {
       testOptions ?? this.testOptions,
       groupDescription: groupDescription ?? this.groupDescription,
       index: index ?? this.index,
-      customDiscriptionBuilder: customDiscriptionBuilder ?? this.customDiscriptionBuilder,
+      customDiscriptionBuilder:
+          customDiscriptionBuilder ?? this.customDiscriptionBuilder,
     );
   }
 }
