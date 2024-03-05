@@ -1,3 +1,24 @@
+## 1.1.3
+ - Added `CustomDescriptionBuilder` to build custom test description for all executed tests.
+   For example:
+   ```dart
+   parameterizedTest2(
+     'Test with custom description',
+     [
+      [1, 2],
+      [3, 4],
+     ],
+     (int a, int b) => expect(a+b, isPositive),
+     customDiscriptionBuilder: (groupDescription, index, values) => '🚀[$index] $groupDescription: <<${values.join('|')}>>',
+   );
+   ```
+   
+  Prints:
+```
+Test with custom description 🚀[1] Test with custom description: <<1|2>>
+Test with custom description 🚀[2] Test with custom description: <<3|4>>
+```
+
 ## 1.1.2
  - Added #13: String values are wrapped with quotes in test output. This makes it easier to see if a string value is empty or contains spaces.
  - Updated lints package

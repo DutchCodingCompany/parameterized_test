@@ -37,14 +37,34 @@ void validityCheck(Iterable<dynamic> values, int length) {
 Iterable<ValueWithTestOptions> wrap(
   Iterable<dynamic> values,
   TestOptions defaultTestOptions,
+  Object groupDescription,
+  CustomDescriptionBuilder? customDiscriptionBuilder,
 ) {
+  int index = 0;
   return values.map((e) {
+    index++;
     if (e is ValueWithTestOptions) {
-      return e;
+      return e.copyWith(
+        index: index,
+        groupDescription: groupDescription,
+        customDiscriptionBuilder: customDiscriptionBuilder,
+      );
     } else if (e is Iterable<dynamic>) {
-      return ValueWithTestOptions(e, defaultTestOptions);
+      return ValueWithTestOptions(
+        e,
+        defaultTestOptions,
+        index: index,
+        groupDescription: groupDescription,
+        customDiscriptionBuilder: customDiscriptionBuilder,
+      );
     } else {
-      return ValueWithTestOptions([e], defaultTestOptions);
+      return ValueWithTestOptions(
+        [e],
+        defaultTestOptions,
+        index: index,
+        groupDescription: groupDescription,
+        customDiscriptionBuilder: customDiscriptionBuilder,
+      );
     }
   });
 }

@@ -166,6 +166,30 @@ group('Amount of letter', () {
 });
 ```
 
+## Changing test description output
+By default the test description contains the test value used within the tests. This can be override by using `customDescriptionBuilder`.
+
+When normally running parameterized tests with description 'My parameterized test' and the values `[['first', 'second', true], ['third', 'fourth', false]]` the test description output looks something like this:
+```
+My parameterized test [ 'first', 'second', true ]
+My parameterized test [ 'third', 'fourth', false ]
+```
+
+When defining a `customDescriptionBuilder` like this:
+```dart
+...
+customDiscriptionBuilder: (groupDescription, index, values) => '🚀[$index] $groupDescription: <<${values.join('|')}>>',
+...
+```
+
+The output will look like this:
+```
+My parameterized test 🚀[1] My parameterized test: <<first|second|true>>
+My parameterized test 🚀[2] My parameterized test: <<third|fourth|false>>
+```
+
+>Note: the first 'My parameterized test' is because parameterized tests make use of a group test. Most IDE's will group this for you and only show the second part.
+
 ## Extending parameters
 
 Currently the package supports `TestParameters` classes up to 10 arguments. If need to more arguments within a test than this is possible by implementing the `TestParameters` class.

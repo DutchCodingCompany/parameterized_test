@@ -2,6 +2,7 @@ import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 
 import '../parameterized_test.dart';
+import 'test_options/value_with_test_options.dart';
 
 /// Parameterized test with 1 input arguments. See [parameterizedTest] for more info.
 @isTestGroup
@@ -15,6 +16,8 @@ void parameterizedTest1<A1>(
   /// The test body which is executed for each test value.
   /// See [TestParameters] for more info on different bodies.
   dynamic Function(A1) body, {
+  /// Provide a custom description builder which will build the description for all the test values test executed.
+  CustomDescriptionBuilder? customDescriptionBuilder,
   dynamic Function()? setUp,
 
   /// Provide a tearDown function to the `group` test.
@@ -30,6 +33,7 @@ void parameterizedTest1<A1>(
       description,
       values,
       p1(body),
+      customDescriptionBuilder: customDescriptionBuilder,
       setUp: setUp,
       tearDown: tearDown,
       testOn: testOn,
@@ -52,6 +56,8 @@ void parameterizedTest2<A1, A2>(
   /// The test body which is executed for each test value.
   /// See [TestParameters] for more info on different bodies.
   dynamic Function(A1, A2) body, {
+  /// Provide a custom description builder which will build the description for all the test values test executed.
+  CustomDescriptionBuilder? customDescriptionBuilder,
   dynamic Function()? setUp,
 
   /// Provide a tearDown function to the `group` test.
@@ -67,6 +73,7 @@ void parameterizedTest2<A1, A2>(
       description,
       values,
       p2(body),
+      customDescriptionBuilder: customDescriptionBuilder,
       setUp: setUp,
       tearDown: tearDown,
       testOn: testOn,
@@ -89,6 +96,8 @@ void parameterizedTest3<A1, A2, A3>(
   /// The test body which is executed for each test value.
   /// See [TestParameters] for more info on different bodies.
   dynamic Function(A1, A2, A3) body, {
+  /// Provide a custom description builder which will build the description for all the test values test executed.
+  CustomDescriptionBuilder? customDescriptionBuilder,
   dynamic Function()? setUp,
 
   /// Provide a tearDown function to the `group` test.
@@ -104,6 +113,7 @@ void parameterizedTest3<A1, A2, A3>(
       description,
       values,
       p3(body),
+      customDescriptionBuilder: customDescriptionBuilder,
       setUp: setUp,
       tearDown: tearDown,
       testOn: testOn,
@@ -126,6 +136,8 @@ void parameterizedTest4<A1, A2, A3, A4>(
   /// The test body which is executed for each test value.
   /// See [TestParameters] for more info on different bodies.
   dynamic Function(A1, A2, A3, A4) body, {
+  /// Provide a custom description builder which will build the description for all the test values test executed.
+  CustomDescriptionBuilder? customDescriptionBuilder,
   dynamic Function()? setUp,
 
   /// Provide a tearDown function to the `group` test.
@@ -141,6 +153,7 @@ void parameterizedTest4<A1, A2, A3, A4>(
       description,
       values,
       p4(body),
+      customDescriptionBuilder: customDescriptionBuilder,
       setUp: setUp,
       tearDown: tearDown,
       testOn: testOn,
@@ -163,6 +176,8 @@ void parameterizedTest5<A1, A2, A3, A4, A5>(
   /// The test body which is executed for each test value.
   /// See [TestParameters] for more info on different bodies.
   dynamic Function(A1, A2, A3, A4, A5) body, {
+  /// Provide a custom description builder which will build the description for all the test values test executed.
+  CustomDescriptionBuilder? customDescriptionBuilder,
   dynamic Function()? setUp,
 
   /// Provide a tearDown function to the `group` test.
@@ -178,6 +193,7 @@ void parameterizedTest5<A1, A2, A3, A4, A5>(
       description,
       values,
       p5(body),
+      customDescriptionBuilder: customDescriptionBuilder,
       setUp: setUp,
       tearDown: tearDown,
       testOn: testOn,
@@ -200,6 +216,8 @@ void parameterizedTest6<A1, A2, A3, A4, A5, A6>(
   /// The test body which is executed for each test value.
   /// See [TestParameters] for more info on different bodies.
   dynamic Function(A1, A2, A3, A4, A5, A6) body, {
+  /// Provide a custom description builder which will build the description for all the test values test executed.
+  CustomDescriptionBuilder? customDescriptionBuilder,
   dynamic Function()? setUp,
 
   /// Provide a tearDown function to the `group` test.
@@ -215,6 +233,7 @@ void parameterizedTest6<A1, A2, A3, A4, A5, A6>(
       description,
       values,
       p6(body),
+      customDescriptionBuilder: customDescriptionBuilder,
       setUp: setUp,
       tearDown: tearDown,
       testOn: testOn,
@@ -237,6 +256,8 @@ void parameterizedTest7<A1, A2, A3, A4, A5, A6, A7>(
   /// The test body which is executed for each test value.
   /// See [TestParameters] for more info on different bodies.
   dynamic Function(A1, A2, A3, A4, A5, A6, A7) body, {
+  /// Provide a custom description builder which will build the description for all the test values test executed.
+  CustomDescriptionBuilder? customDescriptionBuilder,
   dynamic Function()? setUp,
 
   /// Provide a tearDown function to the `group` test.
@@ -252,6 +273,7 @@ void parameterizedTest7<A1, A2, A3, A4, A5, A6, A7>(
       description,
       values,
       p7(body),
+      customDescriptionBuilder: customDescriptionBuilder,
       setUp: setUp,
       tearDown: tearDown,
       testOn: testOn,
@@ -274,6 +296,8 @@ void parameterizedTest8<A1, A2, A3, A4, A5, A6, A7, A8>(
   /// The test body which is executed for each test value.
   /// See [TestParameters] for more info on different bodies.
   dynamic Function(A1, A2, A3, A4, A5, A6, A7, A8) body, {
+  /// Provide a custom description builder which will build the description for all the test values test executed.
+  CustomDescriptionBuilder? customDescriptionBuilder,
   dynamic Function()? setUp,
 
   /// Provide a tearDown function to the `group` test.
@@ -289,6 +313,7 @@ void parameterizedTest8<A1, A2, A3, A4, A5, A6, A7, A8>(
       description,
       values,
       p8(body),
+      customDescriptionBuilder: customDescriptionBuilder,
       setUp: setUp,
       tearDown: tearDown,
       testOn: testOn,
@@ -311,6 +336,8 @@ void parameterizedTest9<A1, A2, A3, A4, A5, A6, A7, A8, A9>(
   /// The test body which is executed for each test value.
   /// See [TestParameters] for more info on different bodies.
   dynamic Function(A1, A2, A3, A4, A5, A6, A7, A8, A9) body, {
+  /// Provide a custom description builder which will build the description for all the test values test executed.
+  CustomDescriptionBuilder? customDescriptionBuilder,
   dynamic Function()? setUp,
 
   /// Provide a tearDown function to the `group` test.
@@ -326,6 +353,7 @@ void parameterizedTest9<A1, A2, A3, A4, A5, A6, A7, A8, A9>(
       description,
       values,
       p9(body),
+      customDescriptionBuilder: customDescriptionBuilder,
       setUp: setUp,
       tearDown: tearDown,
       testOn: testOn,
@@ -348,6 +376,8 @@ void parameterizedTest10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>(
   /// The test body which is executed for each test value.
   /// See [TestParameters] for more info on different bodies.
   dynamic Function(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10) body, {
+  /// Provide a custom description builder which will build the description for all the test values test executed.
+  CustomDescriptionBuilder? customDescriptionBuilder,
   dynamic Function()? setUp,
 
   /// Provide a tearDown function to the `group` test.
@@ -363,6 +393,7 @@ void parameterizedTest10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>(
       description,
       values,
       p10(body),
+      customDescriptionBuilder: customDescriptionBuilder,
       setUp: setUp,
       tearDown: tearDown,
       testOn: testOn,

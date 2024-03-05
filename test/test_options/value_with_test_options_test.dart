@@ -28,6 +28,20 @@ void main() {
       expect(
           result, "[ 'a', 'b', '', '   ', 1, 1.5, true, class with toString ]");
     });
+
+    test('ValueWithTestOptions with customDescriptionBuilder', () {
+      final result = ValueWithTestOptions(
+        ['a', 'b', '', '   ', 1, 1.5, true, _ClassWithToString()],
+        testOptions,
+        index: 10,
+        groupDescription: 'group description',
+        customDiscriptionBuilder: (groupDescription, index, values) =>
+            '🚀[$index] $groupDescription: <<${values.join('|')}>>',
+      ).description;
+
+      expect(result,
+          "🚀[10] group description: <<a|b||   |1|1.5|true|class with toString>>");
+    });
   });
 }
 
