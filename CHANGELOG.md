@@ -14,10 +14,10 @@
    ```
    
   Prints:
-  ```
-    Test with custom description: 1, first(1), length(2)
-    Test with custom description: 2, first(3), length(2)
-  ``` 
+```
+Test with custom description 🚀[1] Test with custom description: <<1|2>>
+Test with custom description 🚀[2] Test with custom description: <<3|4>>
+```
 
 ## 1.1.2
  - Added #13: String values are wrapped with quotes in test output. This makes it easier to see if a string value is empty or contains spaces.
