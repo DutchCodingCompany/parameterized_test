@@ -115,4 +115,17 @@ void main() {
       expect(result, true);
     }),
   );
+
+  parameterizedGroup1(
+    'Example with list of one type.',
+    [
+      1,
+      2,
+      3,
+    ],
+    (int value) {
+      final result = value < 4;
+      print([result, true]);
+    },
+  );
 }

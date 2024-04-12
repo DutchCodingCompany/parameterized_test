@@ -4,16 +4,18 @@ import 'package:test/test.dart' as dart_test;
 import 'test_options.dart';
 import 'value_with_test_options.dart';
 
-extension IterableTestParametersEx<T extends Iterable<dynamic>> on T {
+extension ListTestParametersEx<T extends List<dynamic>> on T {
   /// Applied extra test options for a specified test value.
   /// For example:
   /// ```dart
   /// [
   ///   ['kiwi',4],
-  ///   ['apple',5].withTestOptions(skip: true),
+  ///   ['apple',5].options(skip: true),
   /// ]
   /// ```
-  ValueWithTestOptions withTestOptions({
+  ValueWithTestOptions options({
+    CustomDescriptionBuilder? customDescriptionBuilder,
+    String? testOn,
     dart_test.Timeout? timeout,
     dynamic skip,
     dynamic tags,
@@ -23,6 +25,8 @@ extension IterableTestParametersEx<T extends Iterable<dynamic>> on T {
       ValueWithTestOptions(
         this,
         TestOptions(
+          customDescriptionBuilder: customDescriptionBuilder,
+          testOn: testOn,
           timeout: timeout,
           skip: skip,
           tags: tags,
@@ -38,10 +42,12 @@ extension TestParametersEx<T extends Object> on T {
   /// ```dart
   /// [
   ///   4,
-  ///   5.withTestOptions(skip: true),
+  ///   5.options(skip: true),
   /// ]
   /// ```
-  ValueWithTestOptions withTestOptions({
+  ValueWithTestOptions options({
+    CustomDescriptionBuilder? customDescriptionBuilder,
+    String? testOn,
     dart_test.Timeout? timeout,
     dynamic skip,
     dynamic tags,
@@ -51,6 +57,8 @@ extension TestParametersEx<T extends Object> on T {
       ValueWithTestOptions(
         [this],
         TestOptions(
+          customDescriptionBuilder: customDescriptionBuilder,
+          testOn: testOn,
           timeout: timeout,
           skip: skip,
           tags: tags,
