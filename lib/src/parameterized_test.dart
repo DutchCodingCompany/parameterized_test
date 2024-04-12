@@ -98,6 +98,7 @@ class ParameterizedTest {
   final SetupFunc _tearDown;
 
   @isTestGroup
+
   /// {@macro parameterizedTest}
   void call(
     Object? description,

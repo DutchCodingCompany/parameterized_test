@@ -28,6 +28,7 @@ class ValueWithTestOptions {
 
   /// Test values for a test.
   final List<dynamic> value;
+
   /// Test options for a test.
   final TestOptions testOptions;
 }
