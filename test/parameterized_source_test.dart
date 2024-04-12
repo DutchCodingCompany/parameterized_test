@@ -10,22 +10,9 @@ void main() {
       ['banana', 6],
     ],
     // Easy smaller typedef
-    p2((String word, int length) {
+    (String word, int length) {
       expect(word.length, length);
-    }),
-  );
-
-  parameterizedTest(
-    'Example of list dynamic with 2 arguments, test successful',
-    [
-      ['kiwi', 4],
-      ['apple', 5],
-      ['banana', 6],
-    ],
-    // Full class
-    TestParameters2((String word, int length) {
-      expect(word.length, length);
-    }),
+    },
   );
 
   parameterizedTest(
@@ -35,12 +22,12 @@ void main() {
       ['apple', 5],
       ['banana', 6],
       ['Dragon fruit', 11]
-          .withTestOptions(skip: 'Its 12 because of space. skip for now.'),
+          .options(skip: 'Its 12 because of space. skip for now.'),
     ],
     // Easy smaller typedef
-    p2((String word, int length) {
+    (String word, int length) {
       expect(word.length, length);
-    }),
+    },
   );
 
   parameterizedTest(
@@ -50,9 +37,9 @@ void main() {
       ['apple', 5],
       ['banana', 6],
     ],
-    p2((String word, int length) {
+    (String word, int length) {
       expect(word.length, length);
-    }),
+    },
     setUp: () {
       print('Setup everything I need for testing');
     },
@@ -68,9 +55,9 @@ void main() {
       2,
       3,
     ],
-    p1((int value) {
+    (int value) {
       final result = value < 4;
       expect(result, true);
-    }),
+    },
   );
 }

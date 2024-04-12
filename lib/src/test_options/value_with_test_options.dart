@@ -6,7 +6,7 @@ typedef CustomDescriptionBuilder = Object? Function(
   List<dynamic> values,
 );
 
-class ValueWithTestOptions extends Iterable<dynamic> {
+class ValueWithTestOptions {
   ValueWithTestOptions(
     this.value,
     this.testOptions,
@@ -14,7 +14,4 @@ class ValueWithTestOptions extends Iterable<dynamic> {
 
   final List<dynamic> value;
   final TestOptions testOptions;
-
-  @override
-  Iterator<dynamic> get iterator => value.iterator;
 }
