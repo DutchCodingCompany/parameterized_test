@@ -1,10 +1,14 @@
+/// {@template ParameterizedError}
+/// Error for when the provided value(s) didn't match the function arguments
+/// types or count.
+/// {@endtemplate}
 class ParameterizedError extends Error {
-  final String message;
-
+  /// {@macro ParameterizedError}
   ParameterizedError(this.message);
 
+  /// Creates a [ParameterizedError] from a [TypeError].
+  /// When arguments types don't match the function arguments types.
   factory ParameterizedError.fromTypeError(
-    TypeError e,
     List<dynamic> value,
     Function body,
   ) {
@@ -18,8 +22,12 @@ class ParameterizedError extends Error {
         'Expected types: ($bodyClosure)');
   }
 
+  /// Creates a [ParameterizedError] from a [TypeError].
+  /// When arguments count don't match the function arguments count.
   factory ParameterizedError.fromNoSuchMethodError(
-      NoSuchMethodError e, List<dynamic> value, Function body) {
+    NoSuchMethodError e,
+    List<dynamic> value,
+  ) {
     final bodyClosure = _extractFunctionArgumentsSignature(e.toString());
     final positionalArgumentsCount = ','.allMatches(bodyClosure).length + 1;
 
@@ -33,6 +41,9 @@ class ParameterizedError extends Error {
         'Expected types: ($bodyClosure)');
   }
 
+  /// Error message.
+  final String message;
+
   static String _extractFunctionArgumentsSignature(String body) {
     const closure = 'Closure: (';
     final closureIndex = body.indexOf(closure);
@@ -43,7 +54,7 @@ class ParameterizedError extends Error {
       endIndex,
     );
 
-    return bodyClosure.replaceAll(RegExp(r'<(.*)>'), '');
+    return bodyClosure.replaceAll(RegExp('<(.*)>'), '');
   }
 
   @override

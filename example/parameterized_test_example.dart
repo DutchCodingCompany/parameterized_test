@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:parameterized_test/parameterized_test.dart';
 import 'package:test/test.dart';
 
@@ -10,13 +12,14 @@ void main() {
       ['banana', 6],
     ],
     // Easy smaller typedef
-        (String word, int length) {
+    (String word, int length) {
       expect(word.length, length);
     },
   );
 
   parameterizedTest(
-    'Example of list dynamic with 2 arguments, with extra options provided for 1 use case.',
+    'Example of list dynamic with 2 arguments, with extra options provided '
+    'for 1 use case.',
     [
       ['kiwi', 4],
       ['apple', 5],
@@ -25,7 +28,7 @@ void main() {
           .options(skip: 'Its 12 because of space. skip for now.'),
     ],
     // Easy smaller typedef
-        (String word, int length) {
+    (String word, int length) {
       expect(word.length, length);
     },
   );
@@ -37,7 +40,7 @@ void main() {
       ['apple', 5],
       ['banana', 6],
     ],
-        (String word, int length) {
+    (String word, int length) {
       expect(word.length, length);
     },
     setUp: () {
@@ -55,7 +58,7 @@ void main() {
       2,
       3,
     ],
-        (int value) {
+    (int value) {
       final result = value < 4;
       expect(result, true);
     },

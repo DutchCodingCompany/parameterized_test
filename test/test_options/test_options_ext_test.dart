@@ -12,7 +12,7 @@ void main() {
 
     expect(
       result[1],
-      TypeMatcher<ValueWithTestOptions>()
+      const TypeMatcher<ValueWithTestOptions>()
           .having((value) => value.value, 'value', [3]).having(
         (value) => value.testOptions.skip,
         'skip',
@@ -30,7 +30,7 @@ void main() {
 
     expect(
       result[1],
-      TypeMatcher<ValueWithTestOptions>()
+      const TypeMatcher<ValueWithTestOptions>()
           .having((value) => value.value, 'value', [3, 4]).having(
         (value) => value.testOptions.skip,
         'skip',

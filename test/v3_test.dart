@@ -2,26 +2,11 @@ import 'package:parameterized_test/src/parameterized_test.dart';
 import 'package:parameterized_test/src/test_options/test_options_ext.dart';
 import 'package:test/test.dart';
 
-class Iets {
-  static func5(int a, Map<String, double> b, {int? i}) {}
-
-  func6(int a, Map<String, double> b, {int? i}) {}
-}
-
 void main() {
-  final func1 = (int a, Map<String, double> b, {int? i}) {};
-  func2(int a, Map<String, double> b, {int? i}) {}
-
-  print(func1);
-  print(func2);
-  print((int a, Map<String, double> b, {int? i}) => Null);
-  print(Iets.func5);
-  print(Iets().func6);
-
   parameterizedTest('Working test', [
     ['kiwi', 4],
     ['apple', 5],
-    ['apple', 5].options(customDescriptionBuilder: (a,b,c) => '$c,$b,$a'),
+    ['apple', 5].options(customDescriptionBuilder: (a, b, c) => '$c,$b,$a'),
     ['banana', 6].options(skip: 'daarom'),
     ['apple', 5],
     ['banana', 6],
@@ -38,7 +23,8 @@ void main() {
   });
 
   parameterizedTest(
-      'Failing test, Providing too many values(3) for function positionalArguments(2)',
+      'Failing test, Providing too many values(3) for function '
+      'positionalArguments(2)',
       [
         ['kiwi', 4, 2],
         ['apple', 5, 3],
@@ -48,7 +34,8 @@ void main() {
   });
 
   parameterizedTest(
-      'Failing test, Providing too many values(3) for function positionalArguments(2)',
+      'Failing test, Providing too many values(3) for function '
+      'positionalArguments(2)',
       [
         ['kiwi', 4, 2],
         ['apple', 5, 3],
@@ -58,7 +45,8 @@ void main() {
   });
 
   parameterizedTest(
-      'Failing test, Providing not enough values(2) for function positionalArguments(3)',
+      'Failing test, Providing not enough values(2) for function '
+      'positionalArguments(3)',
       [
         ['kiwi', 4],
         ['apple', 5],
@@ -68,18 +56,23 @@ void main() {
   });
 
   parameterizedTest(
-      'Failing test, Providing not enough values(2) for function positionalArguments(3)',
+      'Failing test, Providing not enough values(2) for function '
+      'positionalArguments(3)',
       [
         ['kiwi', 4],
         ['apple', 5],
         ['banana', 6],
-      ], (String word, int length,
-          TooMany<String, int, Map<String, int>, double> name) {
+      ], (
+    String word,
+    int length,
+    TooMany<String, int, Map<String, int>, double> name,
+  ) {
     expect(word.length, length);
   });
 
   parameterizedTest(
-      'Failing test, Providing wrong value Type(int) for function positionalArguments(String)',
+      'Failing test, Providing wrong value Type(int) for function '
+      'positionalArguments(String)',
       [
         ['kiwi', 4],
         ['apple', 5],
@@ -89,13 +82,14 @@ void main() {
   });
 
   parameterizedTest(
-      'Failing test, Providing wrong value Types(String, int) for function positionalArguments(int, String)',
+      'Failing test, Providing wrong value Types(String, int) for function '
+      'positionalArguments(int, String)',
       [
         ['kiwi', 4],
         ['apple', 5],
         ['banana', 8],
       ], (int word, String length) {
-    expect(word, length);
+    expect(word, length.length);
   });
 }
 

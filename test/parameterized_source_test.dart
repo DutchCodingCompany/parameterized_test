@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:parameterized_test/parameterized_test.dart';
 import 'package:test/test.dart';
 
@@ -16,7 +18,8 @@ void main() {
   );
 
   parameterizedTest(
-    'Example of list dynamic with 2 arguments, with extra options provided for 1 use case.',
+    'Example of list dynamic with 2 arguments, with extra options '
+    'provided for 1 use case.',
     [
       ['kiwi', 4],
       ['apple', 5],

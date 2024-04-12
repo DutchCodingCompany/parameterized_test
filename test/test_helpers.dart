@@ -5,12 +5,6 @@ class MockTestOptions extends TestOptions {
   MockTestOptions({this.descriptionCallback}) : super();
 
   final dynamic Function(Object)? descriptionCallback;
-
-  @override
-  void test(Object description, dynamic Function() body) {
-    descriptionCallback?.call(description);
-    body();
-  }
 }
 
 class MockValueWithTestOptions extends ValueWithTestOptions {

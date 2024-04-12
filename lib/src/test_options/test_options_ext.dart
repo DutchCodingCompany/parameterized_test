@@ -1,9 +1,8 @@
-//ignore_for_file: long-parameter-list
+import 'package:parameterized_test/src/test_options/test_options.dart';
+import 'package:parameterized_test/src/test_options/value_with_test_options.dart';
 import 'package:test/test.dart' as dart_test;
 
-import 'test_options.dart';
-import 'value_with_test_options.dart';
-
+/// Extension on [List] to apply extra test options for a specified
 extension ListTestParametersEx<T extends List<dynamic>> on T {
   /// Applied extra test options for a specified test value.
   /// For example:
@@ -36,7 +35,9 @@ extension ListTestParametersEx<T extends List<dynamic>> on T {
       );
 }
 
-extension TestParametersEx<T extends Object> on T {
+/// Extension on [Object] to apply extra test options for a specified
+/// test value.
+extension TestParametersEx on Object {
   /// Applied extra test options for a specified test value.
   /// For example:
   /// ```dart

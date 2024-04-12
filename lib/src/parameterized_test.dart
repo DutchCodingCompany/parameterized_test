@@ -3,6 +3,7 @@ import 'package:parameterized_test/src/errors/parameterized_error.dart';
 import 'package:parameterized_test/src/test_options/value_with_test_options.dart';
 import 'package:test/test.dart';
 
+/// Callback signature for test and group functions.
 typedef TestFunc = void Function(
   Object? description,
   dynamic Function() body, {
@@ -14,8 +15,31 @@ typedef TestFunc = void Function(
   int? retry,
 });
 
+/// Callback signature for setUp and tearDown functions.
 typedef SetupFunc = void Function(dynamic Function());
 
+/// {@template parameterizedTest}
+// ignore: comment_references
+/// Create a new parameterizedTest with given [description], [values] and [body]
+///
+/// [parameterizedTest] also have the same options as group tests have.
+/// These options will be passed to the group function.
+///
+/// For example:
+/// ```dart
+/// parameterizedTest(
+///   'Amount of letters',
+///   [
+///     ['kiwi', 4],
+///     ['apple', 5],
+///     ['banana', 6].options(skip: 'skip this'),
+///   ],
+///   (String word, int length) {
+///     expect(word.length, length);
+///   },
+/// );
+/// ```
+/// {@endtemplate}
 ParameterizedTest get parameterizedTest => ParameterizedTest(
       group,
       test,
@@ -23,6 +47,32 @@ ParameterizedTest get parameterizedTest => ParameterizedTest(
       tearDown,
     );
 
+/// {@template parameterizedGroup}
+// ignore: comment_references
+/// Create a new parameterizedGroup with given [description], [values]
+// ignore: comment_references
+/// and [body]
+///
+/// [parameterizedGroup] also have the same options as group tests have.
+/// These options will be passed to the group function.
+///
+/// For example:
+/// ```dart
+/// parameterizedGroup(
+///   'Amount of letters',
+///   [
+///     ['kiwi', 4],
+///     ['apple', 5],
+///     ['banana', 6].options(skip: 'skip this'),
+///   ],
+///   (String word, int length) {
+///     test('test word length',() {
+///       expect(word.length, length);
+///       });
+///   },
+/// );
+/// ```
+/// {@endtemplate}
 ParameterizedTest get parameterizedGroup => ParameterizedTest(
       group,
       group,
@@ -30,7 +80,11 @@ ParameterizedTest get parameterizedGroup => ParameterizedTest(
       tearDown,
     );
 
+/// {@template ParameterizedTest}
+/// Implementation of parameterized test.
+/// {@endtemplate}
 class ParameterizedTest {
+  /// {@macro ParameterizedTest}
   ParameterizedTest(
     this._group,
     this._test,
@@ -44,6 +98,7 @@ class ParameterizedTest {
   final SetupFunc _tearDown;
 
   @isTestGroup
+  /// {@macro parameterizedTest}
   void call(
     Object? description,
     List<dynamic> values,
@@ -65,7 +120,7 @@ class ParameterizedTest {
           _setup(setUp);
         }
 
-        int i = 1;
+        var i = 1;
         for (final v in values) {
           final testOptions = v is ValueWithTestOptions ? v.testOptions : null;
           final value = v is ValueWithTestOptions
@@ -74,14 +129,12 @@ class ParameterizedTest {
                   ? v
                   : [v];
 
-          final testDescription = testOptions?.customDescriptionBuilder
-                  ?.call(description, i, value) ??
-              customDescriptionBuilder?.call(description, i, value) ??
-              '[ ${value.map(
-                    (e) => e is String ? "'$e'" : e.toString(),
-                  ).join(
-                    ', ',
-                  )} ]';
+          final testDescription = makeDescription(
+            description,
+            i,
+            value,
+            testOptions?.customDescriptionBuilder ?? customDescriptionBuilder,
+          );
 
           _test(
             testDescription,
@@ -94,11 +147,11 @@ class ParameterizedTest {
               }
               //ignore: avoid_catching_errors
               on NoSuchMethodError catch (e) {
-                throw ParameterizedError.fromNoSuchMethodError(e, value, body);
+                throw ParameterizedError.fromNoSuchMethodError(e, value);
               }
               //ignore: avoid_catching_errors
-              on TypeError catch (e) {
-                throw ParameterizedError.fromTypeError(e, value, body);
+              on TypeError {
+                throw ParameterizedError.fromTypeError(value, body);
               }
             },
             testOn: testOptions?.testOn ?? testOn,
@@ -121,5 +174,20 @@ class ParameterizedTest {
       onPlatform: onPlatform,
       retry: retry,
     );
+  }
+
+  /// Make a description for each test.
+  Object? makeDescription(
+    Object? description,
+    int i,
+    List<dynamic> value,
+    CustomDescriptionBuilder? customDescriptionBuilder,
+  ) {
+    final mappedValues = value.map(
+      (e) => e is String ? "'$e'" : e.toString(),
+    );
+
+    return customDescriptionBuilder?.call(description, i, value) ??
+        '[ ${mappedValues.join(', ')} ]';
   }
 }
