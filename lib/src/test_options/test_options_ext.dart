@@ -21,9 +21,9 @@ extension ListTestParametersEx<T extends List<dynamic>> on T {
     Map<String, dynamic>? onPlatform,
     int? retry,
   }) =>
-      ValueWithTestOptions(
-        this,
-        TestOptions(
+      (
+        values: this,
+        testOptions: TestOptions(
           customDescriptionBuilder: customDescriptionBuilder,
           testOn: testOn,
           timeout: timeout,
@@ -55,9 +55,9 @@ extension TestParametersEx on Object {
     Map<String, dynamic>? onPlatform,
     int? retry,
   }) =>
-      ValueWithTestOptions(
-        [this],
-        TestOptions(
+      (
+        values: [this],
+        testOptions: TestOptions(
           customDescriptionBuilder: customDescriptionBuilder,
           testOn: testOn,
           timeout: timeout,

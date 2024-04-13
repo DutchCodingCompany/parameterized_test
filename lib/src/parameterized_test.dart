@@ -123,12 +123,7 @@ class ParameterizedTest {
 
         var i = 1;
         for (final v in values) {
-          final testOptions = v is ValueWithTestOptions ? v.testOptions : null;
-          final value = v is ValueWithTestOptions
-              ? v.value
-              : v is List
-                  ? v
-                  : [v];
+          final (:testOptions, values: value) = parseValues(v);
 
           final testDescription = makeDescription(
             description,
@@ -191,4 +186,12 @@ class ParameterizedTest {
     return customDescriptionBuilder?.call(description, i, value) ??
         '[ ${mappedValues.join(', ')} ]';
   }
+
+  /// Unpack wrapped values and test options.
+  /// Handle different types of values.
+  ValueWithTestOptions parseValues(dynamic value) => switch (value) {
+        ValueWithTestOptions() => value,
+        List() => (values: value, testOptions: null),
+        _ => (values: [value], testOptions: null),
+      };
 }

@@ -18,8 +18,8 @@ void main() {
   );
 
   parameterizedTest(
-    'Example of list dynamic with 2 arguments, with extra options '
-    'provided for 1 use case.',
+    'Example of list dynamic with 2 arguments, with extra options provided '
+    'for 1 use case.',
     [
       ['kiwi', 4],
       ['apple', 5],
