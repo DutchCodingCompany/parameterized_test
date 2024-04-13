@@ -356,13 +356,14 @@ void main() {
       );
       expect(
         () => pTest(
-            'test',
-            [
-              [1, 2],
-              [3, 4],
-              [5, 6],
-            ],
-            (int value) => value,),
+          'test',
+          [
+            [1, 2],
+            [3, 4],
+            [5, 6],
+          ],
+          (int value) => value,
+        ),
         throwsA(isA<ParameterizedError>()),
       );
     });
@@ -376,13 +377,14 @@ void main() {
       );
       expect(
         () => pTest(
-            'test',
-            [
-              [1, 2],
-              [3, 4],
-              [5, 6],
-            ],
-            (int value, String value2) => value + value2.length,),
+          'test',
+          [
+            [1, 2],
+            [3, 4],
+            [5, 6],
+          ],
+          (int value, String value2) => value + value2.length,
+        ),
         throwsA(isA<ParameterizedError>()),
       );
     });
@@ -390,8 +392,7 @@ void main() {
     test('test doesnt catch exceptions other than NoSuchMethodError, TypeError',
         () {
       expect(
-        () =>
-            pTest('test', [1, 2, 3], (int value) => throw Exception('test')),
+        () => pTest('test', [1, 2, 3], (int value) => throw Exception('test')),
         throwsA(isA<Exception>()),
       );
     });

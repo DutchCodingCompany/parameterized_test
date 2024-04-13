@@ -17,7 +17,7 @@ typedef CustomDescriptionBuilder = Object? Function(
 );
 
 /// {@template ValueWithTestOptions}
-/// Wrapper class for test values and associated test options.
+/// Wrapper for test values and associated test options.
 /// {@endtemplate}
 typedef ValueWithTestOptions = ({
   List<dynamic> values,
