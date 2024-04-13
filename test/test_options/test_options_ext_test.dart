@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  test('Object test options extensions tests', () {
+  test('List test options extensions tests', () {
     // act
     final result = [
       [1, 2],

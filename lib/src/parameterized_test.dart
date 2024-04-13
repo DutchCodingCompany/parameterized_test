@@ -40,6 +40,7 @@ typedef SetupFunc = void Function(dynamic Function());
 /// );
 /// ```
 /// {@endtemplate}
+@isTestGroup
 ParameterizedTest get parameterizedTest => ParameterizedTest(
       group,
       test,
@@ -73,6 +74,7 @@ ParameterizedTest get parameterizedTest => ParameterizedTest(
 /// );
 /// ```
 /// {@endtemplate}
+@isTestGroup
 ParameterizedTest get parameterizedGroup => ParameterizedTest(
       group,
       group,
@@ -97,9 +99,8 @@ class ParameterizedTest {
   final SetupFunc _setup;
   final SetupFunc _tearDown;
 
-  @isTestGroup
-
   /// {@macro parameterizedTest}
+  @isTestGroup
   void call(
     Object? description,
     List<dynamic> values,
@@ -121,13 +122,13 @@ class ParameterizedTest {
           _setup(setUp);
         }
 
-        var i = 1;
+        var index = 1;
         for (final v in values) {
           final (:testOptions, values: value) = parseValues(v);
 
           final testDescription = makeDescription(
             description,
-            i,
+            index,
             value,
             testOptions?.customDescriptionBuilder ?? customDescriptionBuilder,
           );
@@ -150,14 +151,14 @@ class ParameterizedTest {
                 throw ParameterizedError.fromTypeError(value, body);
               }
             },
-            testOn: testOptions?.testOn ?? testOn,
-            timeout: testOptions?.timeout ?? timeout,
-            skip: testOptions?.skip ?? skip,
-            tags: testOptions?.tags ?? tags,
-            onPlatform: testOptions?.onPlatform ?? onPlatform,
-            retry: testOptions?.retry ?? retry,
+            testOn: testOptions?.testOn,
+            timeout: testOptions?.timeout,
+            skip: testOptions?.skip,
+            tags: testOptions?.tags,
+            onPlatform: testOptions?.onPlatform,
+            retry: testOptions?.retry,
           );
-          i++;
+          index++;
         }
         if (tearDown != null) {
           _tearDown(tearDown);
@@ -175,7 +176,7 @@ class ParameterizedTest {
   /// Make a description for each test.
   Object? makeDescription(
     Object? description,
-    int i,
+    int index,
     List<dynamic> value,
     CustomDescriptionBuilder? customDescriptionBuilder,
   ) {
@@ -183,7 +184,7 @@ class ParameterizedTest {
       (e) => e is String ? "'$e'" : e.toString(),
     );
 
-    return customDescriptionBuilder?.call(description, i, value) ??
+    return customDescriptionBuilder?.call(description, index, value) ??
         '[ ${mappedValues.join(', ')} ]';
   }
 
