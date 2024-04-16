@@ -16,13 +16,11 @@ and the Flutter guide for
 Supercharge your Dart testing with **parameterized_test**! Built on top of the [dart test package](https://pub.dev/packages/test), this [JUnit ParameterizedTest](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests) inspired package wrap around `group` and `test` to take your testing to the next level!
 
 ## Table of contents
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Add test options to parameter](#add test options to parameter)
-  - [Changing test description output](#changing)
-- [Examples](#examples)
-- [Additional information](#additional-information)
+- [Features](#features-)
+- [Installation](#installation-)
+- [Usage](#usage-)
+- [Examples](#examples-)
+- [Additional information](#additional-information-)
 
 ## Features ✨
 
@@ -253,7 +251,7 @@ parameterizedTest('Example of CSV data',
 });
 ```
 
-## 💡 Additional information
+## Additional information 💡
 
 It's just a simple wrapper to easily execute tests multiple times with different values. Feel free to
 leave some feedback or open a pull request :)
