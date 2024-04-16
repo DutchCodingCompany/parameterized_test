@@ -14,14 +14,14 @@ void main() {
   late TestHelper _test;
   late TestHelper _setUp;
   late TestHelper _tearDown;
-  late ParameterizedTest pTest;
+  late ParameterizedTestImpl pTest;
 
   setUp(() {
     _group = TestHelper();
     _test = TestHelper();
     _setUp = TestHelper();
     _tearDown = TestHelper();
-    pTest = ParameterizedTest(
+    pTest = ParameterizedTestImpl(
       _group.test,
       _test.test,
       _setUp.setUp,

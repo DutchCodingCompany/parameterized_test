@@ -41,7 +41,7 @@ typedef SetupFunc = void Function(dynamic Function());
 /// ```
 /// {@endtemplate}
 @isTestGroup
-ParameterizedTest get parameterizedTest => ParameterizedTest(
+ParameterizedTest get parameterizedTest => const ParameterizedTestImpl(
       group,
       test,
       setUp,
@@ -75,7 +75,7 @@ ParameterizedTest get parameterizedTest => ParameterizedTest(
 /// ```
 /// {@endtemplate}
 @isTestGroup
-ParameterizedTest get parameterizedGroup => ParameterizedTest(
+ParameterizedTest get parameterizedGroup => const ParameterizedTestImpl(
       group,
       group,
       setUp,
@@ -85,9 +85,29 @@ ParameterizedTest get parameterizedGroup => ParameterizedTest(
 /// {@template ParameterizedTest}
 /// Implementation of parameterized test.
 /// {@endtemplate}
-class ParameterizedTest {
+abstract interface class ParameterizedTest {
+  /// {@macro parameterizedTest}
+  @isTestGroup
+  void call(
+    Object? description,
+    List<dynamic> values,
+    Function body, {
+    CustomDescriptionBuilder? customDescriptionBuilder,
+    dynamic Function()? setUp,
+    dynamic Function()? tearDown,
+    String? testOn,
+    Timeout? timeout,
+    Object? skip,
+    Object? tags,
+    Map<String, dynamic>? onPlatform,
+    int? retry,
+  });
+}
+
+/// {@macro ParameterizedTest}
+class ParameterizedTestImpl implements ParameterizedTest {
   /// {@macro ParameterizedTest}
-  ParameterizedTest(
+  const ParameterizedTestImpl(
     this._group,
     this._test,
     this._setup,
@@ -99,7 +119,7 @@ class ParameterizedTest {
   final SetupFunc _setup;
   final SetupFunc _tearDown;
 
-  /// {@macro parameterizedTest}
+  @override
   @isTestGroup
   void call(
     Object? description,
@@ -193,6 +213,7 @@ class ParameterizedTest {
   ValueWithTestOptions parseValues(dynamic value) => switch (value) {
         ValueWithTestOptions() => value,
         List() => (values: value, testOptions: null),
+        Iterable() => (values: value.toList(), testOptions: null),
         _ => (values: [value], testOptions: null),
       };
 }
