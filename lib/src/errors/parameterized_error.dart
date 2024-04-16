@@ -8,11 +8,11 @@ class ParameterizedError extends Error {
 
   /// Creates a [ParameterizedError] from a [TypeError].
   /// When arguments types don't match the function arguments types.
-  factory ParameterizedError.fromTypeError(
+  factory ParameterizedError.forTypeError(
     List<dynamic> value,
     Function body,
   ) {
-    final bodyClosure = _extractFunctionArgumentsSignature(body.toString());
+    final bodyClosure = extractFunctionArgumentsSignature(body.toString());
 
     return ParameterizedError(
         "Provided value(s) didn't match the function arguments types.\n"
@@ -28,7 +28,7 @@ class ParameterizedError extends Error {
     NoSuchMethodError e,
     List<dynamic> value,
   ) {
-    final bodyClosure = _extractFunctionArgumentsSignature(e.toString());
+    final bodyClosure = extractFunctionArgumentsSignature(e.toString());
     final positionalArgumentsCount = ','.allMatches(bodyClosure).length + 1;
 
     return ParameterizedError(
@@ -44,7 +44,9 @@ class ParameterizedError extends Error {
   /// Error message.
   final String message;
 
-  static String _extractFunctionArgumentsSignature(String body) {
+  /// Helper function to extract the function arguments signature from
+  /// Exception string.
+  static String extractFunctionArgumentsSignature(String body) {
     const closure = 'Closure: (';
     final closureIndex = body.indexOf(closure);
     final endIndex = body.indexOf(')', closureIndex);

@@ -168,7 +168,7 @@ class ParameterizedTestImpl implements ParameterizedTest {
               }
               //ignore: avoid_catching_errors
               on TypeError {
-                throw ParameterizedError.fromTypeError(value, body);
+                throw ParameterizedError.forTypeError(value, body);
               }
             },
             testOn: testOptions?.testOn,
