@@ -65,8 +65,8 @@ void main() {
         'Map, String'
       ),
       (
-          (Map<int, Map<double, bool>> value, String string) => Null,
-      'Map, String'
+        (Map<int, Map<double, bool>> value, String string) => Null,
+        'Map, String'
       ),
       ((int value, String string) async => Future<String>, 'int, String'),
     ];

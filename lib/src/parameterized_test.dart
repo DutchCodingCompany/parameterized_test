@@ -85,6 +85,7 @@ ParameterizedTest get parameterizedGroup => const ParameterizedTestImpl(
 /// {@template ParameterizedTest}
 /// Implementation of parameterized test.
 /// {@endtemplate}
+// ignore: one_member_abstracts
 abstract interface class ParameterizedTest {
   /// {@macro parameterizedTest}
   @isTestGroup

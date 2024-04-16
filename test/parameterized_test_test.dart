@@ -10,22 +10,22 @@ import 'package:test/test.dart';
 import 'test_helpers.dart';
 
 void main() {
-  late TestHelper _group;
-  late TestHelper _test;
-  late TestHelper _setUp;
-  late TestHelper _tearDown;
+  late TestHelper groupMock;
+  late TestHelper testMock;
+  late TestHelper setUpMock;
+  late TestHelper tearDownMock;
   late ParameterizedTestImpl pTest;
 
   setUp(() {
-    _group = TestHelper();
-    _test = TestHelper();
-    _setUp = TestHelper();
-    _tearDown = TestHelper();
+    groupMock = TestHelper();
+    testMock = TestHelper();
+    setUpMock = TestHelper();
+    tearDownMock = TestHelper();
     pTest = ParameterizedTestImpl(
-      _group.test,
-      _test.test,
-      _setUp.setUp,
-      _tearDown.setUp,
+      groupMock.test,
+      testMock.test,
+      setUpMock.setUp,
+      tearDownMock.setUp,
     );
   });
 
@@ -129,8 +129,8 @@ void main() {
   group('parameterizedTest setUp + tearDown tests', () {
     test('no setUp/tearDown is called if none is provided', () {
       pTest('test', [1, 2, 3], (int value) => expect(value, value));
-      expect(_setUp.setupCaptures, isEmpty);
-      expect(_tearDown.setupCaptures, isEmpty);
+      expect(setUpMock.setupCaptures, isEmpty);
+      expect(tearDownMock.setupCaptures, isEmpty);
     });
 
     test('setUp/tearDown is called if when provided', () {
@@ -146,17 +146,17 @@ void main() {
         setUp: setUpCall,
         tearDown: tearDownCall,
       );
-      expect(_setUp.setupCaptures, hasLength(1));
-      expect(_setUp.setupCaptures.first, setUpCall);
-      expect(_tearDown.setupCaptures, hasLength(1));
-      expect(_tearDown.setupCaptures.first, tearDownCall);
+      expect(setUpMock.setupCaptures, hasLength(1));
+      expect(setUpMock.setupCaptures.first, setUpCall);
+      expect(tearDownMock.setupCaptures, hasLength(1));
+      expect(tearDownMock.setupCaptures.first, tearDownCall);
     });
   });
 
   group('parameterizedTest group tests', () {
     test('group is called once per parameterizedTest', () {
       pTest('test', [1, 2, 3], (int value) => expect(value, value));
-      expect(_group.testCaptures, hasLength(1));
+      expect(groupMock.testCaptures, hasLength(1));
     });
 
     test(
@@ -182,8 +182,8 @@ void main() {
         retry: retry,
       );
 
-      expect(_group.testCaptures, hasLength(1));
-      final result = _group.testCaptures.first;
+      expect(groupMock.testCaptures, hasLength(1));
+      final result = groupMock.testCaptures.first;
       expect(result.description, description);
       expect(result.testOn, testOn);
       expect(result.timeout, timeout);
@@ -228,8 +228,8 @@ void main() {
         retry: retry,
       );
 
-      expect(_group.testCaptures, hasLength(1));
-      final result = _group.testCaptures.first;
+      expect(groupMock.testCaptures, hasLength(1));
+      final result = groupMock.testCaptures.first;
       expect(result.description, description);
       expect(result.testOn, testOn);
       expect(result.timeout, timeout);
@@ -244,13 +244,13 @@ void main() {
     test('test called x times for the length of the values', () {
       pTest('test', [1, 2, 3], (int value) => expect(value, value));
 
-      expect(_test.testCaptures, hasLength(3));
+      expect(testMock.testCaptures, hasLength(3));
     });
 
     test('test called x times for the length of the values', () {
       pTest('test', [1, 2, 3], (int value) => expect(value, value));
 
-      expect(_test.testCaptures, hasLength(3));
+      expect(testMock.testCaptures, hasLength(3));
     });
 
     test('group testOptions are not passed to test', () {
@@ -266,8 +266,8 @@ void main() {
         retry: 2,
       );
 
-      expect(_test.testCaptures, hasLength(3));
-      for (final result in _test.testCaptures) {
+      expect(testMock.testCaptures, hasLength(3));
+      for (final result in testMock.testCaptures) {
         expect(result.description, isNot('test'));
         expect(result.testOn, null);
         expect(result.timeout, null);
@@ -309,25 +309,25 @@ void main() {
         retry: 0,
       );
 
-      expect(_test.testCaptures, hasLength(3));
-      expect(_test.testCaptures[0].testOn, null);
-      expect(_test.testCaptures[1].testOn, testOn);
-      expect(_test.testCaptures[2].testOn, null);
-      expect(_test.testCaptures[0].timeout, null);
-      expect(_test.testCaptures[1].timeout, timeout);
-      expect(_test.testCaptures[2].timeout, null);
-      expect(_test.testCaptures[0].skip, null);
-      expect(_test.testCaptures[1].skip, skip);
-      expect(_test.testCaptures[2].skip, null);
-      expect(_test.testCaptures[0].tags, null);
-      expect(_test.testCaptures[1].tags, tags);
-      expect(_test.testCaptures[2].tags, null);
-      expect(_test.testCaptures[0].onPlatform, null);
-      expect(_test.testCaptures[1].onPlatform, onPlatform);
-      expect(_test.testCaptures[2].onPlatform, null);
-      expect(_test.testCaptures[0].retry, null);
-      expect(_test.testCaptures[1].retry, retry);
-      expect(_test.testCaptures[2].retry, null);
+      expect(testMock.testCaptures, hasLength(3));
+      expect(testMock.testCaptures[0].testOn, null);
+      expect(testMock.testCaptures[1].testOn, testOn);
+      expect(testMock.testCaptures[2].testOn, null);
+      expect(testMock.testCaptures[0].timeout, null);
+      expect(testMock.testCaptures[1].timeout, timeout);
+      expect(testMock.testCaptures[2].timeout, null);
+      expect(testMock.testCaptures[0].skip, null);
+      expect(testMock.testCaptures[1].skip, skip);
+      expect(testMock.testCaptures[2].skip, null);
+      expect(testMock.testCaptures[0].tags, null);
+      expect(testMock.testCaptures[1].tags, tags);
+      expect(testMock.testCaptures[2].tags, null);
+      expect(testMock.testCaptures[0].onPlatform, null);
+      expect(testMock.testCaptures[1].onPlatform, onPlatform);
+      expect(testMock.testCaptures[2].onPlatform, null);
+      expect(testMock.testCaptures[0].retry, null);
+      expect(testMock.testCaptures[1].retry, retry);
+      expect(testMock.testCaptures[2].retry, null);
     });
 
     test('test use description by desciption builder', () {
@@ -340,10 +340,10 @@ void main() {
         },
       );
 
-      expect(_test.testCaptures, hasLength(3));
-      expect(_test.testCaptures[0].description, 2);
-      expect(_test.testCaptures[1].description, 3);
-      expect(_test.testCaptures[2].description, 4);
+      expect(testMock.testCaptures, hasLength(3));
+      expect(testMock.testCaptures[0].description, 2);
+      expect(testMock.testCaptures[1].description, 3);
+      expect(testMock.testCaptures[2].description, 4);
     });
 
     test(
