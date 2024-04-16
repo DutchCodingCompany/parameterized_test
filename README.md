@@ -16,14 +16,15 @@ and the Flutter guide for
 Supercharge your Dart testing with **parameterized_test**! Built on top of the [dart test package](https://pub.dev/packages/test), this [JUnit ParameterizedTest](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests) inspired package wrap around `group` and `test` to take your testing to the next level!
 
 ## Table of contents
-* [Features](#features-)
-* [Installation](#installation)
-* [Usage](#usage)
-* [Examples](#examples)
-* [How it works](#how-it-works)
-* [Additional information](#additional-information)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Add test options to parameter](#add test options to parameter)
+  - [Changing test description output](#changing)
+- [Examples](#examples)
+- [Additional information](#additional-information)
 
-## ✨ Features
+## Features ✨
 
 - ✅ Run a test multiple times based on provide parameter list.
 - ✅ Built on top of [dart test package](https://pub.dev/packages/test).
@@ -31,14 +32,14 @@ Supercharge your Dart testing with **parameterized_test**! Built on top of the [
 - ✅ Include test options for parameter_test.
 - ✅ Include test options per parameter.
 
-## 🛠 Installation
+## Installation 🛠
 
 ```yaml
 dev_dependencies:
   parameterized_test: [latest-version]
 ```
 
-## ⚡️ Usage
+## Usage ⚡️
 
 Instead of creating a `group` test with multiple of the same `test` and different parameters, you can now use `parameterizedTest` and supply it list of test parameters to run the same test with multiple times.
 Specifying a parameterized test is almost the same as normal test. It has all the same parameters as a normal test like: `skip` or `testOn` etc. 
@@ -76,7 +77,7 @@ Here you still need to provide a `test`. This can be useful if you want to have 
 
 Besides accepting a list of test values, you can also provide a `setUp` and `tearDown` function to run before and after each test.
 
-## 🔩 Add test options to parameter
+### Add test options to parameter 🔩
 If you want to add test options to a specific parameter you can do so by using the `options` extension on `List`. This will allow you to add test options like `skip` or `testOn` to a specific parameter.
 
 For example:
@@ -100,7 +101,7 @@ parameterizedTest(
 
 This will create a `group` with 4 `test` inside it. The second test will receive the provided test options and will be skipped in this case.
 
-## 📝  Changing test description output
+### Changing test description output 📝
 By default, the test description contains the test value used within the tests. you can override this by using `customDescriptionBuilder`.
 
 When normally running parameterized tests with description 'My parameterized test' and the values `[['first', 'second', true], ['third', 'fourth', false]]` the test description output looks something like this:
@@ -124,7 +125,7 @@ My parameterized test 🚀[2] My parameterized test: <<third|fourth|false>>
 
 >Note: the first 'My parameterized test' is because parameterized tests make use of a group test. Most IDE's will group this for you and only show the second part.
 
-## 📦 Examples
+## Examples 📦
 ### Simple test containing a list of single values
 ```dart
 parameterizedTest(
