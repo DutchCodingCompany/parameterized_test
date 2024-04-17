@@ -38,22 +38,11 @@ void main() {
   });
 
   // Test containing a list of enums
-
-  // enum TestEnum {
-  //  one(3),
-  //  two(3),
-  //  three(5);
-  //
-  //  const TestEnum(this.myLength);
-  //
-  //  final int myLength;
-  // }
-
   parameterizedTest(
     'Example using enum as value',
-    TestEnum.values,
-    (TestEnum testEnum) {
-      expect(testEnum.name.length, testEnum.myLength);
+    FruitEnum.values,
+    (FruitEnum testEnum) {
+      expect(testEnum.name.length, testEnum.wordLength);
     },
   );
 
@@ -95,6 +84,10 @@ void main() {
   );
 
   // Test which is a async test
+  // Note: This is a example test to showcase async tests are also possible.
+  // But this is not a good practice to use a delay like
+  // this in a test. Running this test will take longer. This could be
+  // fixed by using a package like fake_async.
   parameterizedTest(
     'Example using a async test',
     [
@@ -119,12 +112,13 @@ void main() {
   });
 }
 
-enum TestEnum {
-  one(3),
-  two(3),
-  three(5);
+enum FruitEnum {
+  kiwi(4),
+  apple(5),
+  banana(6),
+  pineapple(9);
 
-  const TestEnum(this.myLength);
+  const FruitEnum(this.wordLength);
 
-  final int myLength;
+  final int wordLength;
 }

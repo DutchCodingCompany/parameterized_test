@@ -13,7 +13,7 @@ void main() {
       2,
       3,
     ],
-    (int value) {
+        (int value) {
       final result = value < 4;
       expect(result, true);
     },
@@ -38,22 +38,11 @@ void main() {
   });
 
   // Test containing a list of enums
-
-  // enum TestEnum {
-  //  one(3),
-  //  two(3),
-  //  three(5);
-  //
-  //  const TestEnum(this.myLength);
-  //
-  //  final int myLength;
-  // }
-
   parameterizedTest(
     'Example using enum as value',
-    TestEnum.values,
-    (TestEnum testEnum) {
-      expect(testEnum.name.length, testEnum.myLength);
+    FruitEnum.values,
+        (FruitEnum testEnum) {
+      expect(testEnum.name.length, testEnum.wordLength);
     },
   );
 
@@ -70,7 +59,7 @@ void main() {
   parameterizedTest(
     'Example of list of values from function',
     provideData(),
-    (int value1, int value2, int sum) {
+        (int value1, int value2, int sum) {
       expect(value1 + value2, sum);
     },
   );
@@ -83,7 +72,7 @@ void main() {
       ['apple', 5],
       ['banana', 6],
     ],
-    (String word, int length) {
+        (String word, int length) {
       expect(word.length, length);
     },
     setUp: () {
@@ -95,6 +84,10 @@ void main() {
   );
 
   // Test which is a async test
+  // Note: This is a example test to showcase async tests are also possible.
+  // But this is not a good practice to use a delay like
+  // this in a test. Running this test will take longer. This could be
+  // fixed by using a package like fake_async.
   parameterizedTest(
     'Example using a async test',
     [
@@ -102,7 +95,7 @@ void main() {
       200,
       300,
     ],
-    (int value) async {
+        (int value) async {
       final millis = DateTime.now().millisecondsSinceEpoch;
       await Future<void>.delayed(Duration(milliseconds: value));
       final passed = DateTime.now().millisecondsSinceEpoch - millis;
@@ -114,17 +107,18 @@ void main() {
   // Test with CSV data
   parameterizedTest('Example of CSV data',
       const CsvToListConverter().convert('kiwi,4\r\napple,5\r\nbanana,6'),
-      (String fruit, int length) {
-    expect(fruit.length, length);
-  });
+          (String fruit, int length) {
+        expect(fruit.length, length);
+      });
 }
 
-enum TestEnum {
-  one(3),
-  two(3),
-  three(5);
+enum FruitEnum {
+  kiwi(4),
+  apple(5),
+  banana(6),
+  pineapple(9);
 
-  const TestEnum(this.myLength);
+  const FruitEnum(this.wordLength);
 
-  final int myLength;
+  final int wordLength;
 }

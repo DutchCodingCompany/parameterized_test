@@ -240,6 +240,11 @@ parameterizedTest(
   },
 );
 ```
+> Note: This is a example test to showcase async tests are also possible.
+> But this is not a good practice to use a delay like
+> this in a test. Running this test will take longer. This could be
+> fixed by using a package like [fake_async](https://pub.dev/packages/fake_async).
+
 ### Test with CSV data
 Its also possible to combine parameterizedTest for example with the [csv](https://pub.dev/packages/csv) package.
 
