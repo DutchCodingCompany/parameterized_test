@@ -82,7 +82,7 @@ void main() {
         'formatted output by customDescriptionBuilder ', () {
       final values = [1, 2, 3];
 
-      String builder(
+      Object? builder(
         Object? groupDescription,
         int index,
         List<dynamic> values,
@@ -93,6 +93,25 @@ void main() {
       final result = pTest.makeDescription(baseDescription, 1, values, builder);
 
       expect(result, '[ Group description | 1 | 3 ]');
+    });
+
+    test(
+        'makeDescription return a String with '
+            'formatted output by customDescriptionBuilder '
+            'and complex object as group description', () {
+      final values = [1, 2, 3];
+
+      Object? builder(
+          Object? groupDescription,
+          int index,
+          List<dynamic> values,
+          ) {
+        return '[ $groupDescription | $index | ${values.length} ]';
+      }
+
+      final result = pTest.makeDescription(DateTime(2024,04,17), 1, values, builder);
+
+      expect(result, '[ 2024-04-17 00:00:00.000 | 1 | 3 ]');
     });
   });
 
