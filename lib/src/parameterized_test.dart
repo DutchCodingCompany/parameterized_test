@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:parameterized_test/src/errors/parameterized_error.dart';
+import 'package:parameterized_test/src/errors/stack_trace_extension.dart';
 import 'package:parameterized_test/src/test_options/value_with_test_options.dart';
 import 'package:test/test.dart';
 
@@ -164,11 +165,15 @@ class ParameterizedTestImpl implements ParameterizedTest {
                 );
               }
               //ignore: avoid_catching_errors
-              on NoSuchMethodError catch (e) {
+              on NoSuchMethodError catch (e, s) {
+                if (s.isInsideTestBody) rethrow;
+
                 throw ParameterizedError.fromNoSuchMethodError(e, value);
               }
               //ignore: avoid_catching_errors
-              on TypeError {
+              on TypeError catch (e, s) {
+                if (s.isInsideTestBody) rethrow;
+
                 throw ParameterizedError.forTypeError(value, body);
               }
             },

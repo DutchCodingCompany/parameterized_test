@@ -13,7 +13,7 @@ void main() {
       2,
       3,
     ],
-        (int value) {
+    (int value) {
       final result = value < 4;
       expect(result, true);
     },
@@ -41,7 +41,7 @@ void main() {
   parameterizedTest(
     'Example using enum as value',
     FruitEnum.values,
-        (FruitEnum testEnum) {
+    (FruitEnum testEnum) {
       expect(testEnum.name.length, testEnum.wordLength);
     },
   );
@@ -59,7 +59,7 @@ void main() {
   parameterizedTest(
     'Example of list of values from function',
     provideData(),
-        (int value1, int value2, int sum) {
+    (int value1, int value2, int sum) {
       expect(value1 + value2, sum);
     },
   );
@@ -72,7 +72,7 @@ void main() {
       ['apple', 5],
       ['banana', 6],
     ],
-        (String word, int length) {
+    (String word, int length) {
       expect(word.length, length);
     },
     setUp: () {
@@ -95,7 +95,7 @@ void main() {
       200,
       300,
     ],
-        (int value) async {
+    (int value) async {
       final millis = DateTime.now().millisecondsSinceEpoch;
       await Future<void>.delayed(Duration(milliseconds: value));
       final passed = DateTime.now().millisecondsSinceEpoch - millis;
@@ -107,9 +107,9 @@ void main() {
   // Test with CSV data
   parameterizedTest('Example of CSV data',
       const CsvToListConverter().convert('kiwi,4\r\napple,5\r\nbanana,6'),
-          (String fruit, int length) {
-        expect(fruit.length, length);
-      });
+      (String fruit, int length) {
+    expect(fruit.length, length);
+  });
 }
 
 enum FruitEnum {

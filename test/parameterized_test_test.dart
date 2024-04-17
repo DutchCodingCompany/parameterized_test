@@ -97,19 +97,24 @@ void main() {
 
     test(
         'makeDescription return a String with '
-            'formatted output by customDescriptionBuilder '
-            'and complex object as group description', () {
+        'formatted output by customDescriptionBuilder '
+        'and complex object as group description', () {
       final values = [1, 2, 3];
 
       Object? builder(
-          Object? groupDescription,
-          int index,
-          List<dynamic> values,
-          ) {
+        Object? groupDescription,
+        int index,
+        List<dynamic> values,
+      ) {
         return '[ $groupDescription | $index | ${values.length} ]';
       }
 
-      final result = pTest.makeDescription(DateTime(2024,04,17), 1, values, builder);
+      final result = pTest.makeDescription(
+        DateTime(2024, 04, 17),
+        1,
+        values,
+        builder,
+      );
 
       expect(result, '[ 2024-04-17 00:00:00.000 | 1 | 3 ]');
     });
@@ -364,7 +369,9 @@ void main() {
       expect(testMock.testCaptures[1].description, 3);
       expect(testMock.testCaptures[2].description, 4);
     });
+  });
 
+  group('parameterized test exception handling tests', () {
     test(
         'test throws ParameterizedError when length values and length '
         'function arguments dont match', () {
@@ -373,6 +380,7 @@ void main() {
             pTest('test', [1, 2, 3], (int value, int value2) => value + value2),
         throwsA(isA<ParameterizedError>()),
       );
+
       expect(
         () => pTest(
           'test',
@@ -388,12 +396,47 @@ void main() {
     });
 
     test(
+        'nested test throws ParameterizedError when length values and length '
+        'function arguments dont match', () {
+      expect(
+        () => pTest(
+          'test',
+          [1, 2, 3],
+          (int value) => pTest(
+            'test',
+            [1, 2, 3],
+            (int value, int value2) => value + value2,
+          ),
+        ),
+        throwsA(isA<ParameterizedError>()),
+      );
+
+      expect(
+        () => pTest(
+          'test',
+          [1],
+          (int value) => pTest(
+            'test',
+            [
+              [1, 2],
+              [3, 4],
+              [5, 6],
+            ],
+            (int value) => value,
+          ),
+        ),
+        throwsA(isA<ParameterizedError>()),
+      );
+    });
+
+    test(
         'test throws ParameterizedError when values types and '
         'function arguments types dont match', () {
       expect(
         () => pTest('test', [1, 2, 3], (String value) => value),
         throwsA(isA<ParameterizedError>()),
       );
+
       expect(
         () => pTest(
           'test',
@@ -408,10 +451,124 @@ void main() {
       );
     });
 
+    test(
+        'nested test throws ParameterizedError when values types and '
+        'function arguments types dont match', () {
+      expect(
+        () => pTest(
+          'test',
+          [1, 2, 3],
+          (int value) => pTest('test', [1, 2, 3], (String value) => value),
+        ),
+        throwsA(isA<ParameterizedError>()),
+      );
+
+      expect(
+        () => pTest(
+          'test',
+          [1],
+          (int value) => pTest(
+            'test',
+            [
+              [1, 2],
+              [3, 4],
+              [5, 6],
+            ],
+            (int value, String value2) => value + value2.length,
+          ),
+        ),
+        throwsA(isA<ParameterizedError>()),
+      );
+    });
+
+    test('test doesnt catch TypeError when the test body throws the exception',
+        () {
+      expect(
+        () => pTest('test', [1, 2, 3], (int value) {
+          // Causes a TypeError for test
+          // ignore: unused_local_variable
+          final error = value as String;
+        }),
+        throwsA(isA<TypeError>()),
+      );
+    });
+
+    test(
+        'nested test doesnt catch TypeError when the test body '
+        'throws the exception', () {
+      expect(
+        () => pTest(
+          'test',
+          [1, 2, 3],
+          (int value) => pTest('test', [1, 2, 3], (int value) {
+            // Causes a TypeError for test
+            // ignore: unused_local_variable
+            final error = value as String;
+          }),
+        ),
+        throwsA(isA<TypeError>()),
+      );
+    });
+
+    test(
+        'test doesnt catch NoSuchMethodError when the test body '
+        'throws the exception', () {
+      expect(
+        () => pTest('test', [1, 2, 3], (int value) {
+          const dynamic errorCauser = '';
+
+          // This is a dynamic call, so it will throw a NoSuchMethodError
+          // ignore: avoid_dynamic_calls
+          errorCauser.whoop(1, 2);
+        }),
+        throwsA(isA<NoSuchMethodError>()),
+      );
+    });
+
+    test(
+        'nested test doesnt catch NoSuchMethodError when the test body '
+        'throws the exception', () {
+      expect(
+        () => pTest(
+          'test',
+          [1, 2, 3],
+          (int value) => pTest('test', [1, 2, 3], (int value) {
+            const dynamic errorCauser = '';
+
+            // This is a dynamic call, so it will throw a NoSuchMethodError
+            // ignore: avoid_dynamic_calls
+            errorCauser.whoop(1, 2);
+          }),
+        ),
+        throwsA(isA<NoSuchMethodError>()),
+      );
+    });
+
     test('test doesnt catch exceptions other than NoSuchMethodError, TypeError',
         () {
       expect(
-        () => pTest('test', [1, 2, 3], (int value) => throw Exception('test')),
+        () => pTest(
+          'test',
+          [1, 2, 3],
+          (int value) => throw Exception('test'),
+        ),
+        throwsA(isA<Exception>()),
+      );
+    });
+
+    test(
+        'nested test doesnt catch exceptions other than '
+        'NoSuchMethodError, TypeError', () {
+      expect(
+        () => pTest(
+          'test',
+          [1, 2, 3],
+          (int value) => pTest(
+            'test',
+            [1, 2, 3],
+            (int value) => throw Exception('test'),
+          ),
+        ),
         throwsA(isA<Exception>()),
       );
     });
