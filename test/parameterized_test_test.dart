@@ -527,7 +527,7 @@ void main() {
 
     test(
         'nested test doesnt catch NoSuchMethodError when the test body '
-        'throws the exception', () {
+        'throws the exception from a object', () {
       expect(
         () => pTest(
           'test',
@@ -538,6 +538,21 @@ void main() {
             // This is a dynamic call, so it will throw a NoSuchMethodError
             // ignore: avoid_dynamic_calls
             errorCauser.whoop(1, 2);
+          }),
+        ),
+        throwsA(isA<NoSuchMethodError>()),
+      );
+    });
+
+    test(
+        'nested test doesnt catch NoSuchMethodError when the test body '
+        'throws the exception from a Function.apply', () {
+      expect(
+        () => pTest(
+          'test',
+          [1, 2, 3],
+          (int value) => pTest('test', [1, 2, 3], (int value) {
+            Function.apply(() => Null, [1]);
           }),
         ),
         throwsA(isA<NoSuchMethodError>()),
