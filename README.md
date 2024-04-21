@@ -24,7 +24,7 @@ Supercharge your Dart testing with **parameterized_test**! Built on top of the [
 
 ## Features ✨
 
-- ✅ Run a test multiple times based on provide parameter list.
+- ✅ Run a test multiple times based on provided parameter list.
 - ✅ Built on top of [dart test package](https://pub.dev/packages/test).
 - ✅ Type cast test parameters used in the tests.
 - ✅ Include test options for parameter_test.
