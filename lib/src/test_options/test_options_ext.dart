@@ -1,28 +1,31 @@
-//ignore_for_file: long-parameter-list
+import 'package:parameterized_test/src/test_options/test_options.dart';
+import 'package:parameterized_test/src/test_options/value_with_test_options.dart';
 import 'package:test/test.dart' as dart_test;
 
-import 'test_options.dart';
-import 'value_with_test_options.dart';
-
-extension IterableTestParametersEx<T extends Iterable<dynamic>> on T {
+/// Extension on [List] to apply extra test options for a specified
+extension ListTestParametersEx<T extends List<dynamic>> on T {
   /// Applied extra test options for a specified test value.
   /// For example:
   /// ```dart
   /// [
   ///   ['kiwi',4],
-  ///   ['apple',5].withTestOptions(skip: true),
+  ///   ['apple',5].options(skip: true),
   /// ]
   /// ```
-  ValueWithTestOptions withTestOptions({
+  ValueWithTestOptions options({
+    CustomDescriptionBuilder? customDescriptionBuilder,
+    String? testOn,
     dart_test.Timeout? timeout,
     dynamic skip,
     dynamic tags,
     Map<String, dynamic>? onPlatform,
     int? retry,
   }) =>
-      ValueWithTestOptions(
-        this,
-        TestOptions(
+      (
+        values: this,
+        testOptions: TestOptions(
+          customDescriptionBuilder: customDescriptionBuilder,
+          testOn: testOn,
           timeout: timeout,
           skip: skip,
           tags: tags,
@@ -32,25 +35,31 @@ extension IterableTestParametersEx<T extends Iterable<dynamic>> on T {
       );
 }
 
-extension TestParametersEx<T extends Object> on T {
+/// Extension on [Object] to apply extra test options for a specified
+/// test value.
+extension TestParametersEx on Object {
   /// Applied extra test options for a specified test value.
   /// For example:
   /// ```dart
   /// [
   ///   4,
-  ///   5.withTestOptions(skip: true),
+  ///   5.options(skip: true),
   /// ]
   /// ```
-  ValueWithTestOptions withTestOptions({
+  ValueWithTestOptions options({
+    CustomDescriptionBuilder? customDescriptionBuilder,
+    String? testOn,
     dart_test.Timeout? timeout,
     dynamic skip,
     dynamic tags,
     Map<String, dynamic>? onPlatform,
     int? retry,
   }) =>
-      ValueWithTestOptions(
-        [this],
-        TestOptions(
+      (
+        values: [this],
+        testOptions: TestOptions(
+          customDescriptionBuilder: customDescriptionBuilder,
+          testOn: testOn,
           timeout: timeout,
           skip: skip,
           tags: tags,
