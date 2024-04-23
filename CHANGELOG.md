@@ -1,3 +1,17 @@
+## 2.0.0
+- Rework internal implementation of the packages. Resulting in no need for specifying the number of parameters in the function name.
+```dart
+parameterizedTest('No more numbered function!', [
+    [1, 'two', 3],
+    [4, 'five',6],
+  ], 
+  (int value, String text, int secondValue) {
+    print('$value $text $secondValue');
+}); 
+```
+- **BREAKING**: Numbered functions are removed (p1,p2, parameterizedTest2, parameterizedTest3 etc.). Use the base functions instead.
+- Added extra examples in the README.md
+
 ## 1.1.3
  - Added `CustomDescriptionBuilder` to build custom test description for all executed tests.
    For example:
