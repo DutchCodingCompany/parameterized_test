@@ -8,8 +8,8 @@ extension StackTraceExtension on StackTrace {
     final trace = Trace.from(this);
 
     // We are looking for frames from the body of the supplied test function.
-    int index = 0;
-    bool found = false;
+    var index = 0;
+    var found = false;
     while (!found) {
       index = trace.frames.indexWhere(
         (f) => f.package == 'parameterized_test',
