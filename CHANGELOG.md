@@ -1,3 +1,10 @@
+## 2.0.1
+ - Updated dependencies
+   - sdk to `>=3.4.0 <4.0.0`
+   - `test` to `1.25.7`
+   - `meta` to `1.15.0`
+   - `very_good_analysis` to `6.0.0`
+
 ## 2.0.0
 - Rework internal implementation of the packages. Resulting in no need for specifying the number of parameters in the function name.
 ```dart

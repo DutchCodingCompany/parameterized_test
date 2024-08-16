@@ -1,6 +1,6 @@
 name: parameterized_test
 description: Run a test multiple times based on provided parameter list. Inspired by JUnit ParameterizedTest.
-version: 2.0.0
+version: 2.0.1
 homepage: https://www.github.com/DutchCodingCompany/parameterized_test
 
 environment:
