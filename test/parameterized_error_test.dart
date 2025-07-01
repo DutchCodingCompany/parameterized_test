@@ -1,3 +1,6 @@
+// We want to catch these errors to test if we can provide better error messages
+// ignore_for_file: document_ignores
+
 import 'package:parameterized_test/src/errors/parameterized_error.dart';
 import 'package:test/test.dart';
 
@@ -39,10 +42,9 @@ void main() {
     });
 
     test('ParameterizedError for TypeError', () {
-      final result = ParameterizedError.forTypeError(
-        [1],
-        (String value) => value,
-      );
+      final result = ParameterizedError.forTypeError([
+        1,
+      ], (String value) => value);
       expect(
         result.message,
         "Provided value(s) didn't match the function arguments types.\n"
@@ -62,11 +64,11 @@ void main() {
       ((Map<int, String> value, String string) => Null, 'Map, String'),
       (
         (Map<int, String> value, String string) => Map<double, bool>,
-        'Map, String'
+        'Map, String',
       ),
       (
         (Map<int, Map<double, bool>> value, String string) => Null,
-        'Map, String'
+        'Map, String',
       ),
       ((int value, String string) async => Future<String>, 'int, String'),
     ];

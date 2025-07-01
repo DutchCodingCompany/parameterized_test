@@ -5,19 +5,13 @@ import 'package:test/test.dart';
 void main() {
   test('Object test options extensions test', () {
     // act
-    final result = [
-      1,
-      3.options(skip: 'not now'),
-    ];
+    final result = [1, 3.options(skip: 'not now')];
 
     expect(
       result[1],
       const TypeMatcher<ValueWithTestOptions>()
-          .having((value) => value.values, 'value', [3]).having(
-        (value) => value.testOptions?.skip,
-        'skip',
-        'not now',
-      ),
+          .having((value) => value.values, 'value', [3])
+          .having((value) => value.testOptions?.skip, 'skip', 'not now'),
     );
   });
 
@@ -31,11 +25,8 @@ void main() {
     expect(
       result[1],
       const TypeMatcher<ValueWithTestOptions>()
-          .having((value) => value.values, 'value', [3, 4]).having(
-        (value) => value.testOptions?.skip,
-        'skip',
-        'not now',
-      ),
+          .having((value) => value.values, 'value', [3, 4])
+          .having((value) => value.testOptions?.skip, 'skip', 'not now'),
     );
   });
 }

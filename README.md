@@ -256,6 +256,10 @@ parameterizedTest('Example of CSV data',
 });
 ```
 
+### Testing with `Future.error` values
+When using `Future.error` directly in your parameterized test values, this might leads to not executing tests at all. In order to handle this correctly your can provide the `Future` as a callback function.  
+But also need to make sure that the when the future is awaited its also catch. `Future.error` will throw the provided object. See [23](https://github.com/DutchCodingCompany/parameterized_test/issues/23) for more information.
+
 ## Additional information 💡
 
 It's just a simple wrapper to easily execute tests multiple times with different values. Feel free to

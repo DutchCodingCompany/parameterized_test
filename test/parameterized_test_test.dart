@@ -1,3 +1,4 @@
+// Used print as value to test setup and teardown calls
 // ignore_for_file: avoid_print
 
 import 'package:parameterized_test/parameterized_test.dart';
@@ -31,8 +32,7 @@ void main() {
 
   group('makeDescription tests', () {
     const baseDescription = 'Group description';
-    test(
-        'makeDescription return a String with '
+    test('makeDescription return a String with '
         'comma separated values', () {
       final values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -41,8 +41,7 @@ void main() {
       expect(result, '[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]');
     });
 
-    test(
-        'makeDescription return a String with '
+    test('makeDescription return a String with '
         'single qouted strings', () {
       final values = ['one', 'two', 'three'];
 
@@ -51,8 +50,7 @@ void main() {
       expect(result, "[ 'one', 'two', 'three' ]");
     });
 
-    test(
-        'makeDescription return a String with '
+    test('makeDescription return a String with '
         'single qouted strings and unqouted other object', () {
       final values = [
         'one',
@@ -77,8 +75,7 @@ void main() {
       );
     });
 
-    test(
-        'makeDescription return a String with '
+    test('makeDescription return a String with '
         'formatted output by customDescriptionBuilder ', () {
       final values = [1, 2, 3];
 
@@ -95,8 +92,7 @@ void main() {
       expect(result, '[ Group description | 1 | 3 ]');
     });
 
-    test(
-        'makeDescription return a String with '
+    test('makeDescription return a String with '
         'formatted output by customDescriptionBuilder '
         'and complex object as group description', () {
       final values = [1, 2, 3];
@@ -128,25 +124,13 @@ void main() {
     );
     const dynamic singleValue = 1;
 
-    expect(
-      pTest.parseValues(valuesWithOption),
-      valuesWithOption,
-    );
-    expect(
-      pTest.parseValues(values),
-      (values: values, testOptions: null),
-    );
+    expect(pTest.parseValues(valuesWithOption), valuesWithOption);
+    expect(pTest.parseValues(values), (values: values, testOptions: null));
     expect(
       pTest.parseValues(singleValue),
-      isA<ValueWithTestOptions>().having(
-        (value) => value.values,
-        'values',
-        [singleValue],
-      ).having(
-        (value) => value.testOptions,
-        'testOptions',
-        null,
-      ),
+      isA<ValueWithTestOptions>()
+          .having((value) => value.values, 'values', [singleValue])
+          .having((value) => value.testOptions, 'testOptions', null),
     );
   });
 
@@ -157,11 +141,9 @@ void main() {
       expect(tearDownMock.setupCaptures, isEmpty);
     });
 
-    test('setUp/tearDown is called if when provided', () {
-      // ignore: prefer_function_declarations_over_variables
-      final setUpCall = () => print('setUp');
-      // ignore: prefer_function_declarations_over_variables
-      final tearDownCall = () => print('tearDown');
+    test('setUp/tearDown is called when provided', () {
+      void setUpCall() => print('setUp');
+      void tearDownCall() => print('tearDown');
 
       pTest(
         'test',
@@ -183,8 +165,7 @@ void main() {
       expect(groupMock.testCaptures, hasLength(1));
     });
 
-    test(
-        'group is called with right parameters '
+    test('group is called with right parameters '
         '[ description, testOn, timeout, skip, tags, onPlatform, retry ]', () {
       const description = 'description';
       const testOn = 'testOn';
@@ -217,8 +198,7 @@ void main() {
       expect(result.retry, retry);
     });
 
-    test(
-        'group is called with right parameters '
+    test('group is called with right parameters '
         'options on value are not passed to group '
         '[ description, testOn, timeout, skip, tags, onPlatform, retry ]', () {
       const description = 'description';
@@ -372,8 +352,7 @@ void main() {
   });
 
   group('parameterized test exception handling tests', () {
-    test(
-        'test throws ParameterizedError when length values and length '
+    test('test throws ParameterizedError when length values and length '
         'function arguments dont match', () {
       expect(
         () =>
@@ -382,31 +361,26 @@ void main() {
       );
 
       expect(
-        () => pTest(
-          'test',
-          [
-            [1, 2],
-            [3, 4],
-            [5, 6],
-          ],
-          (int value) => value,
-        ),
+        () => pTest('test', [
+          [1, 2],
+          [3, 4],
+          [5, 6],
+        ], (int value) => value),
         throwsA(isA<ParameterizedError>()),
       );
     });
 
-    test(
-        'nested test throws ParameterizedError when length values and length '
+    test('nested test throws ParameterizedError when length values and length '
         'function arguments dont match', () {
       expect(
         () => pTest(
           'test',
           [1, 2, 3],
-          (int value) => pTest(
-            'test',
-            [1, 2, 3],
-            (int value, int value2) => value + value2,
-          ),
+          (int value) => pTest('test', [
+            1,
+            2,
+            3,
+          ], (int value, int value2) => value + value2),
         ),
         throwsA(isA<ParameterizedError>()),
       );
@@ -415,22 +389,17 @@ void main() {
         () => pTest(
           'test',
           [1],
-          (int value) => pTest(
-            'test',
-            [
-              [1, 2],
-              [3, 4],
-              [5, 6],
-            ],
-            (int value) => value,
-          ),
+          (int value) => pTest('test', [
+            [1, 2],
+            [3, 4],
+            [5, 6],
+          ], (int value) => value),
         ),
         throwsA(isA<ParameterizedError>()),
       );
     });
 
-    test(
-        'test throws ParameterizedError when values types and '
+    test('test throws ParameterizedError when values types and '
         'function arguments types dont match', () {
       expect(
         () => pTest('test', [1, 2, 3], (String value) => value),
@@ -438,28 +407,23 @@ void main() {
       );
 
       expect(
-        () => pTest(
-          'test',
-          [
-            [1, 2],
-            [3, 4],
-            [5, 6],
-          ],
-          (int value, String value2) => value + value2.length,
-        ),
+        () => pTest('test', [
+          [1, 2],
+          [3, 4],
+          [5, 6],
+        ], (int value, String value2) => value + value2.length),
         throwsA(isA<ParameterizedError>()),
       );
     });
 
-    test(
-        'nested test throws ParameterizedError when values types and '
+    test('nested test throws ParameterizedError when values types and '
         'function arguments types dont match', () {
       expect(
-        () => pTest(
-          'test',
-          [1, 2, 3],
-          (int value) => pTest('test', [1, 2, 3], (String value) => value),
-        ),
+        () => pTest('test', [
+          1,
+          2,
+          3,
+        ], (int value) => pTest('test', [1, 2, 3], (String value) => value)),
         throwsA(isA<ParameterizedError>()),
       );
 
@@ -467,34 +431,31 @@ void main() {
         () => pTest(
           'test',
           [1],
-          (int value) => pTest(
-            'test',
-            [
-              [1, 2],
-              [3, 4],
-              [5, 6],
-            ],
-            (int value, String value2) => value + value2.length,
-          ),
+          (int value) => pTest('test', [
+            [1, 2],
+            [3, 4],
+            [5, 6],
+          ], (int value, String value2) => value + value2.length),
         ),
         throwsA(isA<ParameterizedError>()),
       );
     });
 
-    test('test doesnt catch TypeError when the test body throws the exception',
-        () {
-      expect(
-        () => pTest('test', [1, 2, 3], (int value) {
-          // Causes a TypeError for test
-          // ignore: unused_local_variable
-          final error = value as String;
-        }),
-        throwsA(isA<TypeError>()),
-      );
-    });
-
     test(
-        'nested test doesnt catch TypeError when the test body '
+      'test doesnt catch TypeError when the test body throws the exception',
+      () {
+        expect(
+          () => pTest('test', [1, 2, 3], (int value) {
+            // Causes a TypeError for test
+            // ignore: unused_local_variable
+            final error = value as String;
+          }),
+          throwsA(isA<TypeError>()),
+        );
+      },
+    );
+
+    test('nested test doesnt catch TypeError when the test body '
         'throws the exception', () {
       expect(
         () => pTest(
@@ -510,8 +471,7 @@ void main() {
       );
     });
 
-    test(
-        'test doesnt catch NoSuchMethodError when the test body '
+    test('test doesnt catch NoSuchMethodError when the test body '
         'throws the exception', () {
       expect(
         () => pTest('test', [1, 2, 3], (int value) {
@@ -525,8 +485,7 @@ void main() {
       );
     });
 
-    test(
-        'nested test doesnt catch NoSuchMethodError when the test body '
+    test('nested test doesnt catch NoSuchMethodError when the test body '
         'throws the exception from a object', () {
       expect(
         () => pTest(
@@ -544,8 +503,7 @@ void main() {
       );
     });
 
-    test(
-        'nested test doesnt catch NoSuchMethodError when the test body '
+    test('nested test doesnt catch NoSuchMethodError when the test body '
         'throws the exception from a Function.apply', () {
       expect(
         () => pTest(
@@ -559,30 +517,25 @@ void main() {
       );
     });
 
-    test('test doesnt catch exceptions other than NoSuchMethodError, TypeError',
-        () {
-      expect(
-        () => pTest(
-          'test',
-          [1, 2, 3],
-          (int value) => throw Exception('test'),
-        ),
-        throwsA(isA<Exception>()),
-      );
-    });
-
     test(
-        'nested test doesnt catch exceptions other than '
+      'test doesnt catch exceptions other than NoSuchMethodError, TypeError',
+      () {
+        expect(
+          () =>
+              pTest('test', [1, 2, 3], (int value) => throw Exception('test')),
+          throwsA(isA<Exception>()),
+        );
+      },
+    );
+
+    test('nested test doesnt catch exceptions other than '
         'NoSuchMethodError, TypeError', () {
       expect(
         () => pTest(
           'test',
           [1, 2, 3],
-          (int value) => pTest(
-            'test',
-            [1, 2, 3],
-            (int value) => throw Exception('test'),
-          ),
+          (int value) =>
+              pTest('test', [1, 2, 3], (int value) => throw Exception('test')),
         ),
         throwsA(isA<Exception>()),
       );

@@ -27,8 +27,6 @@ extension StackTraceExtension on StackTrace {
 
     final frames = trace.frames.take(index).toList();
 
-    return !frames.every(
-      (f) => f.package == 'parameterized_test' || f.isCore,
-    );
+    return !frames.every((f) => f.package == 'parameterized_test' || f.isCore);
   }
 }

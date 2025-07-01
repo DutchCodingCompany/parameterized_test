@@ -20,19 +20,18 @@ extension ListTestParametersEx<T extends List<dynamic>> on T {
     dynamic tags,
     Map<String, dynamic>? onPlatform,
     int? retry,
-  }) =>
-      (
-        values: this,
-        testOptions: TestOptions(
-          customDescriptionBuilder: customDescriptionBuilder,
-          testOn: testOn,
-          timeout: timeout,
-          skip: skip,
-          tags: tags,
-          onPlatform: onPlatform,
-          retry: retry,
-        ),
-      );
+  }) => (
+    values: this,
+    testOptions: TestOptions(
+      customDescriptionBuilder: customDescriptionBuilder,
+      testOn: testOn,
+      timeout: timeout,
+      skip: skip,
+      tags: tags,
+      onPlatform: onPlatform,
+      retry: retry,
+    ),
+  );
 }
 
 /// Extension on [Object] to apply extra test options for a specified
@@ -54,17 +53,16 @@ extension TestParametersEx on Object {
     dynamic tags,
     Map<String, dynamic>? onPlatform,
     int? retry,
-  }) =>
-      (
-        values: [this],
-        testOptions: TestOptions(
-          customDescriptionBuilder: customDescriptionBuilder,
-          testOn: testOn,
-          timeout: timeout,
-          skip: skip,
-          tags: tags,
-          onPlatform: onPlatform,
-          retry: retry,
-        ),
-      );
+  }) => (
+    values: [this],
+    testOptions: TestOptions(
+      customDescriptionBuilder: customDescriptionBuilder,
+      testOn: testOn,
+      timeout: timeout,
+      skip: skip,
+      tags: tags,
+      onPlatform: onPlatform,
+      retry: retry,
+    ),
+  );
 }

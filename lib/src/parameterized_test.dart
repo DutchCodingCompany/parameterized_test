@@ -5,16 +5,17 @@ import 'package:parameterized_test/src/test_options/value_with_test_options.dart
 import 'package:test/test.dart';
 
 /// Callback signature for test and group functions.
-typedef TestFunc = void Function(
-  Object? description,
-  dynamic Function() body, {
-  String? testOn,
-  Timeout? timeout,
-  Object? skip,
-  Object? tags,
-  Map<String, dynamic>? onPlatform,
-  int? retry,
-});
+typedef TestFunc =
+    void Function(
+      Object? description,
+      dynamic Function() body, {
+      String? testOn,
+      Timeout? timeout,
+      Object? skip,
+      Object? tags,
+      Map<String, dynamic>? onPlatform,
+      int? retry,
+    });
 
 /// Callback signature for setUp and tearDown functions.
 typedef SetupFunc = void Function(dynamic Function());
@@ -42,12 +43,8 @@ typedef SetupFunc = void Function(dynamic Function());
 /// ```
 /// {@endtemplate}
 @isTestGroup
-ParameterizedTest get parameterizedTest => const ParameterizedTestImpl(
-      group,
-      test,
-      setUp,
-      tearDown,
-    );
+ParameterizedTest get parameterizedTest =>
+    const ParameterizedTestImpl(group, test, setUp, tearDown);
 
 /// {@template parameterizedGroup}
 // ignore: comment_references
@@ -76,12 +73,8 @@ ParameterizedTest get parameterizedTest => const ParameterizedTestImpl(
 /// ```
 /// {@endtemplate}
 @isTestGroup
-ParameterizedTest get parameterizedGroup => const ParameterizedTestImpl(
-      group,
-      group,
-      setUp,
-      tearDown,
-    );
+ParameterizedTest get parameterizedGroup =>
+    const ParameterizedTestImpl(group, group, setUp, tearDown);
 
 /// {@template ParameterizedTest}
 /// Implementation of parameterized test.
@@ -159,17 +152,16 @@ class ParameterizedTestImpl implements ParameterizedTest {
             testDescription,
             () {
               try {
-                return Function.apply(
-                  body,
-                  value,
-                );
+                return Function.apply(body, value);
               }
+              // We want to catch these errors to provide better error messages
               //ignore: avoid_catching_errors
               on NoSuchMethodError catch (e, s) {
                 if (s.isInsideTestBody) rethrow;
 
                 throw ParameterizedError.fromNoSuchMethodError(e, value);
               }
+              // We want to catch these errors to provide better error messages
               //ignore: avoid_catching_errors
               on TypeError catch (e, s) {
                 if (s.isInsideTestBody) rethrow;
@@ -206,9 +198,7 @@ class ParameterizedTestImpl implements ParameterizedTest {
     List<dynamic> value,
     CustomDescriptionBuilder? customDescriptionBuilder,
   ) {
-    final mappedValues = value.map(
-      (e) => e is String ? "'$e'" : e.toString(),
-    );
+    final mappedValues = value.map((e) => e is String ? "'$e'" : e.toString());
 
     return customDescriptionBuilder?.call(description, index, value) ??
         '[ ${mappedValues.join(', ')} ]';
@@ -217,9 +207,9 @@ class ParameterizedTestImpl implements ParameterizedTest {
   /// Unpack wrapped values and test options.
   /// Handle different types of values.
   ValueWithTestOptions parseValues(dynamic value) => switch (value) {
-        ValueWithTestOptions() => value,
-        List() => (values: value, testOptions: null),
-        Iterable() => (values: value.toList(), testOptions: null),
-        _ => (values: [value], testOptions: null),
-      };
+    ValueWithTestOptions() => value,
+    List() => (values: value, testOptions: null),
+    Iterable() => (values: value.toList(), testOptions: null),
+    _ => (values: [value], testOptions: null),
+  };
 }

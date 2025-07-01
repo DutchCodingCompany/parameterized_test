@@ -1,5 +1,8 @@
 include: package:very_good_analysis/analysis_options.yaml
 
+formatter:
+  trailing_commas: automate
+
 analyzer:
   errors:
     unawaited_futures: warning

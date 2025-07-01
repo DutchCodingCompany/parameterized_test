@@ -1,5 +1,5 @@
 /// A library that simplifies writing parameterized tests in Dart.
-library parameterized_test;
+library;
 
 export '/src/parameterized_test.dart'
     show parameterizedGroup, parameterizedTest;
