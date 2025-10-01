@@ -1,3 +1,8 @@
+## 2.1.0
+- Updated dependencies
+  - `test` to `1.26.3`
+  - `meta` to `1.16.0`
+
 ## 2.0.1
  - Updated dependencies
    - sdk to `>=3.4.0 <4.0.0`
