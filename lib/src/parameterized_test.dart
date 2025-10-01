@@ -206,6 +206,7 @@ class ParameterizedTestImpl implements ParameterizedTest {
 
   /// Unpack wrapped values and test options.
   /// Handle different types of values.
+  // ignore: switch_on_type
   ValueWithTestOptions parseValues(dynamic value) => switch (value) {
     ValueWithTestOptions() => value,
     List() => (values: value, testOptions: null),
