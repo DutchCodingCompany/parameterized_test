@@ -1,3 +1,13 @@
+# 2.0.2
+ - Update dependencies
+   - Update `very_good_analysis` to `10.0.0`
+   - Update `test` to `1.26.2`
+   - Update `meta` to `1.16.0`
+   - Updated `stack_trace` to `1.12.1`
+   - Added topics: [test, testing, parameterized] to pubspec.yaml
+   - Added small explanation to README.md about Future.error usage in tests.
+   - Updated dart formatting.
+
 ## 2.0.1
  - Updated dependencies
    - sdk to `>=3.4.0 <4.0.0`

@@ -1,16 +1,17 @@
 name: parameterized_test
 description: Run a test multiple times based on provided parameter list. Inspired by JUnit ParameterizedTest.
-version: 2.0.1
+version: 2.0.2
 homepage: https://www.github.com/DutchCodingCompany/parameterized_test
+topics: [test, testing, parameterized]
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
+  sdk: '>=3.8.0 <4.0.0'
 
 dependencies:
-  meta: ^1.15.0
-  stack_trace: ^1.11.1
-  test: ^1.25.7
+  meta: ^1.16.0
+  stack_trace: ^1.12.1
+  test: ^1.26.2
 
 dev_dependencies:
   csv: ^6.0.0
-  very_good_analysis: ^6.0.0
+  very_good_analysis: ^10.0.0

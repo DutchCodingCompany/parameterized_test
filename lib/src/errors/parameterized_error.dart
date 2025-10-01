@@ -8,18 +8,16 @@ class ParameterizedError extends Error {
 
   /// Creates a [ParameterizedError] from a [TypeError].
   /// When arguments types don't match the function arguments types.
-  factory ParameterizedError.forTypeError(
-    List<dynamic> value,
-    Function body,
-  ) {
+  factory ParameterizedError.forTypeError(List<dynamic> value, Function body) {
     final bodyClosure = extractFunctionArgumentsSignature(body.toString());
 
     return ParameterizedError(
-        "Provided value(s) didn't match the function arguments types.\n"
-        'Test values: $value\n'
-        'Provided types: '
-        '(${value.map((e) => e.runtimeType).join(', ')})\n'
-        'Expected types: ($bodyClosure)');
+      "Provided value(s) didn't match the function arguments types.\n"
+      'Test values: $value\n'
+      'Provided types: '
+      '(${value.map((e) => e.runtimeType).join(', ')})\n'
+      'Expected types: ($bodyClosure)',
+    );
   }
 
   /// Creates a [ParameterizedError] from a [TypeError].
@@ -32,13 +30,14 @@ class ParameterizedError extends Error {
     final positionalArgumentsCount = ','.allMatches(bodyClosure).length + 1;
 
     return ParameterizedError(
-        "Provided value(s) didn't match the function arguments count.\n"
-        'Amount of provided values: ${value.length}\n'
-        'Expected function arguments: $positionalArgumentsCount\n'
-        'Test values: $value\n'
-        'Provided types: '
-        '(${value.map((e) => e.runtimeType).join(', ')})\n'
-        'Expected types: ($bodyClosure)');
+      "Provided value(s) didn't match the function arguments count.\n"
+      'Amount of provided values: ${value.length}\n'
+      'Expected function arguments: $positionalArgumentsCount\n'
+      'Test values: $value\n'
+      'Provided types: '
+      '(${value.map((e) => e.runtimeType).join(', ')})\n'
+      'Expected types: ($bodyClosure)',
+    );
   }
 
   /// Error message.
@@ -51,10 +50,7 @@ class ParameterizedError extends Error {
     final closureIndex = body.indexOf(closure);
     final endIndex = body.indexOf(')', closureIndex);
 
-    final bodyClosure = body.substring(
-      closureIndex + closure.length,
-      endIndex,
-    );
+    final bodyClosure = body.substring(closureIndex + closure.length, endIndex);
 
     return bodyClosure.replaceAll(RegExp('<(.*)>'), '');
   }

@@ -54,10 +54,8 @@ void main() {
     },
   );
 
-  test(
-    'StackTrace with no function.apply call',
-    () {
-      final stackTrace = Trace.parse('''
+  test('StackTrace with no function.apply call', () {
+    final stackTrace = Trace.parse('''
 #0      Object.noSuchMethod (dart:core-patch/object_patch.dart:38:5)
 #1      _objectNoSuchMethod (dart:core-patch/object_patch.dart:85:9)
 #2      ParameterizedTestImpl.call.<anonymous closure>.<anonymous closure> (package:parameterized_test/src/parameterized_test.dart:162:33)
@@ -66,31 +64,25 @@ void main() {
 #5      ParameterizedTestImpl.call.<anonymous closure>.<anonymous closure> (package:parameterized_test/src/parameterized_test.dart:162:33)
   ''');
 
-      final result = stackTrace.isInsideTestBody;
+    final result = stackTrace.isInsideTestBody;
 
-      expect(result, isFalse);
-    },
-  );
+    expect(result, isFalse);
+  });
 
-  test(
-    'StackTrace with no parameterized_test call',
-    () {
-      final stackTrace = Trace.parse('''
+  test('StackTrace with no parameterized_test call', () {
+    final stackTrace = Trace.parse('''
 #0      ParameterizedTestImpl.call.<anonymous closure>.<anonymous closure> (package:parameterized_test/src/parameterized_test.dart:162:33)
 #1      ParameterizedTestImpl.call.<anonymous closure>.<anonymous closure> (package:parameterized_test/src/parameterized_test.dart:162:33)
 ''');
 
-      final result = stackTrace.isInsideTestBody;
+    final result = stackTrace.isInsideTestBody;
 
-      expect(result, isFalse);
-    },
-  );
+    expect(result, isFalse);
+  });
 
-  test(
-    'StackTrace with other call then core or parameterized_test '
-    'before function.apply',
-    () {
-      final stackTrace = Trace.parse('''
+  test('StackTrace with other call then core or parameterized_test '
+      'before function.apply', () {
+    final stackTrace = Trace.parse('''
 #0      Object.noSuchMethod (dart:core-patch/object_patch.dart:38:5)
 #1      _objectNoSuchMethod (dart:core-patch/object_patch.dart:85:9)
 #2      main.<anonymous closure>.<anonymous closure>.<anonymous closure>.<anonymous closure> (file:///parameterized_test/test/parameterized_test_test.dart:490:31)
@@ -99,17 +91,14 @@ void main() {
 #5      ParameterizedTestImpl.call.<anonymous closure>.<anonymous closure> (package:parameterized_test/src/parameterized_test.dart:162:33)
   ''');
 
-      final result = stackTrace.isInsideTestBody;
+    final result = stackTrace.isInsideTestBody;
 
-      expect(result, isTrue);
-    },
-  );
+    expect(result, isTrue);
+  });
 
-  test(
-    'StackTrace with multiple other call then core or parameterized_test '
-    'before function.apply',
-    () {
-      final stackTrace = Trace.parse('''
+  test('StackTrace with multiple other call then core or parameterized_test '
+      'before function.apply', () {
+    final stackTrace = Trace.parse('''
 #0      Object.noSuchMethod (dart:core-patch/object_patch.dart:38:5)
 #1      main.<anonymous closure>.<anonymous closure>.<anonymous closure>.<anonymous closure> (file:///parameterized_test/test/parameterized_test_test.dart:490:31)
 #2      _objectNoSuchMethod (dart:core-patch/object_patch.dart:85:9)
@@ -119,17 +108,14 @@ void main() {
 #6      ParameterizedTestImpl.call.<anonymous closure>.<anonymous closure> (package:parameterized_test/src/parameterized_test.dart:162:33)
   ''');
 
-      final result = stackTrace.isInsideTestBody;
+    final result = stackTrace.isInsideTestBody;
 
-      expect(result, isTrue);
-    },
-  );
+    expect(result, isTrue);
+  });
 
-  test(
-    'StackTrace with multiple other call then core or parameterized_test '
-    'before function.apply',
-    () {
-      final stackTrace = Trace.parse('''
+  test('StackTrace with multiple other call then core or parameterized_test '
+      'before function.apply', () {
+    final stackTrace = Trace.parse('''
 #0      Object.noSuchMethod (dart:core-patch/object_patch.dart:38:5)
 #1      main.<anonymous closure>.<anonymous closure>.<anonymous closure>.<anonymous closure> (file:///parameterized_test/test/parameterized_test_test.dart:490:31)
 #2      Function._apply (dart:core-patch/function_patch.dart:11:71)
@@ -141,17 +127,14 @@ void main() {
 #8      ParameterizedTestImpl.call.<anonymous closure>.<anonymous closure> (package:parameterized_test/src/parameterized_test.dart:162:33)
   ''');
 
-      final result = stackTrace.isInsideTestBody;
+    final result = stackTrace.isInsideTestBody;
 
-      expect(result, isTrue);
-    },
-  );
+    expect(result, isTrue);
+  });
 
-  test(
-    'StackTrace with multiple other call then core or parameterized_test '
-    'after function.apply',
-    () {
-      final stackTrace = Trace.parse('''
+  test('StackTrace with multiple other call then core or parameterized_test '
+      'after function.apply', () {
+    final stackTrace = Trace.parse('''
 #0      Object.noSuchMethod (dart:core-patch/object_patch.dart:38:5)
 #1      _objectNoSuchMethod (dart:core-patch/object_patch.dart:85:9)
 #2      Function._apply (dart:core-patch/function_patch.dart:11:71)
@@ -161,11 +144,10 @@ void main() {
 #6      main.<anonymous closure>.<anonymous closure>.<anonymous closure>.<anonymous closure> (file:///parameterized_test/test/parameterized_test_test.dart:490:31)
   ''');
 
-      final result = stackTrace.isInsideTestBody;
+    final result = stackTrace.isInsideTestBody;
 
-      expect(result, isFalse);
-    },
-  );
+    expect(result, isFalse);
+  });
 
   test('empty stack trace', () {
     const stackTrace = StackTrace.empty;

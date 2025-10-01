@@ -10,11 +10,8 @@ import 'package:parameterized_test/src/test_options/test_options.dart';
 /// '🚀[$index] $groupDescription: <<${values.join('|')}>>',
 /// ```
 /// {@endtemplate}
-typedef CustomDescriptionBuilder = Object? Function(
-  Object? groupDescription,
-  int index,
-  List<dynamic> values,
-);
+typedef CustomDescriptionBuilder =
+    Object? Function(Object? groupDescription, int index, List<dynamic> values);
 
 /// {@template ValueWithTestOptions}
 /// Wrapper for test values and associated test options.
