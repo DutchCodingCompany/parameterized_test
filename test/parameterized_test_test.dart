@@ -42,7 +42,7 @@ void main() {
     });
 
     test('makeDescription return a String with '
-        'single qouted strings', () {
+        'single quoted strings', () {
       final values = ['one', 'two', 'three'];
 
       final result = pTest.makeDescription(baseDescription, 1, values, null);
@@ -51,7 +51,7 @@ void main() {
     });
 
     test('makeDescription return a String with '
-        'single qouted strings and unqouted other object', () {
+        'single quoted strings and unquoted other object', () {
       final values = [
         'one',
         'two',
@@ -251,12 +251,6 @@ void main() {
       expect(testMock.testCaptures, hasLength(3));
     });
 
-    test('test called x times for the length of the values', () {
-      pTest('test', [1, 2, 3], (int value) => expect(value, value));
-
-      expect(testMock.testCaptures, hasLength(3));
-    });
-
     test('group testOptions are not passed to test', () {
       pTest(
         'test',
@@ -334,7 +328,7 @@ void main() {
       expect(testMock.testCaptures[2].retry, null);
     });
 
-    test('test use description by desciption builder', () {
+    test('test use description by description builder', () {
       pTest(
         'test',
         [1, 2, 3],

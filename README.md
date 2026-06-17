@@ -111,7 +111,7 @@ My parameterized test [ 'third', 'fourth', false ]
 When defining a `customDescriptionBuilder` like this:
 ```dart
 ...
-customDiscriptionBuilder: (groupDescription, index, values) => '🚀[$index] $groupDescription: <<${values.join('|')}>>',
+customDescriptionBuilder: (groupDescription, index, values) => '🚀[$index] $groupDescription: <<${values.join('|')}>>',
 ...
 ```
 
@@ -181,7 +181,7 @@ parameterizedTest(
   },
 );
 ```
-### Test retreiving the list of values from a function
+### Test retrieving the list of values from a function
 ```dart
 List<dynamic> provideData() {
   return [
