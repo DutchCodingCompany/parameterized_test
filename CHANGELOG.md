@@ -5,6 +5,7 @@
  - Fixed truncated doc comment on `ListTestParametersEx`.
  - Removed duplicate test.
  - Fixed minor typos in documentation and tests.
+ - added a skill for writing parameterized tests
 
 ## 2.0.2
  - Update dependencies
