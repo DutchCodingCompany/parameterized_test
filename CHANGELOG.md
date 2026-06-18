@@ -1,4 +1,13 @@
-# 2.0.2
+## 2.0.3
+ - Added guard clause in `extractFunctionArgumentsSignature` to prevent `RangeError` on unexpected error formats.
+ - Exported `CustomDescriptionBuilder`.
+ - Fixed typo `customDiscriptionBuilder` in documentation.
+ - Fixed truncated doc comment on `ListTestParametersEx`.
+ - Removed duplicate test.
+ - Fixed minor typos in documentation and tests.
+ - added a skill for writing parameterized tests
+
+## 2.0.2
  - Update dependencies
    - Update `very_good_analysis` to `10.0.0`
    - Update `test` to `1.26.2`
@@ -40,7 +49,7 @@ parameterizedTest('No more numbered function!', [
       [3, 4],
      ],
      (int a, int b) => expect(a+b, isPositive),
-     customDiscriptionBuilder: (groupDescription, index, values) => '🚀[$index] $groupDescription: <<${values.join('|')}>>',
+      customDescriptionBuilder: (groupDescription, index, values) => '🚀[$index] $groupDescription: <<${values.join('|')}>>',
    );
    ```
    
@@ -65,7 +74,7 @@ Test with custom description 🚀[2] Test with custom description: <<3|4>>
 
 ## 1.0.0
 
-Major rework on `paramterized_test` which includes:
+Major rework on `parameterized_test` which includes:
 
 - DISCONTINUED `parameterized_source` package
     - DEPRECATED `ParameterizedSource.csv`

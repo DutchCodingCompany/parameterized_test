@@ -111,7 +111,7 @@ My parameterized test [ 'third', 'fourth', false ]
 When defining a `customDescriptionBuilder` like this:
 ```dart
 ...
-customDiscriptionBuilder: (groupDescription, index, values) => '🚀[$index] $groupDescription: <<${values.join('|')}>>',
+customDescriptionBuilder: (groupDescription, index, values) => '🚀[$index] $groupDescription: <<${values.join('|')}>>',
 ...
 ```
 
@@ -181,7 +181,7 @@ parameterizedTest(
   },
 );
 ```
-### Test retreiving the list of values from a function
+### Test retrieving the list of values from a function
 ```dart
 List<dynamic> provideData() {
   return [
@@ -250,7 +250,7 @@ Its also possible to combine parameterizedTest for example with the [csv](https:
 
 ```dart
 parameterizedTest('Example of CSV data',
-  const CsvToListConverter().convert('kiwi,4\r\napple,5\r\nbanana,6'),
+  Csv(dynamicTyping: true).decode('kiwi,4\r\napple,5\r\nbanana,6'),
   (String fruit, int length) {
     expect(fruit.length, length);
 });

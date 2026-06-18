@@ -100,7 +100,7 @@ void main() {
   // Test with CSV data
   parameterizedTest(
     'Example of CSV data',
-    const CsvToListConverter().convert('kiwi,4\r\napple,5\r\nbanana,6'),
+    Csv(dynamicTyping: true).decode('kiwi,4\r\napple,5\r\nbanana,6'),
     (String fruit, int length) {
       expect(fruit.length, length);
     },

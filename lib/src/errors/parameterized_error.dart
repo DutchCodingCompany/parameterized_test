@@ -48,7 +48,12 @@ class ParameterizedError extends Error {
   static String extractFunctionArgumentsSignature(String body) {
     const closure = 'Closure: (';
     final closureIndex = body.indexOf(closure);
+
+    if (closureIndex == -1) return body;
+
     final endIndex = body.indexOf(')', closureIndex);
+
+    if (endIndex == -1) return body;
 
     final bodyClosure = body.substring(closureIndex + closure.length, endIndex);
 

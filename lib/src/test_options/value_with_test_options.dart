@@ -6,7 +6,7 @@ import 'package:parameterized_test/src/test_options/test_options.dart';
 ///
 /// For example:
 /// ```dart
-/// customDiscriptionBuilder: (groupDescription, index, values) =>
+/// customDescriptionBuilder: (groupDescription, index, values) =>
 /// '🚀[$index] $groupDescription: <<${values.join('|')}>>',
 /// ```
 /// {@endtemplate}

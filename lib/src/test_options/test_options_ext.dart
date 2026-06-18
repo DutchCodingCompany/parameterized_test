@@ -2,7 +2,7 @@ import 'package:parameterized_test/src/test_options/test_options.dart';
 import 'package:parameterized_test/src/test_options/value_with_test_options.dart';
 import 'package:test/test.dart' as dart_test;
 
-/// Extension on [List] to apply extra test options for a specified
+/// Extension on [List] to apply extra test options for a specified test value.
 extension ListTestParametersEx<T extends List<dynamic>> on T {
   /// Applied extra test options for a specified test value.
   /// For example:
