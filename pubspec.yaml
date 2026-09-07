@@ -14,4 +14,4 @@ dependencies:
 
 dev_dependencies:
   csv: ^8.0.0
-  very_good_analysis: ^10.2.0
+  very_good_analysis: ">=10.2.0 <12.0.0"
